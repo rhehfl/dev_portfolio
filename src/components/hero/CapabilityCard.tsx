@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ReactNode } from 'react';
 
 export type CardVariant = 'blue' | 'green' | 'purple' | 'gray';
@@ -71,13 +71,13 @@ export default function CapabilityCard({
         {description}
       </p>
       <motion.div
-        className={`inset-shadow-sm group-hover:shadow-2xl  absolute inset-0 ${currentStyle.bg} z-10 p-8 rounded-l-2xl flex flex-col justify-center ${currentStyle.insetShadow}`}
+        className={`inset-shadow-sm group-hover:shadow-2xl cursor-pointer absolute inset-0 ${currentStyle.bg} z-10 p-8 rounded-l-2xl flex flex-col justify-center ${currentStyle.insetShadow}`}
         variants={overlayVariants}
       >
         <button
-          className={`flex items-center gap-2 font-bold ${currentStyle.iconColor}`}
+          className={`cursor-pointer flex items-center gap-2 font-bold ${currentStyle.iconColor}`}
         >
-          자세히 보기 <ArrowRight className="w-5 h-5" />
+          <ArrowLeft className="w-5 h-5" /> 자세히 보기
         </button>
       </motion.div>
     </motion.article>

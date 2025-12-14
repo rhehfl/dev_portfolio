@@ -1,11 +1,11 @@
-import { Github, Mail, UserRound } from 'lucide-react';
+import { Github, Home, Mail, School, UserRound } from 'lucide-react';
 import Image from 'next/image';
 
 export default function ProfileCard() {
   return (
     <article className="col-start-2 col-span-4">
       <h1 className="text-5xl font-bold">__Profile</h1>
-      <figure className="mt-11 mb-5">
+      <figure className="mt-11 ">
         <Image
           src="/globe.svg"
           alt="프론트엔드 개발자 구도윤 프로필 사진"
@@ -14,7 +14,7 @@ export default function ProfileCard() {
           height={240}
         />
       </figure>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-3 mt-15">
         <li className="flex gap-5">
           <UserRound />
           <h2 className="text-xl">
@@ -28,6 +28,18 @@ export default function ProfileCard() {
               rhehfl418q@gmail.com
             </a>
           </address>
+        </li>
+        <li>
+          <address className="not-italic flex gap-5">
+            <Home />
+            <span>서울시 강남구</span>
+          </address>
+        </li>
+        <li>
+          <div className=" flex gap-5">
+            <School />
+            <span>인덕대학교 (재학중)</span>
+          </div>
         </li>
         <li>
           <nav aria-label="Social Media Links" className=" flex gap-5">
