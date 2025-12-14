@@ -1,3 +1,9 @@
+import HeroSection from '@/components/hero/HeroSection';
+
 export default function Home() {
-  return <div>하이하이</div>;
+  return (
+    <main className="mx-6">
+      <HeroSection></HeroSection>
+    </main>
+  );
 }

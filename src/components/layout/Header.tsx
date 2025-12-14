@@ -27,12 +27,12 @@ export default function Header() {
       </button>
       {isMenuOpen && (
         <div className="md:hidden flex flex-col gap-4 mt-4 p-4 bg-gray-50 rounded-lg">
-          <a href="#about" className="block py-2">
+          <Link href="#about" className="block py-2">
             About
-          </a>
-          <a href="#projects" className="block py-2">
+          </Link>
+          <Link href="#projects" className="block py-2">
             Projects
-          </a>
+          </Link>
           <Button label="Contact" />
         </div>
       )}
