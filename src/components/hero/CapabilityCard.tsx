@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 export type CardVariant = 'blue' | 'green' | 'purple' | 'gray';
@@ -37,6 +38,7 @@ const overlayVariants = {
 } as const;
 
 interface CapabilityCardProps {
+  id: string;
   title: string;
   description: string;
   icon: ReactNode;
@@ -44,6 +46,7 @@ interface CapabilityCardProps {
 }
 
 export default function CapabilityCard({
+  id,
   title,
   description,
   icon,
@@ -56,6 +59,7 @@ export default function CapabilityCard({
       whileHover="hover"
       initial="rest"
       animate="rest"
+      whileTap="hover"
       className="group overflow-hidden relative h-full p-8 border border-gray-100 rounded-2xl bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
     >
       <div className="flex mb-6 items-center gap-5">
@@ -71,14 +75,15 @@ export default function CapabilityCard({
         {description}
       </p>
       <motion.div
-        className={`inset-shadow-sm group-hover:shadow-2xl cursor-pointer absolute inset-0 ${currentStyle.bg} z-10 p-8 rounded-l-2xl flex flex-col justify-center ${currentStyle.insetShadow}`}
+        className={`inset-shadow-sm group-hover:shadow-2xl absolute inset-0 ${currentStyle.bg} z-10 p-8 rounded-l-2xl flex flex-col justify-center ${currentStyle.insetShadow}`}
         variants={overlayVariants}
       >
-        <button
-          className={`cursor-pointer flex items-center gap-2 font-bold ${currentStyle.iconColor}`}
+        <Link
+          className="w-full h-full cursor-pointer flex items-center gap-2 font-bold ${currentStyle.iconColor}"
+          href={`/card/${id}`}
         >
           <ArrowLeft className="w-5 h-5" /> 자세히 보기
-        </button>
+        </Link>
       </motion.div>
     </motion.article>
   );

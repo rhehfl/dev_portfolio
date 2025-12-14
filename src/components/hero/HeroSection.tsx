@@ -51,9 +51,9 @@ const itemVars = {
 };
 export default function HeroSection() {
   return (
-    <section className="grid grid-cols-12 gap-6">
+    <section className="grid grid-cols-12 gap-6 auto-row">
       <ProfileCard />
-      <section className="grid col-span-5 col-start-7">
+      <section className="flex col-span-12 md:col-span-4 lg:col-span-5 md:col-start-7 lg:col-start-7">
         <motion.ul
           variants={containerVars}
           className="flex flex-col gap-5"
