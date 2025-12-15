@@ -41,13 +41,13 @@ export default function Modal({ children, onClose, onToggleMode }: ModalProps) {
         animate="animate"
         exit="exit"
         className="
-                relative h-full bg-white shadow-2xl overflow-y-auto
+                relative h-full bg-white shadow-2xl overflow-y-hidden
                 w-full        
                 max-h-[85vh]
                 md:max-w-lg 
                 lg:max-w-4xl        
                 rounded-xl       
-                md:rounded-l-2xl    
+                md:rounded-2xl    
             "
       >
         <motion.div

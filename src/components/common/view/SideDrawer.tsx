@@ -50,7 +50,7 @@ export default function SideDrawer({
         animate="animate"
         exit="exit"
         className="
-                relative h-full bg-white shadow-2xl overflow-y-auto
+                relative h-full bg-white shadow-2xl overflow-y-hidden
                 w-full        
                 md:max-w-lg 
                 lg:max-w-4xl        

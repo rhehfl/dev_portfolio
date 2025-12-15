@@ -30,21 +30,6 @@ export default function ProfileCard() {
           </address>
         </li>
         <li>
-          <address className="not-italic flex gap-5">
-            <Home />
-            <span>서울시 강남구</span>
-          </address>
-        </li>
-        <li>
-          <div className=" flex gap-5">
-            <School />
-            <span>인덕대학교 (재학중)</span>
-          </div>
-        </li>
-      </ul>
-
-      <ul className="flex flex-col mt-10 gap-6">
-        <li>
           <nav aria-label="Social Media Links" className=" flex gap-5">
             <Github />
             <a
