@@ -1,3 +1,9 @@
+import ProjectCard from '@/components/project/ProjectCard';
+
 export default function ProjectSection() {
-  return <div>Project Section Page</div>;
+  return (
+    <div>
+      <ProjectCard></ProjectCard>
+    </div>
+  );
 }

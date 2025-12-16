@@ -765,6 +765,19 @@
   dependencies:
     "@types/mdx" "^2.0.0"
 
+"@modern-kit/react@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@modern-kit/react/-/react-2.8.0.tgz#60eeae8e0c1e4b3b62e2710a885850da07877003"
+  integrity sha512-Dezt9Xizk7fvdF/V4yVLRBuUNrX0JMHJd3dlCH906L1eU8kglTM1n7tsKOYUaqgdJSmQSwBjalOAHPkmoqd47A==
+  dependencies:
+    "@modern-kit/utils" "2.7.0"
+    classnames "^2.5.1"
+
+"@modern-kit/utils@2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@modern-kit/utils/-/utils-2.7.0.tgz#472e08bc83741f36023da5facd5f46f3026416df"
+  integrity sha512-0zzk4Oi2AdccJELXCLOl1nv8DCWmnCjbEYFMz9qJMEWBB8T0fxiIcwFglpDXSKNvW5WRaLm/JNdKxIwGTQiwSA==
+
 "@napi-rs/wasm-runtime@^0.2.11":
   version "0.2.12"
   resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.12.tgz#3e78a8b96e6c33a6c517e1894efbd5385a7cb6f2"
@@ -2107,6 +2120,11 @@ chromatic@^13.3.3:
   version "13.3.4"
   resolved "https://registry.npmjs.org/chromatic/-/chromatic-13.3.4.tgz"
   integrity sha512-TR5rvyH0ESXobBB3bV8jc87AEAFQC7/n+Eb4XWhJz6hW3YNxIQPVjcbgLv+a4oKHEl1dUBueWSoIQsOVGTd+RQ==
+
+classnames@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
+  integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
 
 client-only@0.0.1:
   version "0.0.1"

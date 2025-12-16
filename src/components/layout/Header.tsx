@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@/components/common/Button';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -33,7 +32,6 @@ export default function Header() {
           <Link href="#projects" className="block py-2">
             Projects
           </Link>
-          <Button label="Contact" />
         </div>
       )}
     </header>
