@@ -33,7 +33,7 @@ const overlayVariants = {
   rest: { x: '100%' },
   hover: {
     x: 70,
-    transition: { type: 'spring', stiffness: 300, damping: 30 },
+    transition: { type: 'spring', stiffness: 350, damping: 30, duration: 0.3 },
   },
 } as const;
 
