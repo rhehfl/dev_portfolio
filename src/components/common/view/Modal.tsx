@@ -1,42 +1,47 @@
 'use client';
 
-import { motion, Transition, Variants } from 'framer-motion';
+import { useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 import { ArrowRight, X } from 'lucide-react';
-const modalVariants: Variants = {
-  initial: {
-    x: '100%',
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: { type: 'spring', damping: 25, stiffness: 200 },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
+import { CommonViewProps, ViewMode } from '@/components/common/view/type';
 
-const transition: Transition = {
-  layout: {
-    duration: 0.5,
-  },
-};
+export default function Modal({
+  children,
+  onClose,
+  onChangeMode,
+  isSwitching,
+  layoutId,
+}: CommonViewProps) {
+  const [isMorphing, setIsMorphing] = useState(false);
 
-interface ModalProps {
-  children: React.ReactNode;
-  onClose: () => void;
-  onToggleMode: () => void;
-}
+  const handleToggle = (targetMode: ViewMode) => {
+    setIsMorphing(true);
+    onChangeMode(targetMode);
+  };
 
-export default function Modal({ children, onClose, onToggleMode }: ModalProps) {
+  const modalVariants: Variants = {
+    initial: { opacity: 0, scale: 0.95 },
+    animate: { opacity: 1, scale: 1 },
+    exit: {
+      opacity: isMorphing ? 1 : 0,
+      scale: isMorphing ? 1 : 0.95,
+      transition: {
+        duration: isMorphing ? 0.8 : 0.2,
+      },
+    },
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex justify-center items-center">
-      <div className="absolute inset-0 bg-black/20" onClick={onClose} />
+    <div className="fixed inset-0 z-50 flex justify-center items-center pointer-events-none">
+      <div
+        className="absolute inset-0 bg-black/20 pointer-events-auto"
+        onClick={onClose}
+      />
+
       <motion.aside
-        layoutId="overlay-container"
+        layoutId={layoutId}
+        layout
         variants={modalVariants}
-        transition={transition}
         initial="initial"
         animate="animate"
         exit="exit"
@@ -47,15 +52,13 @@ export default function Modal({ children, onClose, onToggleMode }: ModalProps) {
                 md:max-w-lg 
                 lg:max-w-4xl        
                 rounded-xl       
-                md:rounded-2xl    
+                md:rounded-2xl
+                pointer-events-auto    
             "
       >
-        <motion.div
-          layoutId="header"
-          className="flex items-center justify-between p-4 border-b"
-        >
+        <motion.div className="flex items-center justify-between p-4 border-b">
           <button
-            onClick={onToggleMode}
+            onClick={() => handleToggle('drawer')}
             className="flex items-center gap-2 text-sm text-gray-500 hover:bg-gray-100 p-2 rounded-lg"
           >
             <ArrowRight className="w-4 h-4" />

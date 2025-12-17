@@ -2,7 +2,7 @@ import { GitMerge } from 'lucide-react';
 import Image from 'next/image';
 export default function Communication() {
   return (
-    <section className="p-6">
+    <section className="p-12">
       <GitMerge className="w-5 h-5 text-purple-500" />
       <h2 className="bold text-2xl">코드 리뷰를 통한 소통</h2>
       <Image

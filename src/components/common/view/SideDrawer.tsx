@@ -1,83 +1,77 @@
 'use client';
 
-import { motion, Transition, Variants } from 'framer-motion';
+import { useState } from 'react'; // useState 추가
+import { motion, Variants } from 'framer-motion';
 import { Maximize2, X } from 'lucide-react';
-const drawerVariants: Variants = {
-  initial: {
-    x: '100%',
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: { type: 'spring', damping: 25, stiffness: 200 },
-  },
-  exit: {
-    x: '100%',
-    opacity: 0,
-    transition: { duration: 0.2 },
-  },
-};
-
-const transition: Transition = {
-  layout: {
-    duration: 0.7,
-  },
-  y: {
-    duration: 0.1,
-  },
-};
-
-interface SideDrawerProps {
-  children: React.ReactNode;
-  onClose: () => void;
-  onToggleMode: () => void;
-}
+import { CommonViewProps, ViewMode } from '@/components/common/view/type';
 
 export default function SideDrawer({
   children,
   onClose,
-  onToggleMode,
-}: SideDrawerProps) {
+  layoutId,
+  onChangeMode,
+  isSwitching,
+}: CommonViewProps) {
+  console.log(isSwitching);
+  const [isMorphing, setIsMorphing] = useState(false);
+
+  const handleToggle = (targetMode: ViewMode) => {
+    setIsMorphing(true);
+    onChangeMode(targetMode);
+  };
+
+  const wrapperVariants: Variants = {
+    initial: {
+      x: isSwitching ? '0%' : '100%',
+    },
+    animate: {
+      x: '0%',
+      opacity: 1,
+      transition: { type: 'tween', duration: 0.8 },
+    },
+    exit: {
+      x: '100%',
+      transition: { duration: isMorphing ? 0 : 0.5 },
+    },
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
-      <div className="absolute inset-0" onClick={onClose} />
-      <motion.aside
-        transition={transition}
-        layoutId="overlay-container"
-        variants={drawerVariants}
+    <div className="fixed inset-0 z-50 flex justify-end pointer-events-none">
+      <div className="absolute inset-0 pointer-events-auto" onClick={onClose} />
+
+      <motion.div
+        variants={wrapperVariants}
         initial="initial"
         animate="animate"
         exit="exit"
-        className="
-                relative h-full bg-white shadow-2xl overflow-y-hidden
-                w-full        
-                md:max-w-lg 
-                lg:max-w-4xl        
-                rounded-none       
-                md:rounded-l-2xl    
-            "
+        className="pointer-events-auto h-full"
       >
-        <motion.div
-          layoutId="header"
-          className="flex items-center justify-between p-4 border-b"
+        <motion.aside
+          layoutId={layoutId}
+          className="
+                relative h-full bg-white shadow-2xl overflow-y-hidden
+                w-full md:max-w-lg lg:max-w-4xl        
+                rounded-none md:rounded-l-2xl    
+            "
         >
-          <button
-            onClick={onToggleMode}
-            className="flex items-center gap-2 text-sm text-gray-500 hover:bg-gray-100 p-2 rounded-lg"
-          >
-            <Maximize2 className="w-4 h-4" />
-            중앙 보기
-          </button>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-2xl"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </motion.div>
-        {children}
-      </motion.aside>
+          <div className="flex items-center justify-between p-4 border-b">
+            <button
+              onClick={() => handleToggle('modal')}
+              className="flex items-center gap-2 text-sm text-gray-500 hover:bg-gray-100 p-2 rounded-lg"
+            >
+              <Maximize2 className="w-4 h-4" />
+              중앙 보기
+            </button>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 rounded-2xl"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          {children}
+        </motion.aside>
+      </motion.div>
     </div>
   );
 }
