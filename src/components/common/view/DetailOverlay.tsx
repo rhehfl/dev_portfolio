@@ -20,43 +20,40 @@ export default function DetailOverlay({
   onExitComplete,
 }: DetailOverlayProps) {
   const prevMode = usePrevious(mode);
-  console.log(prevMode);
   const isSwitching = prevMode !== 'hidden' && prevMode !== mode;
 
   const onClose = () => {
     onChangeMode('hidden');
   };
   return (
-    <>
-      <AnimatePresence
-        mode="popLayout"
-        onExitComplete={() => {
-          if (mode === 'hidden') {
-            onExitComplete?.();
-          }
-        }}
-      >
-        {mode === 'drawer' && (
-          <SideDrawer
-            layoutId="overlay-container"
-            isSwitching={isSwitching}
-            onChangeMode={onChangeMode}
-            onClose={onClose}
-          >
-            {children}
-          </SideDrawer>
-        )}
-        {mode === 'modal' && (
-          <Modal
-            layoutId="overlay-container"
-            isSwitching={isSwitching}
-            onChangeMode={onChangeMode}
-            onClose={onClose}
-          >
-            {children}
-          </Modal>
-        )}
-      </AnimatePresence>
-    </>
+    <AnimatePresence
+      mode="popLayout"
+      onExitComplete={() => {
+        if (mode === 'hidden') {
+          onExitComplete?.();
+        }
+      }}
+    >
+      {mode === 'drawer' && (
+        <SideDrawer
+          layoutId="overlay-container"
+          isSwitching={isSwitching}
+          onChangeMode={onChangeMode}
+          onClose={onClose}
+        >
+          {children}
+        </SideDrawer>
+      )}
+      {mode === 'modal' && (
+        <Modal
+          layoutId="overlay-container"
+          isSwitching={isSwitching}
+          onChangeMode={onChangeMode}
+          onClose={onClose}
+        >
+          {children}
+        </Modal>
+      )}
+    </AnimatePresence>
   );
 }
