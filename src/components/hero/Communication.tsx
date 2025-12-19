@@ -1,6 +1,5 @@
 import ZoomableImage from '@/components/common/ZoomableImage';
 import { GitMerge } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Communication() {
   return (
