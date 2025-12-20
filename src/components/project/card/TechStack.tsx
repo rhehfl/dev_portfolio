@@ -25,19 +25,20 @@ export const TECH_COLOR_MAP = {
 
 interface TechStackProps {
   stacks: (keyof typeof TECH_COLOR_MAP)[];
+  className?: string;
 }
 
-export default function TechStack({ stacks }: TechStackProps) {
+export default function TechStack({ stacks, className }: TechStackProps) {
   return (
-    <div className="flex  gap-2 mb-3">
+    <ul className={`flex  gap-2 mb-3 ${className}`}>
       {stacks.map((stack) => (
-        <span
+        <li
           key={stack}
           className={`px-3 py-1 text-xs font-semibold rounded-full ${TECH_COLOR_MAP[stack]}`}
         >
           {stack}
-        </span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

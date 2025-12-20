@@ -21,15 +21,18 @@ export default function ProjectCard({
             <h3 className="text-center font-bold text-lg">{title}</h3>
             <p className="text-center text-sm">{description}</p>
             <p className="text-center text-sm">기간</p>
-            <TechStack
-              stacks={[
-                'React',
-                'TypeScript',
-                'Tanstack Query',
-                'Zustand',
-                'Styled-Components',
-              ]}
-            />
+            <div className="w-full overflow-hidden linear-gradient(to right, black 80%, transparent 100%)">
+              <TechStack
+                stacks={[
+                  'React',
+                  'TypeScript',
+                  'Tanstack Query',
+                  'Zustand',
+                  'Styled-Components',
+                ]}
+                className="whitespace-nowrap"
+              />
+            </div>
             <div className="flex ">
               <a href={githubLink}>
                 <Github />
