@@ -3,4 +3,5 @@ export interface ProjectCard {
   description: string;
   imageUrls: string[];
   githubLink: string;
+  link: string;
 }

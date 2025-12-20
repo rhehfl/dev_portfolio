@@ -44,13 +44,13 @@ export default function SideDrawer({
         initial="initial"
         animate="animate"
         exit="exit"
-        className="pointer-events-auto h-full"
+        className="pointer-events-auto h-full "
       >
         <motion.aside
           layoutId={layoutId}
           className="
                 relative h-full bg-white shadow-2xl overflow-y-hidden
-                w-full md:max-w-lg lg:max-w-4xl        
+                w-full md:w-lg lg:w-4xl        
                 rounded-none md:rounded-l-2xl    
             "
         >

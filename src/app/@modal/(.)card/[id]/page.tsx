@@ -3,12 +3,14 @@
 import DetailOverlay from '@/components/common/view/DetailOverlay';
 import { ViewMode } from '@/components/common/view/type';
 import Communication from '@/components/hero/Communication';
+import Coko from '@/components/project/Coko';
 import { useScrollLock } from '@modern-kit/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const cardDetailMap = {
   communication: <Communication />,
+  coko: <Coko />,
 } as const;
 
 export default function CardDetailPage() {
