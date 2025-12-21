@@ -23,8 +23,9 @@ export const TECH_COLOR_MAP = {
   AWS: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200',
 } as const;
 
+export type TechStackType = keyof typeof TECH_COLOR_MAP;
 interface TechStackProps {
-  stacks: (keyof typeof TECH_COLOR_MAP)[];
+  stacks: TechStackType[];
   className?: string;
 }
 

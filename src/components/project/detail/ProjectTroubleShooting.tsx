@@ -17,9 +17,6 @@ export default function ProjectTroubleShooting({
 
   return (
     <section>
-      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
-        🔧 Trouble Shooting
-      </h3>
       <div className="space-y-6">
         {items.map((ts, idx) => (
           <div

@@ -1,7 +1,9 @@
+import TechStack, { TechStackType } from '@/components/project/card/TechStack';
+
 interface ProjectHeaderProps {
   title: string;
   description: string;
-  tags: string[];
+  techStack: TechStackType[];
   period?: string;
   teamSize?: string;
   role?: string;
@@ -10,7 +12,7 @@ interface ProjectHeaderProps {
 export default function ProjectHeader({
   title,
   description,
-  tags,
+  techStack,
   period,
   teamSize,
   role,
@@ -18,14 +20,7 @@ export default function ProjectHeader({
   return (
     <div className="mb-8">
       <div className="flex flex-wrap gap-2 mb-3">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 rounded-full"
-          >
-            {tag}
-          </span>
-        ))}
+        <TechStack stacks={techStack} />
       </div>
       <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
         {title}
