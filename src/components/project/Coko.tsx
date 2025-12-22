@@ -4,7 +4,7 @@ import ProjectTroubleShooting from '@/components/project/detail/ProjectTroubleSh
 
 export default function Coko() {
   return (
-    <div className="p-5 overflow-y-scroll h-full">
+    <div className="p-5  h-full">
       <div className="p-10 ">
         <ProjectHeader
           title="CoKo"
@@ -27,7 +27,7 @@ export default function Coko() {
         </h3>
         <ProjectTroubleShooting
           title="ref 콜백 함수 전달로 인한 무한 리렌더링 이슈 해결"
-          problem="팝오버 컴포넌트가 열릴 때 무한 리렌더링이 발생하여 페이지가 멈추는 현상 발생"
+          problem="컴포넌트가 열릴 때 무한 리렌더링이 발생하여 페이지가 멈추는 현상 발생"
           recognition={[
             'ref 콜백은 렌더링마다 새로운 함수 참조가 생성되면 다시 실행된다는 점을 인지',
             'ref 콜백 내부에서 상태를 변경하면서 렌더링 → ref 재호출 → 상태 변경의 무한 사이클이 발생한다고 판단함',
@@ -56,7 +56,6 @@ export default function Coko() {
         >`}
         />
       </div>
-      asdasdasshh
     </div>
   );
 }

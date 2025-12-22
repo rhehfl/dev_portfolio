@@ -23,7 +23,7 @@ export default function ProjectCard({
 }: ProjectCardType) {
   return (
     <article>
-      <Card className="group h-full cursor-pointer transition hover:shadow-2xl hover:scale-[1.02]">
+      <Card className="group h-full  transition hover:shadow-2xl hover:scale-[1.02]">
         <CardHeader>
           <CardTitle className="text-lg">{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
@@ -45,7 +45,7 @@ export default function ProjectCard({
         <CardContent className="flex flex-1 flex-col gap-3">
           <Link
             href={`/card/${detailUrl}`}
-            className="flex h-full flex-col  rounded-lg"
+            className="flex h-full flex-col rounded-lg hover:opacity-80 transition-opacity"
           >
             <AspectRatio ratio={16 / 9} className="w-full relative">
               <Image
@@ -60,7 +60,12 @@ export default function ProjectCard({
         </CardContent>
 
         <CardFooter className="flex justify-end">
-          <a href={githubLink} target="_blank" rel="noopener noreferrer">
+          <a
+            href={githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full p-2 hover:bg-gray-50"
+          >
             <Github />
           </a>
         </CardFooter>

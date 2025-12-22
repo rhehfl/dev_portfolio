@@ -9,5 +9,3 @@ export const ProjectCardData: ProjectCard[] = [
     detailUrl: 'coko',
   },
 ];
-
-export const TroubleShootingData = {}

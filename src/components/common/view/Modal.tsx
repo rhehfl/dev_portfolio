@@ -47,6 +47,7 @@ export default function Modal({
         exit="exit"
         className="
                 relative h-full bg-white shadow-2xl overflow-y-hidden
+                flex flex-col
                 w-full        
                 max-h-[85vh]
                 md:max-w-lg 
@@ -71,7 +72,7 @@ export default function Modal({
             <X className="w-6 h-6" />
           </button>
         </motion.div>
-        {children}
+        <div className="overflow-y-scroll h-full">{children}</div>
       </motion.aside>
     </div>
   );

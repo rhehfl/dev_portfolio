@@ -49,6 +49,7 @@ export default function SideDrawer({
         <motion.aside
           layoutId={layoutId}
           className="
+                flex flex-col
                 relative h-full bg-white shadow-2xl overflow-y-hidden
                 w-full md:w-lg lg:w-4xl        
                 rounded-none md:rounded-l-2xl    
@@ -69,7 +70,7 @@ export default function SideDrawer({
               <X className="w-6 h-6" />
             </button>
           </div>
-          {children}
+          <div className="overflow-y-scroll h-full">{children}</div>
         </motion.aside>
       </motion.div>
     </div>
