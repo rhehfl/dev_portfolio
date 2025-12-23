@@ -6,14 +6,15 @@ import { TroubleShootingData } from '@/data/coko';
 
 export default function Coko() {
   return (
-    <div className="p-5  h-full">
+    <div className="p-5 h-full">
       <div className="p-10 ">
         <NavGroup>
-          <NavButton href="/">Home</NavButton>
-          <NavButton href="/projects">Projects</NavButton>
+          <NavButton href="#intro">소개</NavButton>
+          <NavButton href="/projects">트러블 슈팅</NavButton>
           <NavButton href="/about">About</NavButton>
         </NavGroup>
         <ProjectHeader
+          id="intro"
           title="CoKo"
           description="JS를 재미있게 학습하기 위한 퀴즈 기반 교육 웹 사이트"
           techStack={[

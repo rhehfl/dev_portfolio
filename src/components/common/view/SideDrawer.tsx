@@ -70,7 +70,9 @@ export default function SideDrawer({
               <X className="w-6 h-6" />
             </button>
           </div>
-          <div className="overflow-y-scroll h-full">{children}</div>
+          <div className="overflow-y-scroll h-full scroll-smooth">
+            {children}
+          </div>
         </motion.aside>
       </motion.div>
     </div>
