@@ -1,3 +1,5 @@
+import MarkDownWrapper from '@/components/common/MarkDownWrapper';
+
 export interface TroubleShootingItem {
   title: string;
   problem: string | string[];
@@ -20,20 +22,22 @@ export default function ProjectTroubleShooting({
       return (
         <ul className="space-y-2 list-disc list-inside">
           {content.map((item, index) => (
-            <li key={index} className="text-gray-800 dark:text-gray-200">
-              {item}
+            <li
+              key={index}
+              className="text-gray-800 dark:text-gray-200 flex flex-col"
+            >
+              <MarkDownWrapper>{item}</MarkDownWrapper>
             </li>
           ))}
         </ul>
       );
     }
     return (
-      <span className="text-gray-800 dark:text-gray-200 whitespace-pre-line">
-        {content}
+      <span className="text-gray-800 dark:text-gray-200 ">
+        <MarkDownWrapper>{content}</MarkDownWrapper>
       </span>
     );
   };
-
   return (
     <section>
       <div className="space-y-6">
@@ -44,7 +48,7 @@ export default function ProjectTroubleShooting({
 
           <div className="grid grid-cols-[80px_1fr] gap-y-8 gap-x-2 text-sm sm:text-base">
             <span className="font-bold text-gray-500 dark:text-gray-400">
-              문제 발견
+              상황
             </span>
             {renderContent(problem)}
 
@@ -66,9 +70,7 @@ export default function ProjectTroubleShooting({
 
           {codeSnippet && (
             <div className="mt-5 bg-[#282c34] rounded-lg p-4 overflow-x-auto custom-scrollbar">
-              <pre className="text-sm font-mono text-gray-300 leading-relaxed">
-                <code>{codeSnippet}</code>
-              </pre>
+              <MarkDownWrapper>{codeSnippet.trim()}</MarkDownWrapper>
             </div>
           )}
         </div>

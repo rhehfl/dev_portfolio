@@ -3,5 +3,5 @@ export interface ProjectCard {
   description: string;
   previewImageUrl: string;
   githubLink: string;
-  detailUrl: 'coko';
+  detailUrl: string;
 }
