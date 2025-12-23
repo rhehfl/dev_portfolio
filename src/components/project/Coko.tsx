@@ -1,12 +1,18 @@
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
 import ProjectTroubleShooting from '@/components/project/detail/ProjectTroubleShooting';
+import { NavButton, NavGroup } from '@/components/ui/navTab';
 import { TroubleShootingData } from '@/data/coko';
 
 export default function Coko() {
   return (
     <div className="p-5  h-full">
       <div className="p-10 ">
+        <NavGroup>
+          <NavButton href="/">Home</NavButton>
+          <NavButton href="/projects">Projects</NavButton>
+          <NavButton href="/about">About</NavButton>
+        </NavGroup>
         <ProjectHeader
           title="CoKo"
           description="JS를 재미있게 학습하기 위한 퀴즈 기반 교육 웹 사이트"
