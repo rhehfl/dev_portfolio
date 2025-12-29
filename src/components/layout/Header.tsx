@@ -7,7 +7,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="w-full flex py-9 justify-between px-10">
-      <div>로고</div>
+      <div>
+        <Link href="/">로고</Link>
+      </div>
       <nav className="hidden md:flex">
         <ul className="flex space-x-4">
           <li>

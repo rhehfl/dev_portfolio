@@ -2,10 +2,10 @@
 
 import HeroSection from '@/components/hero/HeroSection';
 import ProjectSection from '@/components/project/ProjectSection';
-import { useKeepScroll } from '@/hooks/useKeepScroll';
+import { useScrollRestoration } from '@/hooks/useKeepScroll';
 
 export default function Home() {
-  useKeepScroll({ key: 'home-scroll' });
+  const { ref } = useScrollRestoration();
   return (
     <main className="mx-6">
       <HeroSection />
