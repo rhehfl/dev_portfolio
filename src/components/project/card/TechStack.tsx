@@ -4,7 +4,8 @@ export const TECH_COLOR_MAP = {
   'React 18': 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300',
   TypeScript:
     'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  'Next.js': 'bg-black text-white dark:bg-white dark:text-black',
+  'Next.js':
+    'bg-black text-white dark:bg-white dark:text-black border border-transparent dark:border-gray-700', // 다크모드 시 가시성을 위해 보더 추가 추천
   'Tailwind CSS':
     'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
   Zustand:
@@ -24,18 +25,26 @@ export const TECH_COLOR_MAP = {
 } as const;
 
 export type TechStackType = keyof typeof TECH_COLOR_MAP;
+
 interface TechStackProps {
   stacks: TechStackType[];
   className?: string;
 }
 
-export default function TechStack({ stacks, className }: TechStackProps) {
+export default function TechStack({ stacks, className = '' }: TechStackProps) {
   return (
-    <ul className={`flex  gap-2 mb-3 ${className}`}>
+    <ul className={`flex flex-wrap items-center gap-1.5 sm:gap-2 ${className}`}>
       {stacks.map((stack) => (
         <li
           key={stack}
-          className={`px-3 py-1 text-xs font-semibold rounded-full ${TECH_COLOR_MAP[stack]}`}
+          className={`
+            px-2.5 py-0.5 sm:px-3 sm:py-1 
+            text-[11px] sm:text-xs 
+            font-medium sm:font-semibold 
+            rounded-full 
+            whitespace-nowrap transition-colors
+            ${TECH_COLOR_MAP[stack]}
+          `}
         >
           {stack}
         </li>

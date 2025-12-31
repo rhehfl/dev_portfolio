@@ -4,7 +4,6 @@ import Image from 'next/image';
 export default function ProfileCard() {
   return (
     <article className="flex col-span-12 flex-col items-center md:items-start lg:items-start text-center lg:col-start-2 md:col-span-4 md:col-start-2 lg:col-span-4">
-      <h1 className="text-5xl font-bold">__Profile</h1>
       <figure className="mt-11 ">
         <Image
           src="/globe.svg"

@@ -19,6 +19,7 @@ export default function ProjectCard({
   title,
   description,
   detailUrl,
+
   previewImageUrl,
 }: ProjectCardType) {
   return (

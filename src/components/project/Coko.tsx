@@ -7,7 +7,7 @@ import { TroubleShootingData } from '@/data/coko';
 export default function Coko() {
   return (
     <div className="p-5 h-full">
-      <div className="p-10 ">
+      <div className="lg:p-10 ">
         <NavGroup>
           <NavButton href="#intro">소개</NavButton>
           <NavButton href="/projects">트러블 슈팅</NavButton>

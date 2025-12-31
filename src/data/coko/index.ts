@@ -13,7 +13,7 @@ export const TroubleShootingData: TroubleShootingItem[] = [
     result: ['팝오버가 열릴 때 발생하던 무한 렌더링 현상이 완전히 제거'],
   },
   {
-    title: '조건부 모달 렌더링 구조 개선',
+    title: '조건부 렌더링 구조 개선',
     problem:
       '로그인 창, 결과 창 등 여러 종류의 모달을 삼항 연산자로 렌더링 중 유지보수성등의 문제로 리팩토링 필요성 인지',
     recognition: [

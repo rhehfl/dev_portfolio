@@ -36,6 +36,9 @@ const itemVars = {
 export default function HeroSection() {
   return (
     <section className="grid grid-cols-12 gap-6 auto-row">
+      <div className="col-span-10 col-start-2">
+        <h1 className="text-4xl font-bold">_Profile</h1>
+      </div>
       <ProfileCard />
       <section className="flex col-span-12 md:col-span-5  md:col-start-7 ">
         <motion.ul

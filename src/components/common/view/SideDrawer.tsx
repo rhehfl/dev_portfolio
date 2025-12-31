@@ -44,7 +44,7 @@ export default function SideDrawer({
         initial="initial"
         animate="animate"
         exit="exit"
-        className="pointer-events-auto h-full "
+        className="pointer-events-auto h-full w-full flex justify-end"
       >
         <motion.aside
           layoutId={layoutId}

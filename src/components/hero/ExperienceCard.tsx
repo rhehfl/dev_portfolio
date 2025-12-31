@@ -30,7 +30,6 @@ export default function ExperienceCard({
   imgSrc,
   imgAlt,
   subTitle,
-  period,
   icon,
   iconClassName = 'text-blue-600', // 기본값
   badge,
@@ -58,7 +57,6 @@ export default function ExperienceCard({
                 {subTitle}
               </span>
             </div>
-            {period && <p className="text-xs text-gray-500">{period}</p>}
           </div>
         </Card>
       </div>
