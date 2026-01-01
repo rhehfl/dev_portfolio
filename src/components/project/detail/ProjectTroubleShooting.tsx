@@ -2,10 +2,10 @@ import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 
 export interface TroubleShootingItem {
   title: string;
-  problem: string | string[];
-  recognition: string | string[];
-  process: string | string[];
-  result: string | string[];
+  problem: string | readonly string[];
+  recognition: string | readonly string[];
+  process: string | readonly string[];
+  result: string | readonly string[];
   codeSnippet?: string;
 }
 
@@ -17,7 +17,7 @@ export default function ProjectTroubleShooting({
   codeSnippet,
   title,
 }: TroubleShootingItem) {
-  const renderContent = (content: string | string[]) => {
+  const renderContent = (content: string | readonly string[]) => {
     if (Array.isArray(content)) {
       return (
         <ul className="space-y-2 list-disc list-inside">
@@ -34,7 +34,7 @@ export default function ProjectTroubleShooting({
     }
     return (
       <span className="text-gray-800 dark:text-gray-200 ">
-        <MarkDownWrapper>{content}</MarkDownWrapper>
+        <MarkDownWrapper>{content as string}</MarkDownWrapper>
       </span>
     );
   };

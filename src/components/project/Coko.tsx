@@ -1,8 +1,9 @@
+import ImprovementCard from '@/components/project/card/ImprovementCard';
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
 import ProjectTroubleShooting from '@/components/project/detail/ProjectTroubleShooting';
 import { NavButton, NavGroup } from '@/components/ui/navTab';
-import { TroubleShootingData } from '@/data/coko';
+import { IMPROVEMENT_DATA, TROUBLESHOOTING_DATA } from '@/data/coko';
 
 export default function Coko() {
   return (
@@ -10,8 +11,8 @@ export default function Coko() {
       <div className="lg:p-10 ">
         <NavGroup>
           <NavButton href="#intro">소개</NavButton>
-          <NavButton href="/projects">트러블 슈팅</NavButton>
-          <NavButton href="/about">About</NavButton>
+          <NavButton href="#projects">트러블 슈팅</NavButton>
+          <NavButton href="#improvements">성능 개선</NavButton>
         </NavGroup>
         <ProjectHeader
           id="intro"
@@ -31,11 +32,19 @@ export default function Coko() {
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
-          🔧 Trouble Shooting
+          트러블 슈팅
         </h3>
         <section className="flex flex-col gap-8 ">
-          {TroubleShootingData.map((item, index) => (
+          {TROUBLESHOOTING_DATA.map((item, index) => (
             <ProjectTroubleShooting key={index} {...item} />
+          ))}
+        </section>
+        <h3 className="text-2xl my-5 font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
+          성능 개선
+        </h3>
+        <section className="flex flex-col gap-8 ">
+          {IMPROVEMENT_DATA.map((item, index) => (
+            <ImprovementCard key={index} {...item} />
           ))}
         </section>
       </div>
