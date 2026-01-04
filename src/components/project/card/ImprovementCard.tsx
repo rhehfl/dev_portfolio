@@ -3,6 +3,16 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle2, TrendingUp, Wrench } from 'lucide-react';
 
+// 1. 이미지+설명 객체 및 콘텐츠 타입 정의
+export interface ImageWithDesc {
+  type: 'image';
+  src: string;
+  alt?: string;
+  desc?: string;
+}
+
+export type ContentItem = string | ImageWithDesc;
+
 interface MetricItem {
   name: string;
   before: string | number;
@@ -10,14 +20,11 @@ interface MetricItem {
   rate?: string;
 }
 
-interface ImprovementItemProps {
+export interface ImprovementItemProps {
   title: string;
-  // readonly 추가
-  problem: string;
-  // readonly 추가
-  solution: string | readonly string[];
-  result: string;
-  // readonly 추가
+  problem: ContentItem | readonly ContentItem[];
+  solution: ContentItem | readonly ContentItem[];
+  result: ContentItem | readonly ContentItem[];
   metrics?: readonly MetricItem[];
 }
 
@@ -28,27 +35,43 @@ export default function ImprovementCard({
   result,
   metrics,
 }: ImprovementItemProps) {
-  const renderContent = (content: string | readonly string[]) => {
-    if (Array.isArray(content)) {
-      return (
-        <ul className="list-disc list-inside space-y-1 text-muted-foreground ml-1">
-          {content.map((item, index) => (
-            <li
-              key={index}
-              className="flex items-start gap-2 text-muted-foreground"
-            >
-              <span className="mt-[0.6rem] w-1.5 h-1.5 rounded-full bg-muted-foreground/70 shrink-0" />
-              <div className="flex">
+  const renderContent = (content: ContentItem | readonly ContentItem[]) => {
+    const items = Array.isArray(content) ? content : [content];
+
+    if (items.length === 0) return null;
+
+    return (
+      <div className="flex flex-col gap-3">
+        {items.map((item, index) => {
+          if (typeof item === 'string') {
+            return (
+              <div key={index} className="leading-relaxed break-keep">
                 <MarkDownWrapper>{item}</MarkDownWrapper>
               </div>
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    return (
-      <div className="text-muted-foreground leading-relaxed">
-        <MarkDownWrapper>{content as string}</MarkDownWrapper>
+            );
+          }
+
+          return (
+            <figure
+              key={index}
+              className="flex flex-col border border-border/50 rounded-lg overflow-hidden bg-background/50 my-1 shadow-sm"
+            >
+              <div className="flex justify-center bg-secondary/20 py-3">
+                <img
+                  src={item.src}
+                  alt={item.alt || 'improvement reference'}
+                  className="max-h-[300px] object-contain rounded-sm"
+                  loading="lazy"
+                />
+              </div>
+              {item.desc && (
+                <figcaption className="p-2 text-xs sm:text-sm text-muted-foreground border-t border-border/50 bg-background/80">
+                  <MarkDownWrapper>{item.desc}</MarkDownWrapper>
+                </figcaption>
+              )}
+            </figure>
+          );
+        })}
       </div>
     );
   };
@@ -70,17 +93,17 @@ export default function ImprovementCard({
       </CardHeader>
 
       <CardContent className="space-y-6">
-        <div>
-          <h5 className="font-bold text-sm text-muted-foreground mb-2 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+        <div className="text-muted-foreground">
+          <h5 className="font-bold text-sm mb-2 flex items-center gap-2 text-foreground/80">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
             개선 배경
           </h5>
           {renderContent(problem)}
         </div>
 
-        <div>
-          <h5 className="font-bold text-sm text-muted-foreground mb-2 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+        <div className="text-muted-foreground">
+          <h5 className="font-bold text-sm mb-2 flex items-center gap-2 text-foreground/80">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
             해결 방안
           </h5>
           {renderContent(solution)}
@@ -123,34 +146,28 @@ export default function ImprovementCard({
           </div>
         )}
 
-        {/* 4. 결과 및 배운 점 (Result) */}
-        {/* 수치가 있으면 간단한 요약으로, 없으면 강조 박스로 보여줌 */}
         <div
           className={
             !hasMetrics
-              ? 'bg-green-50 dark:bg-green-900/10 p-4 rounded-lg border border-green-100 dark:border-green-800/30'
-              : ''
+              ? 'bg-green-50 dark:bg-green-900/10 p-4 rounded-lg border border-green-100 dark:border-green-800/30 text-green-800 dark:text-green-200'
+              : 'text-muted-foreground'
           }
         >
           <h5
             className={`font-bold text-sm mb-2 flex items-center gap-2 ${
               !hasMetrics
                 ? 'text-green-700 dark:text-green-400'
-                : 'text-muted-foreground'
+                : 'text-foreground/80'
             }`}
           >
             {!hasMetrics ? (
               <CheckCircle2 className="w-4 h-4" />
             ) : (
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0" />
             )}
             {!hasMetrics ? '최종 성과 및 회고' : '결과 요약'}
           </h5>
-          <div
-            className={!hasMetrics ? 'text-green-800 dark:text-green-200' : ''}
-          >
-            {renderContent(result)}
-          </div>
+          {renderContent(result)}
         </div>
       </CardContent>
     </Card>
