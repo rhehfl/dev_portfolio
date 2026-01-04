@@ -30,7 +30,7 @@ export const IMPROVEMENT_DATA = [
 
 export const TROUBLESHOOTING_DATA: TroubleShootingItem[] = [
   {
-    title: '명령형 비동기 처리에서 선언적 Suspense와 Error Boundary로의 전환',
+    title: '명령형 처리에서 선언적 코드로 전환',
 
     problem: [
       '이전 프로젝트에서는 API를 호출할 때마다 컴포넌트 내부에서 `isLoading` 상태를 관리하고, `.catch()`를 통해 에러를 개별적으로 핸들링해야 했습니다.',

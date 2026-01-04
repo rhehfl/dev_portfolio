@@ -5,6 +5,7 @@ import Modal from '@/components/common/view/Modal';
 import SideDrawer from '@/components/common/view/SideDrawer';
 import { usePrevious } from '@modern-kit/react';
 import { ViewMode } from '@/components/common/view/type';
+import FullScreen from '@/components/common/view/FullScreen';
 
 interface DetailOverlayProps {
   mode: ViewMode;
@@ -13,6 +14,7 @@ interface DetailOverlayProps {
   onExitComplete: () => void;
 }
 
+const LAYOUT_ID = 'overlay-container';
 export default function DetailOverlay({
   children,
   mode,
@@ -36,7 +38,7 @@ export default function DetailOverlay({
     >
       {mode === 'drawer' && (
         <SideDrawer
-          layoutId="overlay-container"
+          layoutId={LAYOUT_ID}
           isSwitching={isSwitching}
           onChangeMode={onChangeMode}
           onClose={onClose}
@@ -46,13 +48,23 @@ export default function DetailOverlay({
       )}
       {mode === 'modal' && (
         <Modal
-          layoutId="overlay-container"
+          layoutId={LAYOUT_ID}
           isSwitching={isSwitching}
           onChangeMode={onChangeMode}
           onClose={onClose}
         >
           {children}
         </Modal>
+      )}
+      {mode === 'fullscreen' && (
+        <FullScreen
+          layoutId={LAYOUT_ID}
+          isSwitching={isSwitching}
+          onChangeMode={onChangeMode}
+          onClose={onClose}
+        >
+          {children}
+        </FullScreen>
       )}
     </AnimatePresence>
   );
