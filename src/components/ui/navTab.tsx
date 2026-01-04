@@ -26,7 +26,7 @@ export function NavButton({ href, children }: NavButtonProps) {
 
 export function NavGroup({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col sticky top-0 dark:bg-gray-900 bg-white/80 backdrop-blur-md">
+    <div className="flex flex-col sticky top-0 mb-10 dark:bg-gray-900 bg-white/80 backdrop-blur-md">
       <nav className="flex items-center gap-2 p-4">{children}</nav>
       <Separator />
     </div>

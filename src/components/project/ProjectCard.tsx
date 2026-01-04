@@ -23,38 +23,33 @@ export default function ProjectCard({
   description,
   detailUrl,
   previewImageUrl,
+  thechStack,
+  period,
 }: ProjectCardType) {
   return (
-    // article 태그를 motion.article로 변경하여 애니메이션 속성을 적용합니다.
     <motion.article
-      initial={{ opacity: 0, y: 20 }} // 초기 상태: 투명하고 20px 아래에 위치
-      whileInView={{ opacity: 1, y: 0 }} // 뷰포트에 들어오면: 불투명해지고 원래 위치로 이동
-      viewport={{ once: true, margin: '-50px' }} // 한 번만 실행되며, 뷰포트 하단 -50px 지점에서 트리거
-      transition={{ duration: 0.5, ease: 'easeOut' }} // 부드러운 등장을 위한 트랜지션 설정
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       whileHover={{
-        scale: 1.02, // 호버 시 1.02배 확대
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', // 호버 시 부드러운 그림자 효과 (shadow-2xl 대체)
-        transition: { duration: 0.2 }, // 호버 효과 트랜지션 시간
+        scale: 1.02,
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        transition: { duration: 0.2 },
       }}
       className="h-full"
     >
-      {/* Card 컴포넌트의 기존 CSS hover 및 transition 클래스를 제거합니다. */}
       <Card className="group h-full border-none shadow-md bg-card/50 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="text-lg">{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
-          <p className="text-sm text-muted-foreground">기간</p>
+          <div className="flex gap-3">
+            <p className="text-sm text-muted-foreground">기간:</p>
+            <p className="text-sm text-muted-foreground">{period}</p>
+          </div>
           <div className="relative w-full overflow-hidden">
-            <TechStack
-              stacks={[
-                'React',
-                'TypeScript',
-                'Tanstack Query',
-                'Zustand',
-                'Styled-Components',
-              ]}
-              className="whitespace-nowrap"
-            />
+            <TechStack stacks={thechStack} className="whitespace-nowrap" />
+
             <div className="absolute top-0 right-0 w-5 h-full bg-linear-to-l from-white to-transparent"></div>
           </div>
         </CardHeader>
@@ -63,7 +58,6 @@ export default function ProjectCard({
             href={`/card/${detailUrl}`}
             className="flex h-full flex-col rounded-lg overflow-hidden"
           >
-            {/* 이미지 컨테이너에도 호버 시 약간의 효과를 줄 수 있습니다. */}
             <motion.div
               whileHover={{ opacity: 0.9 }}
               transition={{ duration: 0.2 }}

@@ -7,13 +7,8 @@ import { IMPROVEMENT_DATA, TROUBLESHOOTING_DATA } from '@/data/coko';
 
 export default function Coko() {
   return (
-    <div className="p-5 h-full">
-      <div className="lg:p-10 ">
-        <NavGroup>
-          <NavButton href="#intro">소개</NavButton>
-          <NavButton href="#projects">트러블 슈팅</NavButton>
-          <NavButton href="#improvements">성능 개선</NavButton>
-        </NavGroup>
+    <div className="p-5 h-full ">
+      <div className="lg:p-10">
         <ProjectHeader
           id="intro"
           title="CoKo"
