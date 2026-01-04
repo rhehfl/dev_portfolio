@@ -37,7 +37,7 @@ export default function ProjectCard({
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
         transition: { duration: 0.2 },
       }}
-      className="h-full"
+      className="h-full rounded-2xl"
     >
       <Card className="group h-full border-none shadow-md bg-card/50 backdrop-blur-sm">
         <CardHeader>

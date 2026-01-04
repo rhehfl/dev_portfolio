@@ -47,9 +47,9 @@ export default function ImprovementCard({
       );
     }
     return (
-      <p className="text-muted-foreground leading-relaxed">
+      <div className="text-muted-foreground leading-relaxed">
         <MarkDownWrapper>{content as string}</MarkDownWrapper>
-      </p>
+      </div>
     );
   };
 
@@ -86,7 +86,6 @@ export default function ImprovementCard({
           {renderContent(solution)}
         </div>
 
-        {/* 3. [조건부 렌더링] 수치 데이터가 있는 경우 (Metrics) */}
         {hasMetrics && (
           <div className="bg-secondary/30 rounded-lg p-4 border border-border/50">
             <h5 className="font-bold text-sm text-foreground mb-3 flex items-center gap-2">
