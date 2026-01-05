@@ -4,6 +4,7 @@ import { useState } from 'react'; // useState 추가
 import { motion, Variants } from 'framer-motion';
 import { Maximize2, X } from 'lucide-react';
 import { CommonViewProps, ViewMode } from '@/components/common/view/type';
+import { ViewModeSelect } from '@/components/common/view/ViewmodeSelect';
 
 export default function SideDrawer({
   children,
@@ -56,13 +57,12 @@ export default function SideDrawer({
             "
         >
           <div className="flex items-center justify-between p-4 border-b">
-            <button
-              onClick={() => handleToggle('modal')}
-              className="flex items-center gap-2 text-sm text-gray-500 hover:bg-gray-100 p-2 rounded-lg"
-            >
-              <Maximize2 className="w-4 h-4" />
-              중앙 보기
-            </button>
+            <ViewModeSelect
+              value="drawer"
+              onChange={(viewMode) => {
+                handleToggle(viewMode);
+              }}
+            />
             <button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-2xl"
