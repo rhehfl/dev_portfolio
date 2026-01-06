@@ -1,4 +1,3 @@
-import Communication from '@/components/hero/Communication';
 import Coko from '@/components/project/Coko';
 
 const cardDetailMap = {

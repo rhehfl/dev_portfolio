@@ -50,7 +50,7 @@ export default function CapabilityCard({
       initial="rest"
       animate="rest"
       whileTap="hover"
-      className="group overflow-hidden relative h-full p-8 border border-gray-100 rounded-2xl bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+      className="group overflow-hidden relative h-full p-8  flex flex-col"
     >
       <div className="flex mb-6 items-center gap-5">
         <div
