@@ -4,7 +4,11 @@ import DetailOverlay from '@/components/common/view/DetailOverlay';
 import { ViewMode } from '@/components/common/view/type';
 import Coko from '@/components/project/Coko';
 import PPick from '@/components/project/P-Pick';
-import { useScrollLock } from '@modern-kit/react';
+import {
+  useScrollLock,
+  useSessionStorage,
+  useUnmount,
+} from '@modern-kit/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -14,11 +18,17 @@ const cardDetailMap = {
 } as const;
 
 export default function CardDetailPage() {
-  const [mode, setMode] = useState<ViewMode>('drawer');
+  const { state, setState } = useSessionStorage<ViewMode>({
+    key: 'overlay-view-mode',
+    initialValue: 'drawer',
+  });
+  const [mode, setMode] = useState<ViewMode>(state);
+
   const params = useParams();
   const id = params.id as keyof typeof cardDetailMap;
   const router = useRouter();
   const content = cardDetailMap[id];
+
   useScrollLock();
   if (!content) {
     return null;
@@ -29,6 +39,7 @@ export default function CardDetailPage() {
       mode={mode}
       onChangeMode={setMode}
       onExitComplete={() => router.back()}
+      setSessionStorage={setState}
     >
       {content}
     </DetailOverlay>
