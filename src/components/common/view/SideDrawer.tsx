@@ -13,7 +13,6 @@ export default function SideDrawer({
   onChangeMode,
   isSwitching,
 }: CommonViewProps) {
-  console.log(isSwitching);
   const [isMorphing, setIsMorphing] = useState(false);
 
   const handleToggle = (targetMode: ViewMode) => {

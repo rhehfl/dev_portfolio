@@ -29,6 +29,13 @@ export default function CardDetailPage() {
   const router = useRouter();
   const content = cardDetailMap[id];
 
+  const handleSetMode = (newMode: ViewMode) => {
+    setMode(newMode);
+    if (newMode !== 'hidden') {
+      setState(newMode);
+    }
+  };
+
   useScrollLock();
   if (!content) {
     return null;
@@ -37,9 +44,8 @@ export default function CardDetailPage() {
   return (
     <DetailOverlay
       mode={mode}
-      onChangeMode={setMode}
+      onChangeMode={handleSetMode}
       onExitComplete={() => router.back()}
-      setSessionStorage={setState}
     >
       {content}
     </DetailOverlay>

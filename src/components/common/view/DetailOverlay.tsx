@@ -12,7 +12,6 @@ interface DetailOverlayProps {
   children: React.ReactNode;
   onChangeMode: (mode: ViewMode) => void;
   onExitComplete: () => void;
-  setSessionStorage: (mode: ViewMode) => void;
 }
 
 const LAYOUT_ID = 'overlay-container';
@@ -21,15 +20,14 @@ export default function DetailOverlay({
   mode,
   onChangeMode,
   onExitComplete,
-  setSessionStorage,
 }: DetailOverlayProps) {
   const prevMode = usePrevious(mode);
   const isSwitching = prevMode !== 'hidden' && prevMode !== mode;
 
   const onClose = () => {
-    setSessionStorage(mode);
     onChangeMode('hidden');
   };
+
   return (
     <AnimatePresence
       mode="popLayout"
