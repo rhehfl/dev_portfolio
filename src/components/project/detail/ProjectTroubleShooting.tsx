@@ -56,7 +56,7 @@ export default function ProjectTroubleShooting({
                 <ZoomableImage
                   src={item.src}
                   alt={item.alt || 'troubleshooting reference'}
-                  width={700}
+                  width={600}
                   height={500}
                   className=" object-contain shadow-sm rounded-md"
                   loading="lazy"

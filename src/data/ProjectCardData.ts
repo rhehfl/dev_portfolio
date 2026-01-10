@@ -33,4 +33,20 @@ export const ProjectCardData: ProjectCard[] = [
     ],
     period: '2025.06 ~ 2025.09 (3개월)',
   },
+  {
+    description: 'AI 페르소나 및 실시간 사용자와 소통하는 힐링 채팅 플랫폼',
+    githubLink: 'https://github.com/rhehfl/doran-doran',
+    title: 'DoranDoran',
+    previewImageUrl: '/herosection_main.png', // public 폴더 내 해당 이미지 경로로 수정해주세요
+    detailUrl: 'doran-doran',
+    thechStack: [
+      'Next.js',
+      'TypeScript',
+      'NestJS',
+      'AWS',
+      'Tanstack Query',
+      'Tailwind CSS',
+    ],
+    period: '2024.10 ~ 2025.02 (진행 중)',
+  },
 ];
