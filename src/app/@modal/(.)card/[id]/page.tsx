@@ -3,6 +3,7 @@
 import DetailOverlay from '@/components/common/view/DetailOverlay';
 import { ViewMode } from '@/components/common/view/type';
 import Coko from '@/components/project/Coko';
+import DevPortfolio from '@/components/project/Dev_Portfolio';
 import DoranDoran from '@/components/project/Doran-Doran';
 import PPick from '@/components/project/P-Pick';
 import { useScrollLock, useSessionStorage } from '@modern-kit/react';
@@ -13,6 +14,7 @@ const cardDetailMap = {
   coko: <Coko />,
   'p-pick': <PPick />,
   'doran-doran': <DoranDoran />,
+  'dev-portfolio': <DevPortfolio />,
 } as const;
 
 export default function CardDetailPage() {

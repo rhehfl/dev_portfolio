@@ -31,13 +31,13 @@ export const ProjectCardData: ProjectCard[] = [
       'Tanstack Query',
       'Tailwind CSS',
     ],
-    period: '2025.06 ~ 2025.09 (3개월)',
+    period: '2024.06 ~ 2024.09 (3개월)',
   },
   {
-    description: 'AI 페르소나 및 실시간 사용자와 소통하는 힐링 채팅 플랫폼',
+    description: 'AI 페르소나 및 실시간 사용자와 소통하는 채팅 플랫폼',
     githubLink: 'https://github.com/rhehfl/doran-doran',
     title: 'DoranDoran',
-    previewImageUrl: '/herosection_main.png', // public 폴더 내 해당 이미지 경로로 수정해주세요
+    previewImageUrl: '/doran-doran/doran_preview.png',
     detailUrl: 'doran-doran',
     thechStack: [
       'Next.js',
@@ -47,6 +47,22 @@ export const ProjectCardData: ProjectCard[] = [
       'Tanstack Query',
       'Tailwind CSS',
     ],
-    period: '2024.10 ~ 2025.02 (진행 중)',
+    period: '2025.19 ~ 2025.12',
+  },
+  {
+    description: '개발 포트폴리오 웹사이트',
+    githubLink: 'https://github.com/rhehfl/dev-portfolio',
+    title: 'DevPortfolio',
+    previewImageUrl: '/dev-portfolio/devportfolio_preview.png',
+    detailUrl: 'dev-portfolio',
+    thechStack: [
+      'Next.js',
+      'TypeScript',
+      'NestJS',
+      'AWS',
+      'Tanstack Query',
+      'Tailwind CSS',
+    ],
+    period: '2025.12 ~ 2025.12',
   },
 ];

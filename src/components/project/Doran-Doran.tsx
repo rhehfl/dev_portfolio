@@ -1,32 +1,22 @@
-import ImprovementCard from '@/components/project/card/ImprovementCard';
+import ImprovementCard, {
+  ImprovementItemProps,
+} from '@/components/project/card/ImprovementCard';
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
 import ProjectTroubleShooting, {
   TroubleShootingItem,
 } from '@/components/project/detail/ProjectTroubleShooting';
 
-export const IMPROVEMENT_DATA = [
+export const IMPROVEMENT_DATA: ImprovementItemProps[] = [
   {
-    title: 'Redis 도입을 통한 세션 및 실시간 데이터 조회 성능 최적화',
+    title: 'Redis 도입을 통한 채팅 데이터 조회 성능 최적화',
     problem:
-      '채팅방 목록 진입 시, 각 방의 "최근 메시지"와 "안 읽은 메시지 수", "현재 접속자" 정보를 RDB에서 매번 조인(Join) 연산으로 가져오면서 DB 부하가 가중되고 응답 속도가 저하되었습니다.',
+      '채팅방 목록 진입 시 각 방의 채팅 정보를 RDB에서 가져오면서 DB 부하가 가중되고 응답 속도가 저하되었습니다.',
     solution: [
       '빈번하게 변경되고 조회가 일어나는 `Active User` 상태와 `Session` 정보를 **Redis(In-memory DB)**로 이관했습니다.',
       'NestJS의 `CacheModule`과 Redis를 연동하여, 단순 조회성 데이터는 DB를 거치지 않고 메모리상에서 즉각 반환되도록 구조를 변경했습니다.',
     ],
-    result:
-      '채팅방 리스트 조회 Latency를 평균 200ms대에서 10ms 미만으로 약 95% 단축시켰으며, RDB의 I/O 부하를 크게 절감했습니다.',
-  },
-  {
-    title: 'Suspense와 Skeleton UI를 활용한 CLS(Cumulative Layout Shift) 개선',
-    problem:
-      '기존 `useEffect` 기반 데이터 페칭 시, 프로필 → 채팅방 목록 → 알림 순으로 데이터가 로드될 때마다 레이아웃이 덜컥거리는(Layout Shift) 현상이 발생하여 사용자 경험이 저해되었습니다.',
-    solution: [
-      'Next.js 14의 **Streaming SSR**과 React **Suspense**를 적극 도입하여, 데이터 로딩 상태를 선언적으로 처리했습니다.',
-      '각 컴포넌트(`SuspenseChatRoomList`, `SuspenseProfile`)가 로딩되는 동안 실제 레이아웃과 동일한 크기의 **Skeleton UI**를 미리 배치하여 시각적 안정성을 확보했습니다.',
-    ],
-    result:
-      '초기 로딩 시 레이아웃 이동(CLS) 점수를 0에 가깝게 개선하고, 사용자에게 "앱이 멈추지 않고 동작 중"이라는 인식을 명확히 전달했습니다.',
+    result: '',
   },
 ];
 
@@ -34,7 +24,7 @@ export const TROUBLESHOOTING_DATA: TroubleShootingItem[] = [
   {
     title: 'JWT 만료 시 Suspense Query와 에러 바운더리 충돌 해결',
     problem: {
-      src: '/doran/jwt_issue.png', // 예시 이미지 경로
+      src: '/doran/jwt_issue.png',
       alt: 'Suspense와 JWT 401 에러 충돌',
       type: 'image',
       desc: '액세스 토큰 만료(401) 시 Suspense가 이를 에러로 간주하여, 토큰 재발급 로직이 돌기도 전에 Error Boundary가 먼저 트리거되는 현상 발생',
@@ -114,8 +104,8 @@ export default function DoranDoran() {
       <div className="lg:p-10">
         <ProjectHeader
           id="doran-doran"
-          title="DoranDoran (도란도란)"
-          description="AI 페르소나 및 실시간 사용자와 소통하는 힐링 채팅 플랫폼"
+          title="Doran-Doran"
+          description="AI 페르소나 및 실시간 사용자와 소통하는 채팅 플랫폼"
           techStack={[
             'Next.js',
             'TypeScript',
@@ -123,9 +113,9 @@ export default function DoranDoran() {
             'Tanstack Query',
             'NestJS',
           ]}
-          period="2024.10 - 2025.02 (진행 중)"
-          role="풀스택(Front-end 주도), 소켓/인증 아키텍처 설계"
-          teamSize="4명"
+          period="2024.10 - 2025.12"
+          role="풀스택"
+          teamSize="개인 프로젝트"
         />
         <ProjectLinks github="https://github.com/rhehfl/doran-doran" />
 
