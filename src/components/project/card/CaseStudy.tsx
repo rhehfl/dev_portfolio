@@ -63,7 +63,7 @@ const Figure = ({
   caption,
   className,
   width = 800,
-  height = 450,
+  height = 600,
   ...props
 }: FigureProps) => (
   <figure className="flex flex-col border border-border/50 rounded-lg overflow-hidden bg-background/50 my-2 shadow-sm">
@@ -73,10 +73,7 @@ const Figure = ({
         alt={alt || 'reference image'}
         width={width}
         height={height}
-        className={cn(
-          'max-h-[400px] w-auto object-contain shadow-md',
-          className
-        )}
+        className={cn('w-auto object-contain shadow-md', className)}
         {...props}
       />
     </div>

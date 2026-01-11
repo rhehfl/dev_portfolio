@@ -35,7 +35,6 @@ export default function Coko() {
             </CaseStudy.Header>
             <CaseStudy.Body>
               <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
-                {/* 텍스트 대신 이미지를 바로 넣을 수 있음 */}
                 <CaseStudy.Figure
                   src="/coko/t1.png"
                   alt="무한 렌더링 이슈 코드 스니펫"

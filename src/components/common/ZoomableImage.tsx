@@ -30,21 +30,19 @@ const containerVariants: Variants = {
 
 export default function ZoomableImage({ id, ...props }: ZoomableImageProps) {
   return (
-    <motion.div>
-      <Link
-        href={`/photo/${encodeURIComponent(props.src as string)}`}
-        scroll={false}
-      >
-        <MotionImage
-          className="hover:scale-105 transition-transform duration-200 border-2 border-gray-200 rounded-md cursor-pointer"
-          variants={containerVariants}
-          initial="offscreen"
-          animate="onscreen"
-          exit="exit"
-          layoutId={`image-${id}`}
-          {...props}
-        />
-      </Link>
-    </motion.div>
+    <Link
+      href={`/photo/${encodeURIComponent(props.src as string)}`}
+      scroll={false}
+    >
+      <MotionImage
+        className="hover:scale-105 transition-transform duration-200 border-2 border-gray-200 rounded-md cursor-pointer"
+        variants={containerVariants}
+        initial="offscreen"
+        animate="onscreen"
+        exit="exit"
+        layoutId={`image-${id}`}
+        {...props}
+      />
+    </Link>
   );
 }

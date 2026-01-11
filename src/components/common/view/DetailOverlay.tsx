@@ -28,10 +28,11 @@ export default function DetailOverlay({
   const { setHasPlayed } = useIntroStore();
   const onClose = () => {
     onChangeMode('hidden');
+    setHasPlayed(false);
   };
 
   useEffect(() => {
-    setHasPlayed();
+    setHasPlayed(true);
   }, []);
 
   return (

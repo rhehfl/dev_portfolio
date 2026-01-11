@@ -6,7 +6,12 @@ import Coko from '@/components/project/Coko';
 import DevPortfolio from '@/components/project/Dev_Portfolio';
 import DoranDoran from '@/components/project/Doran-Doran';
 import PPick from '@/components/project/P-Pick';
-import { useScrollLock, useSessionStorage } from '@modern-kit/react';
+import { useIntroStore } from '@/store/useIntroStore';
+import {
+  useScrollLock,
+  useSessionStorage,
+  useUnmount,
+} from '@modern-kit/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -23,7 +28,7 @@ export default function CardDetailPage() {
     initialValue: 'drawer',
   });
   const [mode, setMode] = useState<ViewMode>(state);
-
+  const { setHasPlayed } = useIntroStore();
   const params = useParams();
   const id = params.id as keyof typeof cardDetailMap;
   const router = useRouter();

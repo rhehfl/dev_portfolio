@@ -2,10 +2,10 @@ import { create } from 'zustand';
 
 interface IntroState {
   hasPlayed: boolean;
-  setHasPlayed: () => void;
+  setHasPlayed: (hasPlayed: boolean) => void;
 }
 
 export const useIntroStore = create<IntroState>((set) => ({
   hasPlayed: false,
-  setHasPlayed: () => set({ hasPlayed: true }),
+  setHasPlayed: (hasPlayed: boolean) => set({ hasPlayed }),
 }));
