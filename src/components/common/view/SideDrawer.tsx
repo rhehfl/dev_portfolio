@@ -5,6 +5,7 @@ import { motion, Variants } from 'framer-motion';
 import { Maximize2, X } from 'lucide-react';
 import { CommonViewProps, ViewMode } from '@/components/common/view/type';
 import { ViewModeSelect } from '@/components/common/view/ViewmodeSelect';
+import { useIntroStore } from '@/store/useIntroStore';
 
 export default function SideDrawer({
   children,
@@ -14,7 +15,7 @@ export default function SideDrawer({
   isSwitching,
 }: CommonViewProps) {
   const [isMorphing, setIsMorphing] = useState(false);
-
+  const { hasPlayed } = useIntroStore();
   const handleToggle = (targetMode: ViewMode) => {
     setIsMorphing(true);
     onChangeMode(targetMode);
@@ -41,7 +42,7 @@ export default function SideDrawer({
 
       <motion.div
         variants={wrapperVariants}
-        initial="initial"
+        initial={hasPlayed ? false : 'initial'}
         animate="animate"
         exit="exit"
         className="pointer-events-auto h-full w-full flex justify-end"

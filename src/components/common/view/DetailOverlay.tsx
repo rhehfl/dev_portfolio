@@ -6,6 +6,8 @@ import SideDrawer from '@/components/common/view/SideDrawer';
 import { usePrevious } from '@modern-kit/react';
 import { ViewMode } from '@/components/common/view/type';
 import FullScreen from '@/components/common/view/FullScreen';
+import { useEffect } from 'react';
+import { useIntroStore } from '@/store/useIntroStore';
 
 interface DetailOverlayProps {
   mode: ViewMode;
@@ -23,10 +25,14 @@ export default function DetailOverlay({
 }: DetailOverlayProps) {
   const prevMode = usePrevious(mode);
   const isSwitching = prevMode !== 'hidden' && prevMode !== mode;
-
+  const { setHasPlayed } = useIntroStore();
   const onClose = () => {
     onChangeMode('hidden');
   };
+
+  useEffect(() => {
+    setHasPlayed();
+  }, []);
 
   return (
     <AnimatePresence

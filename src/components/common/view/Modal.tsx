@@ -2,18 +2,19 @@
 
 import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { CommonViewProps, ViewMode } from '@/components/common/view/type';
 import { ViewModeSelect } from '@/components/common/view/ViewmodeSelect';
+import { useIntroStore } from '@/store/useIntroStore';
 
 export default function Modal({
   children,
   onClose,
   onChangeMode,
-  isSwitching,
   layoutId,
 }: CommonViewProps) {
   const [isMorphing, setIsMorphing] = useState(false);
+  const { hasPlayed } = useIntroStore();
 
   const handleToggle = (targetMode: ViewMode) => {
     setIsMorphing(true);
@@ -43,7 +44,7 @@ export default function Modal({
         layoutId={layoutId}
         layout
         variants={modalVariants}
-        initial="initial"
+        initial={hasPlayed ? false : 'initial'}
         animate="animate"
         exit="exit"
         className="
