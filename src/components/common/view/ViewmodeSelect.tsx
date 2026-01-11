@@ -22,7 +22,7 @@ export function ViewModeSelect({ value, onChange }: ViewModeSelectProps) {
         <SelectValue placeholder="화면 모드 선택" />
       </SelectTrigger>
 
-      <SelectContent>
+      <SelectContent side="bottom" className="h-28">
         <SelectItem value="fullscreen">
           <div className="flex items-center gap-2">
             <Maximize2 className="h-4 w-4 text-muted-foreground" />
