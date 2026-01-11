@@ -1,5 +1,6 @@
 import { CaseStudy } from '@/components/project/card/CaseStudy';
 import TeamCulture from '@/components/project/card/TeamCulture';
+import ExpandableSection from '@/components/project/detail/ExpandableSection';
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
 
@@ -59,15 +60,17 @@ export default function Coko() {
                 <CaseStudy.Figure
                   src="/coko/t1.png"
                   alt="무한 렌더링 이슈 코드 스니펫"
-                  caption="팝업 컴포넌트 마운트 시 무한 리렌더링으로 인한 브라우저 프리징 발생"
+                  caption="팝업 컴포넌트 마운트 시 ref 콜백 내부 상태 변경으로 브라우저 프리징 발생"
                 />
               </CaseStudy.Section>
 
               <CaseStudy.Section title="원인 파악" dotColor="bg-orange-400">
                 <CaseStudy.Markdown>
-                  React의 `ref` 콜백은 렌더링 시마다 새로운 참조가 전달되면
-                  재실행됨. 내부에서 상태를 변경하고 있어 **[상태 변경 →
-                  리렌더링 → ref 재실행 → 다시 상태 변경]** 의 무한 루프 형성.
+                  React의 ref 콜백은 렌더링마다 새로운 함수 참조가 전달되면 다시
+                  실행됩니다. 해당 ref 내부에서 상태를 변경하고 있었고, 그 결과
+                  **상태 변경 → 리렌더링 → ref 재실행**의 무한 루프가
+                  발생했습니다. 이 문제는 UI 일부가 아니라 **페이지 전체를
+                  멈추게 하는 치명적인 이슈**라고 판단했습니다.
                 </CaseStudy.Markdown>
               </CaseStudy.Section>
 
@@ -75,114 +78,20 @@ export default function Coko() {
                 <CaseStudy.Figure
                   src="/coko/t2.png"
                   alt="ref 콜백 함수 수정"
-                  caption="ref 콜백 함수를 useCallback으로 감싸 함수 참조가 유지되도록 수정함"
+                  caption="ref 콜백을 useCallback으로 감싸 참조를 고정"
                 />
               </CaseStudy.Section>
 
               <CaseStudy.Result>
-                팝오버가 열릴 때 발생하던 무한 렌더링 현상이 완전히 제거
+                팝업 사용 시 발생하던 브라우저 프리징 현상 완전 제거, `ref` 사용
+                시 주의사항을 팀 내 공유하여 유사 이슈 재발 방지
               </CaseStudy.Result>
             </CaseStudy.Body>
           </CaseStudy>
+          <ExpandableSection title="아아">
+            <div>dsdsd</div>
+          </ExpandableSection>
 
-          {/* Case 2: 코드 스니펫 비교가 필요한 경우 */}
-          <CaseStudy>
-            <CaseStudy.Header>조건부 렌더링 구조 개선</CaseStudy.Header>
-            <CaseStudy.Body>
-              <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
-                로그인 창, 결과 창 등 여러 종류의 모달을 삼항 연산자로 렌더링 중
-                유지보수성등의 문제로 리팩토링 필요성 인지
-              </CaseStudy.Section>
-
-              <CaseStudy.Section title="인식 및 과정" dotColor="bg-blue-400">
-                <CaseStudy.Markdown>
-                  - 초기에는 `Funnel`패턴을 도입했으나 순차적인 흐름이 아니어서
-                  부적합하다고 판단. - 흐름이 없는 모달(로그인 유도, 결과 창
-                  등)은 **SwitchCase** 커스텀 컴포넌트로 리팩토링하여 선언적인
-                  조건부 렌더링 구현.
-                </CaseStudy.Markdown>
-
-                {/* 코드 스니펫 */}
-                <CaseStudy.Code>
-                  {`\`\`\`tsx
-// Before (삼항 연산자 지옥)
-{quizzes.length === totalResults.length ? (
-  <TotalResults ... />
-) : (
-  <Result .../>
-)}
-
-// After (SwitchCase - 선언적)
-<SwitchCase
-  value={step}
-  caseBy={{
-    result: <Result .../>,
-    loginPrompt: <LoginPrompt .../>,
-    login: <Login .../>,
-    totalResult: <TotalResults .../>,
-    partClear: <PartClear .../>,
-  }}
-/>
-\`\`\``}
-                </CaseStudy.Code>
-              </CaseStudy.Section>
-
-              <CaseStudy.Result>
-                모달 추가 시 기존 조건 로직을 수정할 필요가 없는 **확장 가능한
-                구조** 확보 및 상황에 맞는 패턴 선택의 중요성 체득
-              </CaseStudy.Result>
-            </CaseStudy.Body>
-          </CaseStudy>
-
-          {/* Case 3: 명령형 -> 선언적 코드 전환 (코드 포함) */}
-          <CaseStudy>
-            <CaseStudy.Header>
-              명령형 처리에서 선언적 코드로 전환
-            </CaseStudy.Header>
-            <CaseStudy.Body>
-              <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
-                이전 프로젝트에서는 API를 호출할 때마다 컴포넌트 내부에서
-                `isLoading` 상태를 관리하고, `.catch()`를 통해 에러를 개별적으로
-                핸들링해야 했습니다.
-              </CaseStudy.Section>
-
-              <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <CaseStudy.Markdown>
-                  - React의 **Suspense**와 **Error Boundary**를 도입하여 비동기
-                  상태 처리를 선언적으로 변경. - TanStack Query의
-                  `useSuspenseQuery`를 활용하여 데이터 로딩과 에러 처리를
-                  중앙화함.
-                </CaseStudy.Markdown>
-                <div className="mt-4">
-                  <CaseStudy.Markdown>
-                    {`\`\`\`tsx
-// ✅ After: 선언적 처리 (Suspense & Error Boundary)
-// 부모 컴포넌트 혹은 라우터 레벨
-const UserPage = () => (
-  <ErrorBoundary fallback={<ItemFallback />}>
-    <Suspense fallback={<Loader />}>
-      <UserReviews intId={1} />
-    </Suspense>
-  </ErrorBoundary>
-);
-
-const UserReviews = ({ intId }) => {
-  const { data } = useSuspenseQuery(useReviewOptions(intId));
-  return <ReviewList data={data} />;
-};
-\`\`\``}
-                  </CaseStudy.Markdown>
-                </div>
-              </CaseStudy.Section>
-
-              <CaseStudy.Result>
-                컴포넌트 내부 분기문 제거로 코드가 간결해지고, 에러 처리가 누락
-                없이 일관된 UX를 제공하게 됨.
-              </CaseStudy.Result>
-            </CaseStudy.Body>
-          </CaseStudy>
-
-          {/* Case 4: Funnel 도입 */}
           <CaseStudy>
             <CaseStudy.Header>
               진행 상태 관리 리팩토링 (useFunnel)

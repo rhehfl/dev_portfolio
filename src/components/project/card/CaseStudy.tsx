@@ -64,8 +64,8 @@ const Figure = ({
   height = 200,
   ...props
 }: FigureProps) => (
-  <figure className="flex flex-col overflow-hidden my-2 shadow-sm">
-    <div className="flex justify-center py-4 px-2">
+  <figure className="flex flex-col overflow-hidden my-2 ">
+    <div className="flex py-4 px-2">
       <ZoomableImage
         src={src}
         alt={alt || 'reference image'}
@@ -75,7 +75,7 @@ const Figure = ({
       />
     </div>
     {caption && (
-      <figcaption className="p-3 text-xs sm:text-sm text-muted-foreground border-t border-border/50 bg-background/80 text-center">
+      <figcaption className="p-3 text-xs sm:text-sm text-muted-foreground border-t border-border/50 ">
         <MarkDownWrapper>{caption}</MarkDownWrapper>
       </figcaption>
     )}
