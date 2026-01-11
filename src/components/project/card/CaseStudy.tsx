@@ -46,9 +46,7 @@ const Section = ({
         <span className={cn('w-1.5 h-1.5 rounded-full shrink-0', dotColor)} />
         {title}
       </h5>
-      <div className="flex flex-col gap-3 leading-relaxed break-keep">
-        {children}
-      </div>
+      <div className="flex flex-col gap-3 leading-relaxed">{children}</div>
     </div>
   );
 };
@@ -62,18 +60,17 @@ const Figure = ({
   alt,
   caption,
   className,
-  width = 800,
-  height = 600,
+  width = 400,
+  height = 200,
   ...props
 }: FigureProps) => (
-  <figure className="flex flex-col border border-border/50 rounded-lg overflow-hidden bg-background/50 my-2 shadow-sm">
-    <div className="flex justify-center bg-secondary/20 py-4 px-2">
+  <figure className="flex flex-col overflow-hidden my-2 shadow-sm">
+    <div className="flex justify-center py-4 px-2">
       <ZoomableImage
         src={src}
         alt={alt || 'reference image'}
         width={width}
         height={height}
-        className={cn('w-auto object-contain shadow-md', className)}
         {...props}
       />
     </div>
@@ -102,7 +99,7 @@ interface MetricItemProps {
 }
 const MetricItem = ({ name, before, after, rate }: MetricItemProps) => (
   <div className="flex items-center justify-between text-sm sm:text-base bg-background/50 p-2 rounded-md shadow-sm">
-    <span className="font-semibold text-muted-foreground w-20 sm:w-24 truncate">
+    <span className="font-semibold text-muted-foreground w-20 sm:w-40">
       {name}
     </span>
     <div className="flex items-center gap-2 flex-1 justify-end">
@@ -156,9 +153,9 @@ interface RootProps {
 
 const Code = ({ children }: { children: string }) => {
   return (
-    <div>
+    <>
       <MarkDownWrapper>{children}</MarkDownWrapper>
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import { CaseStudy } from '@/components/project/card/CaseStudy';
+import TeamCulture from '@/components/project/card/TeamCulture';
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
-import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 
 export default function Coko() {
   return (
@@ -24,7 +24,28 @@ export default function Coko() {
           teamSize="6명"
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
-
+        <TeamCulture
+          items={[
+            {
+              title: 'DX 개선',
+              tag: 'Productivity',
+              points: [
+                'Github Actions를 이용한 CI/CD 자동화 구축',
+                '어드민 페이지를 통한 콘텐츠 관리',
+              ],
+            },
+            {
+              title: '협업 프로세스',
+              tag: 'Process',
+              points: [
+                'PR, Issue 템플릿 작성 및 코드 리뷰 체크리스트 도입',
+                'Swagger를 활용한 API 명세',
+                'Notion 기반의 스프린트 관리',
+                'Figma를 활용한 디자이너와의 협업',
+              ],
+            },
+          ]}
+        />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
           트러블 슈팅
         </h3>
@@ -43,11 +64,11 @@ export default function Coko() {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="원인 파악" dotColor="bg-orange-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   React의 `ref` 콜백은 렌더링 시마다 새로운 참조가 전달되면
                   재실행됨. 내부에서 상태를 변경하고 있어 **[상태 변경 →
                   리렌더링 → ref 재실행 → 다시 상태 변경]** 의 무한 루프 형성.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
@@ -74,12 +95,12 @@ export default function Coko() {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="인식 및 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 초기에는 `Funnel`패턴을 도입했으나 순차적인 흐름이 아니어서
                   부적합하다고 판단. - 흐름이 없는 모달(로그인 유도, 결과 창
                   등)은 **SwitchCase** 커스텀 컴포넌트로 리팩토링하여 선언적인
                   조건부 렌더링 구현.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
 
                 {/* 코드 스니펫 */}
                 <CaseStudy.Code>
@@ -126,14 +147,14 @@ export default function Coko() {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - React의 **Suspense**와 **Error Boundary**를 도입하여 비동기
                   상태 처리를 선언적으로 변경. - TanStack Query의
                   `useSuspenseQuery`를 활용하여 데이터 로딩과 에러 처리를
                   중앙화함.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
                 <div className="mt-4">
-                  <MarkDownWrapper>
+                  <CaseStudy.Markdown>
                     {`\`\`\`tsx
 // ✅ After: 선언적 처리 (Suspense & Error Boundary)
 // 부모 컴포넌트 혹은 라우터 레벨
@@ -150,7 +171,7 @@ const UserReviews = ({ intId }) => {
   return <ReviewList data={data} />;
 };
 \`\`\``}
-                  </MarkDownWrapper>
+                  </CaseStudy.Markdown>
                 </div>
               </CaseStudy.Section>
 
@@ -173,12 +194,12 @@ const UserReviews = ({ intId }) => {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 외부에서 흐름 관리를 위해 토스에서 영감을 받은 `useFunnel`
                   훅을 도입하여 선언적인 구조로 변경. - 프로젝트 규모에 맞게
                   복잡한기능은 제외하고, 단순히 현재 `step`과 `setStep`만
                   제공하도록 경량화하여 구현.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Result>
@@ -206,11 +227,11 @@ const UserReviews = ({ intId }) => {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 방안" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - React의 `lazy`와 동적 `import()`를 활용하여 페이지 단위로
                   컴포넌트를 분리했습니다. - 사용자가 해당 경로에 접근할 때만
                   필요한 리소스를 로드하도록 라우터를 재설계했습니다.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Result>
@@ -230,13 +251,13 @@ const UserReviews = ({ intId }) => {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 방안" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - `usePreloadImages` 커스텀 훅을 제작하여
                   `Promise.allSettled`로 주요 이미지 리소스를 병렬로 미리
                   캐싱했습니다. - `Image` 객체를 생성하여 브라우저 캐시에
                   이미지를 미리 적재한 뒤 화면을 렌더링하도록 흐름을
                   제어했습니다.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Result>

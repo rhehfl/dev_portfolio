@@ -2,7 +2,6 @@ import React from 'react';
 import { CaseStudy } from '@/components/project/card/CaseStudy'; // 새로 만든 컴파운드 컴포넌트
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
-import MarkDownWrapper from '@/components/common/MarkDownWrapper'; // 마크다운 처리용
 
 export default function DoranDoran() {
   return (
@@ -50,16 +49,16 @@ export default function DoranDoran() {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="원인 파악" dotColor="bg-orange-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   React Query의 `useSuspenseQuery`는 Promise가 reject되면 즉시
                   throw하는 특성이 있음. 일반적인 Axios Interceptor 방식으로는
                   Suspense가 던지는 에러를 잡기 전에 UI가 깨져버리는 문제가
                   있음을 파악.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - Axios Interceptor 레벨이 아닌, **QueryClient의 전역
                   `onError` 핸들러**와 커스텀 훅(`useSuspenseAuth`)을 조합하여
                   해결책을 모색함. - 401 에러 발생 시, Error Boundary로 에러를
@@ -68,7 +67,7 @@ export default function DoranDoran() {
                   수정함. - 재발급 성공 시 실패했던 요청을 투명하게
                   재시도(Retry)하여 사용자가 로그아웃 경험 없이 서비스를 지속할
                   수 있게 함.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Result isHighlighted>
@@ -85,23 +84,23 @@ export default function DoranDoran() {
             </CaseStudy.Header>
             <CaseStudy.Body>
               <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   채팅 전송 시 `Optimistic Update`(낙관적 업데이트)로 화면에
                   미리 띄운 메시지와, 이후 소켓을 통해 브로드캐스트된 메시지가
                   겹쳐서 일시적으로 동일한 메시지가 두 번 보이는 현상 발생
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   메시지 전송 시 임시 ID(temp-id)를 생성하여 낙관적 업데이트를
                   수행하고, 서버 응답(ack)이나 소켓 이벤트가 올 때 **임시 ID를
                   실제 DB ID로 교체**하는 매핑 로직을 `useChat` 훅 내부에 구현.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
 
                 {/* 코드 블록도 그냥 마크다운 래퍼나 pre 태그로 넣으면 됨 */}
                 <div className="mt-3">
-                  <MarkDownWrapper>
+                  <CaseStudy.Markdown>
                     {`\`\`\`typescript
 // useChat.ts (간소화된 예시)
 // 1. 낙관적 업데이트: 임시 ID로 화면에 즉시 표시
@@ -117,7 +116,7 @@ const sendMsg = (text) => {
   });
 };
 \`\`\``}
-                  </MarkDownWrapper>
+                  </CaseStudy.Markdown>
                 </div>
               </CaseStudy.Section>
 
@@ -135,20 +134,20 @@ const sendMsg = (text) => {
             </CaseStudy.Header>
             <CaseStudy.Body>
               <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   초기 개발 시 컴포넌트 안에 `socket.on`, `fetch`, `useEffect`가
                   뒤섞여 있어, 채팅 로직 수정 시 UI 코드까지 건드려야 하는 높은
                   결합도 문제 발생.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 소켓 연결, 메시지 수신, 상태 관리를 **`useChat`**,
                   **`useChatHistory`** 등의 커스텀 훅으로 분리하여 캡슐화. - UI
                   컴포넌트는 훅이 반환하는 `messages`, `sendMessage`
                   인터페이스만 의존하도록 리팩토링.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Result>
@@ -178,13 +177,13 @@ const sendMsg = (text) => {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 방안" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 빈번하게 변경되고 조회가 일어나는 `Active User` 상태와
                   `Session` 정보를 **Redis(In-memory DB)**로 이관했습니다. -
                   NestJS의 `CacheModule`과 Redis를 연동하여, 단순 조회성
                   데이터는 DB를 거치지 않고 메모리상에서 즉각 반환되도록 구조를
                   변경했습니다.
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               {/* result가 빈 문자열이었으므로 렌더링하지 않음 (훨씬 깔끔함) */}

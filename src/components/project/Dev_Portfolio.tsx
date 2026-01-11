@@ -1,7 +1,6 @@
 import { CaseStudy } from '@/components/project/card/CaseStudy';
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
-import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 
 export default function DevPortfolio() {
   return (
@@ -34,21 +33,21 @@ export default function DevPortfolio() {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 브라우저의 **History API**(`history.state`)에 고유한 스크롤
                   키(`__scroll_key`)를 주입하여 현재 상태를 식별하도록 구현 -
                   **SessionStorage**를 활용하여 페이지 별 스크롤 위치를
                   영구적으로 매핑 및 저장 - `useIsomorphicLayoutEffect`를 통해
                   렌더링 직전 스크롤 위치를 즉시 복원하여 화면 깜빡임 방지
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Result>
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 목록에서 상세 페이지를 다녀와도 정확한 스크롤 위치 유지 -
                   `window` 스크롤뿐만 아니라 특정 `ref` 요소의 내부 스크롤까지
                   복원 가능한 확장성 확보
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Result>
             </CaseStudy.Body>
           </CaseStudy>

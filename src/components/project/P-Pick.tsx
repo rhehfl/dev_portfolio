@@ -1,7 +1,6 @@
 import { CaseStudy } from '@/components/project/card/CaseStudy';
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
-import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 
 export default function PPick() {
   return (
@@ -49,18 +48,18 @@ export default function PPick() {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 가상화를 통해 렌더링 되는 컴포넌트 수를 제한하여 필요한
                   데이터만 요청하도록 변경 - `img` 태그의 `loading="lazy"`
                   속성을 활용하여 이미지 지연 로딩 적용
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               <CaseStudy.Result>
-                <MarkDownWrapper>
-                  - 초기 API 요청 개수를 10회 이상 → **3회로 축소** - 초기
-                  이미지 개수도 약 30개 이상 → **4개로 축소**
-                </MarkDownWrapper>
+                <CaseStudy.Markdown>
+                  - 초기 API 요청 개수를 10회 이상 → **3회로 축소** 초기 이미지
+                  개수도 약 30개 이상 → **4개로 축소**
+                </CaseStudy.Markdown>
               </CaseStudy.Result>
             </CaseStudy.Body>
           </CaseStudy>
@@ -81,11 +80,11 @@ export default function PPick() {
               </CaseStudy.Section>
 
               <CaseStudy.Section title="해결 방안" dotColor="bg-blue-400">
-                <MarkDownWrapper>
+                <CaseStudy.Markdown>
                   - 불필요한 글리프를 제거하고 화면에 필요한 글자만 동적으로
                   로딩하는 일반 **Dynamic Subset** 기법 적용 - **WOFF2** 포맷
                   사용으로 리소스 경량화
-                </MarkDownWrapper>
+                </CaseStudy.Markdown>
               </CaseStudy.Section>
 
               {/* 수치 데이터를 직관적인 태그로 표현 */}
@@ -98,7 +97,7 @@ export default function PPick() {
                 />
               </CaseStudy.Metrics>
               <CaseStudy.Result>
-                폰트 파일의 용량을 획기적으로 줄여 LCP 성능을 개선했습니다.
+                폰트 파일의 용량을 줄여 LCP 성능 개선
               </CaseStudy.Result>
             </CaseStudy.Body>
           </CaseStudy>
