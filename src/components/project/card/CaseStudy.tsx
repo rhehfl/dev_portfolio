@@ -177,6 +177,9 @@ function CaseStudyRoot({ children, className }: RootProps) {
     </Card>
   );
 }
+const Markdown = ({ children }: { children: string }) => (
+  <MarkDownWrapper>{children}</MarkDownWrapper>
+);
 
 function ContentWrapper({ children }: { children: React.ReactNode }) {
   return <CardContent className="space-y-6">{children}</CardContent>;
@@ -191,4 +194,5 @@ export const CaseStudy = Object.assign(CaseStudyRoot, {
   MetricItem,
   Result,
   Code,
+  Markdown,
 });
