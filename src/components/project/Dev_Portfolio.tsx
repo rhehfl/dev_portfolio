@@ -67,9 +67,8 @@ export default function DevPortfolio() {
 
               <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
                 <CaseStudy.Markdown>
-                  기존에 사용하던 `shadcn`에서 아이디어를 얻어 자식을 `Header`,
-                  `Section`, `Figure`등으로 분리한 `Compound Component` 패턴을
-                  도입했습니다.
+                  자식 컴포넌트를 `Header`, `Section`, `Figure`등으로 분리한
+                  `Compound Component` 패턴을 도입했습니다.
                 </CaseStudy.Markdown>
 
                 <CaseStudy.Code>

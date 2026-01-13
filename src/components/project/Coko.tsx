@@ -88,9 +88,6 @@ export default function Coko() {
               </CaseStudy.Result>
             </CaseStudy.Body>
           </CaseStudy>
-          <ExpandableSection title="아아">
-            <div>dsdsd</div>
-          </ExpandableSection>
 
           <CaseStudy>
             <CaseStudy.Header>
@@ -119,10 +116,6 @@ export default function Coko() {
           </CaseStudy>
         </section>
 
-        {/* =================================================================
-            SECTION 2. 성능 개선
-            : 텍스트 위주의 깔끔한 구조
-           ================================================================= */}
         <h3 className="text-2xl my-5 font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
           성능 개선
         </h3>
