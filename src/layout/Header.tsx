@@ -1,36 +1,146 @@
 'use client';
 
-import { Home } from 'lucide-react';
+import * as React from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
+import {
+  useMotionValueEvent,
+  useScroll,
+  motion,
+  AnimatePresence,
+} from 'framer-motion';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
+
+const navItems = [
+  { name: 'Intro', href: '#intro' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Education', href: '#education' },
+];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const isOverThreshold = latest > 50;
+    if (isOverThreshold !== isScrolled) {
+      setIsScrolled(isOverThreshold);
+    }
+  });
+
+  const handleScrollTo = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    } else if (href === '#intro') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <header className="w-full flex py-9 justify-between px-10">
-      <nav className="hidden md:flex">
-        <ul className="flex space-x-4">
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-        </ul>
-      </nav>
-      <button
-        className="md:hidden text-2xl"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+    <>
+      <div className="mt-24" />
+      <motion.header
+        className={cn(
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
+          isScrolled
+            ? 'bg-white/80 backdrop-blur-md border-b border-gray-200/50 py-3 shadow-sm'
+            : 'bg-transparent py-5'
+        )}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        {isMenuOpen ? '✕' : '☰'}
-      </button>
-      {isMenuOpen && (
-        <div className="md:hidden flex flex-col gap-4 mt-4 p-4 bg-gray-50 rounded-lg">
-          <Link href="#about" className="block py-2">
-            About
+        <div className="container mx-auto px-6 md:px-10 flex justify-between items-center">
+          <Link
+            href="/"
+            onClick={(e) => handleScrollTo(e, '#intro')}
+            className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
+          >
+            Gu Doyun
           </Link>
-          <Link href="#projects" className="block py-2">
-            Projects
-          </Link>
+
+          <nav className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
+              <Button
+                key={item.name}
+                variant="ghost"
+                asChild
+                className="text-muted-foreground hover:text-primary font-medium transition-colors"
+              >
+                <Link
+                  href={item.href}
+                  onClick={(e) => handleScrollTo(e, item.href)}
+                >
+                  {item.name}
+                </Link>
+              </Button>
+            ))}
+          </nav>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </Button>
         </div>
-      )}
-    </header>
+      </motion.header>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+          >
+            <nav className="flex flex-col space-y-4">
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={(e) => handleScrollTo(e, item.href)}
+                    className="block text-2xl font-semibold text-gray-800 py-3 hover:text-blue-600 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                  <Separator className="bg-gray-100" />
+                </motion.div>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

@@ -53,7 +53,7 @@ export const ProjectCardData: ProjectCard[] = [
     description: '개발 포트폴리오 웹사이트',
     githubLink: 'https://github.com/rhehfl/dev-portfolio',
     title: 'DevPortfolio',
-    previewImageUrl: '/dev-portfolio/devportfolio_preview.png',
+    previewImageUrl: '/dev-portfolio/preview.png',
     detailUrl: 'dev-portfolio',
     techStack: [
       'Next.js',

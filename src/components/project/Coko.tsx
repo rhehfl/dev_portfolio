@@ -60,17 +60,16 @@ export default function Coko() {
                 <CaseStudy.Figure
                   src="/coko/t1.png"
                   alt="무한 렌더링 이슈 코드 스니펫"
-                  caption="팝업 컴포넌트 마운트 시 ref 콜백 내부 상태 변경으로 브라우저 프리징 발생"
+                  caption="팝업 컴포넌트 마운트 시 무한 리렌더링으로 인한 브라우저 프리징 발생"
                 />
               </CaseStudy.Section>
 
               <CaseStudy.Section title="원인 파악" dotColor="bg-orange-400">
                 <CaseStudy.Markdown>
                   React의 ref 콜백은 렌더링마다 새로운 함수 참조가 전달되면 다시
-                  실행됩니다. 해당 ref 내부에서 상태를 변경하고 있었고, 그 결과
-                  **상태 변경 → 리렌더링 → ref 재실행**의 무한 루프가
-                  발생했습니다. 이 문제는 UI 일부가 아니라 **페이지 전체를
-                  멈추게 하는 치명적인 이슈**라고 판단했습니다.
+                  실행됩니다. 해당 ref 콜백함수 내부에서 상태를 변경하고 있었고,
+                  그 결과 **상태 변경 → 리렌더링 → ref 재실행**의 무한 루프가
+                  발생했습니다.
                 </CaseStudy.Markdown>
               </CaseStudy.Section>
 
@@ -83,8 +82,8 @@ export default function Coko() {
               </CaseStudy.Section>
 
               <CaseStudy.Result>
-                팝업 사용 시 발생하던 브라우저 프리징 현상 완전 제거, `ref` 사용
-                시 주의사항을 팀 내 공유하여 유사 이슈 재발 방지
+                팝업 사용 시 발생하던 브라우저 프리징 현상 완전 제거하고 `ref`
+                사용 시 주의사항을 깃허브 코멘트로 공유하여 유사 이슈 재발 방지
               </CaseStudy.Result>
             </CaseStudy.Body>
           </CaseStudy>
