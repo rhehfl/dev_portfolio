@@ -6,6 +6,6 @@ export interface ProjectCard {
   previewImageUrl: string;
   githubLink: string;
   detailUrl: string;
-  thechStack: TechStackType[];
+  techStack: TechStackType[];
   period: string;
 }

@@ -23,7 +23,7 @@ export default function ProjectCard({
   description,
   detailUrl,
   previewImageUrl,
-  thechStack,
+  techStack,
   period,
 }: ProjectCardType) {
   return (
@@ -52,7 +52,7 @@ export default function ProjectCard({
               <p className="text-sm text-muted-foreground">{period}</p>
             </div>
             <div className="relative w-full overflow-hidden">
-              <TechStack stacks={thechStack} className="whitespace-nowrap" />
+              <TechStack stacks={techStack} className="whitespace-nowrap" />
 
               <div className="absolute top-0 right-0 w-5 h-full bg-linear-to-l from-white to-transparent"></div>
             </div>

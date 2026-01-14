@@ -7,7 +7,7 @@ export const ProjectCardData: ProjectCard[] = [
     title: 'CoKo',
     previewImageUrl: '/coko/coko_previewImage.png',
     detailUrl: 'coko',
-    thechStack: [
+    techStack: [
       'React',
       'TypeScript',
       'Vite',
@@ -19,11 +19,11 @@ export const ProjectCardData: ProjectCard[] = [
   },
   {
     description: '한국관광공사 api를 사용한 위치기반 관광지 추천 웹 앱',
-    githubLink: 'https://github.com/rhehfl/doran-doran',
+    githubLink: 'https://github.com/P-pick/front',
     title: 'p-pick',
     previewImageUrl: '/p-pick/ppickFrame.png',
     detailUrl: 'p-pick',
-    thechStack: [
+    techStack: [
       'React',
       'TypeScript',
       'Vite',
@@ -39,7 +39,7 @@ export const ProjectCardData: ProjectCard[] = [
     title: 'DoranDoran',
     previewImageUrl: '/doran-doran/doran_preview.png',
     detailUrl: 'doran-doran',
-    thechStack: [
+    techStack: [
       'Next.js',
       'TypeScript',
       'NestJS',
@@ -47,7 +47,7 @@ export const ProjectCardData: ProjectCard[] = [
       'Tanstack Query',
       'Tailwind CSS',
     ],
-    period: '2025.19 ~ 2025.12',
+    period: '2025.09 ~ 2025.12',
   },
   {
     description: '개발 포트폴리오 웹사이트',
@@ -55,7 +55,7 @@ export const ProjectCardData: ProjectCard[] = [
     title: 'DevPortfolio',
     previewImageUrl: '/dev-portfolio/devportfolio_preview.png',
     detailUrl: 'dev-portfolio',
-    thechStack: [
+    techStack: [
       'Next.js',
       'TypeScript',
       'NestJS',
