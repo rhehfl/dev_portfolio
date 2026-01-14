@@ -9,7 +9,6 @@ export default function Coko() {
     <div className="p-5 h-full ">
       <div className="lg:p-10">
         <ProjectHeader
-          id="intro"
           title="CoKo"
           description="JS를 재미있게 학습하기 위한 퀴즈 기반 교육 웹 사이트"
           techStack={[

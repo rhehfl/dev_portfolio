@@ -1,7 +1,6 @@
 import TechStack, { TechStackType } from '@/components/project/card/TechStack';
 
 interface ProjectHeaderProps {
-  id: string;
   title: string;
   description: string;
   techStack: TechStackType[];
@@ -11,7 +10,6 @@ interface ProjectHeaderProps {
 }
 
 export default function ProjectHeader({
-  id,
   title,
   description,
   techStack,
@@ -20,7 +18,7 @@ export default function ProjectHeader({
   role,
 }: ProjectHeaderProps) {
   return (
-    <div className="mb-8 scroll-mt-24 sm:scroll-mt-28" id={id}>
+    <div className="mb-8 scroll-mt-24 sm:scroll-mt-28">
       <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
         <TechStack stacks={techStack} />
       </div>

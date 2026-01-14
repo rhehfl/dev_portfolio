@@ -7,7 +7,6 @@ export default function DevPortfolio() {
     <div className="p-5 h-full ">
       <div className="lg:p-10">
         <ProjectHeader
-          id="intro"
           title="DevPortfolio"
           description="개인 포트폴리오 사이트"
           techStack={['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion']}

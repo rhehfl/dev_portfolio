@@ -7,7 +7,6 @@ export default function PPick() {
     <div className="p-5 h-full ">
       <div className="lg:p-10">
         <ProjectHeader
-          id="intro"
           title="P-Pick"
           description="한국관광공사 Open API를 활용해 숏 폼 형식으로 주변 여행지를 둘러볼 수 있는 사이트"
           techStack={[

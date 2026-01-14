@@ -8,7 +8,6 @@ export default function DoranDoran() {
     <div className="p-5 h-full">
       <div className="lg:p-10">
         <ProjectHeader
-          id="doran-doran"
           title="Doran-Doran"
           description="AI 페르소나 및 실시간 사용자와 소통하는 채팅 플랫폼"
           techStack={[
