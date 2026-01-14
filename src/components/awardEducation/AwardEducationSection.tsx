@@ -69,6 +69,7 @@ function SimpleItem({
   return (
     <motion.div
       ref={ref}
+      id="education"
       className="flex flex-col md:flex-row gap-4 md:gap-8 relative group pb-8 last:pb-0"
       initial={{ opacity: 0, y: 10 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}

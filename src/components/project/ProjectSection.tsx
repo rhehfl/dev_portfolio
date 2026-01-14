@@ -3,7 +3,7 @@ import { ProjectCardData } from '@/data/ProjectCardData';
 
 export default function ProjectSection() {
   return (
-    <section className="grid grid-cols-12 gap-6 auto-rows">
+    <section className="grid grid-cols-12 gap-6 auto-rows" id="projects">
       <header className="col-span-10 col-start-2 mt-30 ">
         <h2 className="text-3xl font-bold">__Project</h2>
       </header>
