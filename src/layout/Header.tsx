@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import Link from 'next/link';
 import {
   useMotionValueEvent,
@@ -12,6 +11,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { useState } from 'react';
 
 const navItems = [
   { name: 'Intro', href: '#intro' },
@@ -22,8 +22,8 @@ const navItems = [
 
 export default function Header() {
   const { scrollY } = useScroll();
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const isOverThreshold = latest > 50;
