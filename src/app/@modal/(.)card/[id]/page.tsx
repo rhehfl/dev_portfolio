@@ -2,16 +2,11 @@
 
 import DetailOverlay from '@/components/common/view/DetailOverlay';
 import { ViewMode } from '@/components/common/view/type';
-import Coko from '@/components/project/Coko';
-import DevPortfolio from '@/components/project/Dev_Portfolio';
-import DoranDoran from '@/components/project/Doran-Doran';
-import PPick from '@/components/project/P-Pick';
-import { useIntroStore } from '@/store/useIntroStore';
-import {
-  useScrollLock,
-  useSessionStorage,
-  useUnmount,
-} from '@modern-kit/react';
+import Coko from '@/components/project/coko/Coko';
+import DevPortfolio from '@/components/project/dev-portfolio/Dev_Portfolio';
+import DoranDoran from '@/components/project/doran-doran/Doran-Doran';
+import PPick from '@/components/project/p-pick/P-Pick';
+import { useScrollLock, useSessionStorage } from '@modern-kit/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
