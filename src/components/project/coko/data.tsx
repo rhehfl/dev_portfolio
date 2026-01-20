@@ -1,4 +1,5 @@
 import { CaseStudy } from '@/components/project/card/CaseStudy';
+import { Code2, Rocket } from 'lucide-react';
 
 export const COKO_TROUBLESHOOTING = [
   {
@@ -71,6 +72,62 @@ export const COKO_TROUBLESHOOTING = [
       </CaseStudy.Body>
     ),
   },
+  {
+    title: 'HOC 패턴과 제네릭을 활용한 복잡한 데이터 로직 추상화',
+    contents: (
+      <CaseStudy.Body>
+        <CaseStudy.Section title="도입 이유" dotColor="bg-red-400">
+          <CaseStudy.Markdown>
+            {`퀴즈 컴포넌트가 **실전 모드, 튜토리얼 모드, 잠김 상태** 등 다양한 상황에서 재사용되어야 했습니다.
+            하지만 각 모드마다 데이터를 가져오는 로직이 달라, 컴포넌트 내부에 **비즈니스 로직이 강하게 결합**되고 코드 중복이 발생했습니다.`}
+          </CaseStudy.Markdown>
+        </CaseStudy.Section>
+
+        <CaseStudy.Section title="문제 발생" dotColor="bg-orange-400">
+          <CaseStudy.Markdown>
+            {`로직 분리를 위해 **HOC**를 도입했으나, TypeScript 환경에서 **Props 타입 추론**이 깨지는 문제가 발생했습니다.
+            래핑된 컴포넌트는 \`quizzes\` 데이터가 필요하지만, HOC를 사용하는 부모 컴포넌트 입장에서는 \`quizzes\`를 전달할 필요가 없어야 함
+            단순 래핑 시 TS는 여전히 부모에게 \`quizzes\` Props를 요구하는 문제 발생`}
+          </CaseStudy.Markdown>
+        </CaseStudy.Section>
+
+        <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
+          <CaseStudy.Markdown>
+            {`**제네릭**과 **교차 타입**을 활용해 타입 안전성을 확보했습니다.
+            1. 제네릭 \`P\`를 통해 원본 컴포넌트의 \`props\` 타입을 보존 후 hoc가 제공해주는 데이터를 \`InjectedProps\`로 분리
+            2. 고차 컴포넌트가 반환할 컴포넌트의 props 타입을 \`as P\`를 통해 타입 단언하여 Ts가 부모 컴포넌트에게 \`quizzes\` Props를 요구하지 않도록 처리
+         `}
+          </CaseStudy.Markdown>
+          <CaseStudy.Code>
+            {`// 제네릭 P를 통해 원본 컴포넌트의 Props를 보존
+const withQuizzes = <P extends object>(
+  // 래핑 대상: 기존 Props(P) + 주입받을 Props(quizzes) 필요
+  WrappedComponent: FC<P & InjectedProps> 
+) => {
+  // 반환 컴포넌트: quizzes는 내부 주입되므로 외부에서는 P와 설정값만 받음
+  const ComponentWithQuizzes: FC<P & WithQuizzesProps> = ({ 
+    partId, partStatus, ...props 
+  }) => {
+    // ... 데이터 페칭 및 분기 로직 ...
+    return (
+      <WrappedComponent
+        {...(props as P)} // 제네릭 타입 단언
+        quizzes={quizzes} // 데이터 주입(Injection)
+      />
+    );
+  };
+  return ComponentWithQuizzes;
+};`}
+          </CaseStudy.Code>
+        </CaseStudy.Section>
+
+        <CaseStudy.Result isHighlighted>
+          복잡한 분기 로직을 분리 및 추상화하고 타입 안전성을 유지하며 컴포넌트
+          재사용성 극대화
+        </CaseStudy.Result>
+      </CaseStudy.Body>
+    ),
+  },
 ];
 
 export const COKO_PERFORMANCE = [
@@ -135,5 +192,63 @@ setIsLoading(false);`}
         </CaseStudy.Result>
       </CaseStudy.Body>
     ),
+  },
+];
+
+export const COKO_INTRO = {
+  overview: `코코(Coko) 기존의 프로그래밍 학습 사이트가 재미없다는 문제의식에서 출발하여 프로그래밍 언어(JavaScript)를
+게임처럼 재밌고 몰입감 있게 배울 수 있도록 만든 모던 애자일 8기의 메인 프로젝트입니다.
+`,
+  features: [
+    {
+      title: '다양한 유형의 인터랙티브 퀴즈',
+      description:
+        'OX, 객관식, 빈칸 채우기, 코드 조합하기 등 다양한 유형의 퀴즈 로직을 자체 구현하여, 단순 암기가 아닌 참여형 학습 경험을 제공합니다.',
+      mediaSrc: '/coko/coko1.png',
+      isVideo: false,
+    },
+    {
+      title: '동기 부여를 위한 캐릭터 상점',
+      description:
+        '퀴즈를 풀며 획득한 포인트로 나만의 캐릭터 스킨과 아이템을 구매하고 커스터마이징할 수 있는 상점 시스템입니다.',
+      mediaSrc: '/coko/coko3.png',
+      isVideo: false,
+    },
+    {
+      title: '실시간 랭킹 및 경쟁 시스템',
+      description:
+        '전체 사용자 중 나의 순위를 실시간으로 확인하고, 매주 초기화되는 시즌제 랭킹을 통해 지속적인 학습 동기를 부여합니다.',
+      mediaSrc: '/coko/coko2.png',
+      isVideo: false,
+    },
+    {
+      title: '나의 성장을 증명하는 뱃지 컬렉션',
+      description:
+        '특정 레벨 달성, 아이템 구매 등 특정 조건을 달성하면 잠겨있던 뱃지가 해금됩니다. 획득한 뱃지는 프로필에 전시하여 성취감을 시각화할 수 있습니다.',
+      mediaSrc: '/coko/coko4.png',
+      isVideo: false,
+    },
+  ],
+};
+
+export const COKO_CONTRIBUTIONS = [
+  {
+    title: 'Core Engineering & UX',
+    tag: 'Frontend Architect',
+    icon: <Code2 className="w-5 h-5 text-blue-500" />,
+    points: [
+      'highlight.js 와 직접 구현한 라인 넘버링 로직을 결합하여 코드 가독성을 IDE 수준으로 개선',
+      'Suspense와 ErrorBoundary를 활용한 비동기 처리 표준화 및 도메인 기반 폴더 구조 도입 주도',
+    ],
+  },
+  {
+    title: 'DevOps & Productivity',
+    tag: 'Operational Efficiency',
+    icon: <Rocket className="w-5 h-5 text-green-500" />,
+    points: [
+      '**백오피스(Admin) 독자 개발**: Swagger 수동 입력의 비효율을 해소하기 위해 데이터 CRUD 및 **AWS S3** 이미지 업로드 기능 구현',
+      '**CI/CD 파이프라인 구축**: GitHub Actions와 EC2를 연동하여 메인 브랜치 병합 시 자동 배포되는 파이프라인 설계',
+      '**지식 공유 문화 형성**: CI/CD 구축 과정 및 트러블 슈팅 경험을 블로그로 작성하고 팀 내 공유하여 레퍼런스 제공',
+    ],
   },
 ];

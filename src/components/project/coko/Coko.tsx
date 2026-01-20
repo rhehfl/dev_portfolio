@@ -1,6 +1,9 @@
 import { CaseStudy } from '@/components/project/card/CaseStudy';
-import TeamCulture from '@/components/project/card/TeamCulture';
+import KeyAchievements from '@/components/project/card/KeyAchievements';
+import ProjectFeature from '@/components/project/card/ProjectFeature';
 import {
+  COKO_CONTRIBUTIONS,
+  COKO_INTRO,
   COKO_PERFORMANCE,
   COKO_TROUBLESHOOTING,
 } from '@/components/project/coko/data';
@@ -10,6 +13,7 @@ import ProjectLinks from '@/components/project/detail/ProjectLinks';
 export default function Coko() {
   return (
     <div className="p-5 h-full ">
+      <div className="my-8"></div>
       <div className="lg:p-10">
         <ProjectHeader
           title="CoKo"
@@ -27,28 +31,8 @@ export default function Coko() {
           teamSize="6명"
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
-        <TeamCulture
-          items={[
-            {
-              title: 'DX 개선',
-              tag: 'Productivity',
-              points: [
-                'Github Actions를 이용한 CI/CD 자동화 구축',
-                '어드민 페이지를 통한 콘텐츠 관리',
-              ],
-            },
-            {
-              title: '협업 프로세스',
-              tag: 'Process',
-              points: [
-                'PR, Issue 템플릿 작성 및 코드 리뷰 체크리스트 도입',
-                'Swagger를 활용한 API 명세',
-                'Notion 기반의 스프린트 관리',
-                'Figma를 활용한 디자이너와의 협업',
-              ],
-            },
-          ]}
-        />
+        <ProjectFeature {...COKO_INTRO} />
+        <KeyAchievements items={COKO_CONTRIBUTIONS} />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
           트러블 슈팅
         </h3>
@@ -56,7 +40,6 @@ export default function Coko() {
           {COKO_TROUBLESHOOTING.map((study, idx) => (
             <CaseStudy key={idx}>
               <CaseStudy.Header>{study.title}</CaseStudy.Header>
-              {/* JSX 자체를 렌더링 */}
               {study.contents}
             </CaseStudy>
           ))}
