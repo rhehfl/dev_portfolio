@@ -151,10 +151,16 @@ interface RootProps {
   className?: string;
 }
 
-const Code = ({ children }: { children: string }) => {
+const Code = ({
+  children,
+  language = 'ts',
+}: {
+  children: string;
+  language?: string;
+}) => {
   return (
     <>
-      <MarkDownWrapper>{children}</MarkDownWrapper>
+      <MarkDownWrapper>{`\`\`\`${language} ${children}`}</MarkDownWrapper>
     </>
   );
 };
@@ -164,7 +170,7 @@ function CaseStudyRoot({ children, className }: RootProps) {
     <Card
       className={cn(
         'h-full border border-border/60 shadow-sm hover:shadow-md transition-all duration-300',
-        className
+        className,
       )}
     >
       {children}

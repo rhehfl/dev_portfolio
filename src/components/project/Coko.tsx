@@ -18,12 +18,17 @@ export const COKO_TROUBLESHOOTING: CaseStudyItem[] = [
             src="/coko/t1.png"
             caption="팝업 컴포넌트 마운트 시 무한 리렌더링 발생"
           />
+
+          <CaseStudy.Markdown>
+            {`\`DOM rect\` 정보를 전역 상태로 저장하여 사용하기 위해서 콜백ref를 통해 컴포넌트의 DOM 노드를 접근해야하는 상황에
+            특정 팝업 컴포넌트가 마운트되면 무한 리렌더링이 발생하여 브라우저가 프리징되는 현상이 있었습니다.`}
+          </CaseStudy.Markdown>
         </CaseStudy.Section>
 
         <CaseStudy.Section title="원인 파악" dotColor="bg-orange-400">
           <CaseStudy.Markdown>
             {`React의 \`ref\` 콜백은 렌더링마다 새로운 함수 참조가 전달되면 다시 실행됩니다. 
-            **상태 변경 → 리렌더링 → ref 재실행**의 무한 루프가 원인이었습니다.`}
+             **ref 실행 → 상태 변경 → 리렌더링 → ref 재실행**의 무한 루프가 원인이었습니다.`}
           </CaseStudy.Markdown>
         </CaseStudy.Section>
 
@@ -41,26 +46,36 @@ export const COKO_TROUBLESHOOTING: CaseStudyItem[] = [
     ),
   },
   {
-    title: '진행 상태 관리 리팩토링 (useFunnel)',
+    title: '퀴즈 데이터 유실 방지',
     contents: (
       <CaseStudy.Body>
         <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
           <CaseStudy.Markdown>
-            기존 코드가 컴포넌트 스스로 렌더링 여부를 결정하여 재사용이
-            까다로움.
+            {`퀴즈 풀이 도중 실수로 **새로고침**이나 **뒤로가기**를 눌렀을 때, 전역 상태가 초기화되어 진행 상황이 모두 날아가는 문제가 있었습니다.`}
           </CaseStudy.Markdown>
         </CaseStudy.Section>
 
         <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
-          <CaseStudy.Markdown>
-            {`- 토스 Slash의 **useFunnel** 아이디어 차용
-             - \`step\`과 \`setStep\`만 관리하는 경량화 훅 구현`}
-          </CaseStudy.Markdown>
+          <CaseStudy.Markdown>{`복잡한 복구 로직 대신, 브라우저의 \`beforeunload\` 이벤트를 활용해 실수를 방지하는 것이 MVP 단계에서 가장 효율적인 해결책이라 판단했습니다.`}</CaseStudy.Markdown>
           <CaseStudy.Code>
-            {`const [Funnel, Step] = useFunnel(['가입', '완료']);
-return <Funnel><Step name="가입">...</Step></Funnel>`}
+            {`
+  useEffect(() => {
+    if (!enabled) return; 
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [enabled, handleBeforeUnload]);
+}`}
           </CaseStudy.Code>
+          훅 내부의 일부 코드
         </CaseStudy.Section>
+
+        <CaseStudy.Result isHighlighted>
+          실수로 인한 퀴즈 데이터 유실 방지 및 사용자 경험 향상
+        </CaseStudy.Result>
       </CaseStudy.Body>
     ),
   },
@@ -79,7 +94,7 @@ const COKO_PERFORMANCE: CaseStudyItem[] = [
         <CaseStudy.Section title="해결 방안" dotColor="bg-blue-400">
           <CaseStudy.Markdown>
             {`- React의 \`lazy\`와 동적 \`import()\`를 활용하여 페이지 단위로 컴포넌트를 분리했습니다.
-            - 사용자가 해당 경로에 접근할 때만 필요한 리소스를 로드하도록 라우터를 재설계했습니다.`}
+            사용자가 해당 경로에 접근할 때만 필요한 리소스를 로드하도록 했습니다.`}
           </CaseStudy.Markdown>
         </CaseStudy.Section>
 
@@ -100,9 +115,26 @@ const COKO_PERFORMANCE: CaseStudyItem[] = [
 
         <CaseStudy.Section title="해결 방안" dotColor="bg-blue-400">
           <CaseStudy.Markdown>
-            {`- \`usePreloadImages\` 커스텀 훅을 제작하여 \`Promise.allSettled\`로 주요 이미지 리소스를 병렬로 미리 캐싱했습니다.
-            - \`Image\` 객체를 생성하여 브라우저 캐시에 이미지를 미리 적재한 뒤 화면을 렌더링하도록 흐름을 제어했습니다.`}
+            {`\`usePreloadImages\` 커스텀 훅을 제작하여 \`Image\` 객체를 생성하여 브라우저 캐시에 이미지를 미리 적재한 뒤 화면을 렌더링하도록 흐름을 제어했습니다.
+             초기 네트워크 부하가 커진다는 **Trade-off**가 있지만, 사용자 경험 향상을 위해 이미지 프리로딩을 선택했습니다.
+             이미지 로딩 실패를 대비하기 위해 \`Promise.allSettled\`를 사용했습니다.
+            `}
           </CaseStudy.Markdown>
+          <CaseStudy.Code>
+            {`// 이미지 객체 생성 및 병렬 요청 프로미스 배열 생성
+const imagePromises = imageUrls.map((url) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => reject();
+    img.src = baseUrl + url;
+  });
+});
+
+// 일부 실패하더라도 전체 로직이 중단되지 않도록 allSettled 사용
+await Promise.allSettled(imagePromises);
+setIsLoading(false);`}
+          </CaseStudy.Code>
         </CaseStudy.Section>
 
         <CaseStudy.Result>
