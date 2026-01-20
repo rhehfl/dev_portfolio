@@ -7,6 +7,7 @@ export default function ProfileCard() {
       <figure className="mt-11 ">
         <Image
           src="/profile.jpg"
+          preload
           alt="프론트엔드 개발자 구도윤 프로필 사진"
           className="rounded-full border-2 border-gray-300"
           width={240}
