@@ -7,10 +7,6 @@ import Link from 'next/link';
 const MotionImage = motion.create(Image);
 type ImageOptions = Omit<React.ComponentProps<typeof MotionImage>, 'layoutId'>;
 
-interface ZoomableImageProps extends ImageOptions {
-  id?: string;
-}
-
 const containerVariants: Variants = {
   offscreen: {
     opacity: 0,
@@ -28,7 +24,7 @@ const containerVariants: Variants = {
   },
 };
 
-export default function ZoomableImage({ id, ...props }: ZoomableImageProps) {
+export default function ZoomableImage({ ...props }: ImageOptions) {
   return (
     <Link
       href={`/photo/${encodeURIComponent(props.src as string)}`}
@@ -40,7 +36,7 @@ export default function ZoomableImage({ id, ...props }: ZoomableImageProps) {
         initial="offscreen"
         animate="onscreen"
         exit="exit"
-        layoutId={`image-${id}`}
+        layoutId={`image-${props.src}`}
         {...props}
       />
     </Link>

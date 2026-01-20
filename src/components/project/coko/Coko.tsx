@@ -1,3 +1,4 @@
+import PreloadHover from '@/components/common/PreloadHover';
 import { CaseStudy } from '@/components/project/card/CaseStudy';
 import KeyAchievements from '@/components/project/card/KeyAchievements';
 import ProjectFeature from '@/components/project/card/ProjectFeature';
@@ -9,6 +10,13 @@ import {
 } from '@/components/project/coko/data';
 import ProjectHeader from '@/components/project/detail/ProjectHeader';
 import ProjectLinks from '@/components/project/detail/ProjectLinks';
+
+const PRELOAD_IMAGES = [
+  '/coko/coko1.png',
+  '/coko/coko2.png',
+  '/coko/coko3.png',
+  '/coko/coko4.png',
+];
 
 export default function Coko() {
   return (
@@ -31,7 +39,9 @@ export default function Coko() {
           teamSize="6명"
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
-        <ProjectFeature {...COKO_INTRO} />
+        <PreloadHover images={PRELOAD_IMAGES}>
+          <ProjectFeature {...COKO_INTRO} />
+        </PreloadHover>
         <KeyAchievements items={COKO_CONTRIBUTIONS} />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
           트러블 슈팅
