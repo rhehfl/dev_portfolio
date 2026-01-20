@@ -39,7 +39,7 @@ export default function Coko() {
           teamSize="6명"
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
-        <PreloadHover images={PRELOAD_IMAGES}>
+        <PreloadHover images={PRELOAD_IMAGES} delay={100}>
           <ProjectFeature {...COKO_INTRO} />
         </PreloadHover>
         <KeyAchievements items={COKO_CONTRIBUTIONS} />

@@ -1,3 +1,7 @@
+import {
+  CASE_STUDY_THUMB_HEIGHT,
+  CASE_STUDY_THUMB_WIDTH,
+} from '@/components/common/PreloadHover';
 import ZoomableImage from '@/components/common/ZoomableImage';
 import {
   Accordion,
@@ -63,12 +67,11 @@ export default function ProjectFeature({
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    // ✨ 수정됨: width, height props 추가 (16:9 비율 유지)
                     <ZoomableImage
                       src={feature.mediaSrc}
                       alt={feature.title}
-                      width={800}
-                      height={450}
+                      width={CASE_STUDY_THUMB_WIDTH}
+                      height={CASE_STUDY_THUMB_HEIGHT}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   )}
