@@ -1,10 +1,9 @@
 'use client';
 
 import { Slot } from '@radix-ui/react-slot';
-import { preload } from 'react-dom';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { getImageProps, ImageProps, StaticImageData } from 'next/image';
-
+import Image from 'next/image';
 type ImageSource = string | StaticImageData;
 export const CASE_STUDY_THUMB_WIDTH = 640;
 export const CASE_STUDY_THUMB_HEIGHT = 360;
@@ -26,24 +25,27 @@ export const getOptimizedUrl = ({
   return props.src;
 };
 
+interface PreloadHoverProps {
+  images: ImageSource | ImageSource[];
+  children: ReactNode;
+  delay?: number;
+}
+
 export default function PreloadHover({
   images,
   children,
   delay = 200,
 }: PreloadHoverProps) {
+  const [shouldLoad, setShouldLoad] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = () => {
+    if (shouldLoad) return;
+
     if (timerRef.current) clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(() => {
-      const sources = Array.isArray(images) ? images : [images];
-
-      sources.forEach((src) => {
-        // src가 객체일 수 있으므로 alt에는 src를 넣지 않고 빈 문자열 전달
-        const optimizedSrc = getOptimizedUrl({ src, alt: '' });
-        preload(optimizedSrc, { as: 'image' });
-      });
+      setShouldLoad(true);
       timerRef.current = null;
     }, delay);
   };
@@ -55,15 +57,30 @@ export default function PreloadHover({
     }
   };
 
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
+  // 배열로 통일
+  const imageSources = Array.isArray(images) ? images : [images];
 
   return (
-    <Slot onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      {children}
-    </Slot>
+    <>
+      <Slot onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        {children}
+      </Slot>
+
+      {shouldLoad && (
+        <div className="absolute top-0 left-0 -z-50 w-px h-px overflow-hidden opacity-0 pointer-events-none">
+          {imageSources.map((src, idx) => (
+            <Image
+              key={idx}
+              src={src}
+              alt="preload-hidden"
+              width={CASE_STUDY_THUMB_WIDTH}
+              height={CASE_STUDY_THUMB_HEIGHT}
+              priority={true}
+              sizes={`(max-width: 768px) 100vw, ${CASE_STUDY_THUMB_WIDTH}px`}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
