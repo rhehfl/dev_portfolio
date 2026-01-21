@@ -8,7 +8,7 @@ export const PPICK_INTRO = {
       title: '숏폼 스타일의 여행지 탐색',
       description:
         'TikTok이나 Reels처럼 스와이프 한 번으로 주변 관광지 정보를 빠르게 탐색할 수 있습니다. 텍스트보다 이미지와 영상을 강조하여 여행지의 매력을 직관적으로 전달합니다.',
-      mediaSrc: '/p-pick/ppick4.png', // *이미지 경로 확인 필요
+      mediaSrc: '/p-pick/ppick4.png',
       isVideo: false,
     },
     {

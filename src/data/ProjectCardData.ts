@@ -15,7 +15,7 @@ export const ProjectCardData: ProjectCard[] = [
       'Tanstack Query',
       'Styled-Components',
     ],
-    period: '2024.09 - 2025.03 (6개월)',
+    period: '2024.09 ~ 2025.03 (6개월)',
   },
   {
     description: '한국관광공사 api를 사용한 위치기반 관광지 추천 웹 앱',
@@ -63,6 +63,6 @@ export const ProjectCardData: ProjectCard[] = [
       'Tanstack Query',
       'Tailwind CSS',
     ],
-    period: '2025.12 ~ 2025.12',
+    period: '2025.12 ~',
   },
 ];

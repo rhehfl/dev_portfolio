@@ -33,7 +33,7 @@ export const COKO_TROUBLESHOOTING = [
         </CaseStudy.Section>
 
         <CaseStudy.Result isHighlighted>
-          팝업 브라우저 프리징 현상 완전 제거 및 팀내 이슈 공유
+          useCallback을 활용한 ref 참조 안정화 및 렌더링 최적화
         </CaseStudy.Result>
       </CaseStudy.Body>
     ),
@@ -234,7 +234,7 @@ export const COKO_INTRO = {
 export const COKO_CONTRIBUTIONS = [
   {
     title: 'Core Engineering & UX',
-    tag: 'Frontend Architect',
+    tag: 'Core Engineering',
     icon: <Code2 className="w-5 h-5 text-blue-500" />,
     points: [
       'highlight.js 와 직접 구현한 라인 넘버링 로직을 결합하여 코드 가독성을 IDE 수준으로 개선',
