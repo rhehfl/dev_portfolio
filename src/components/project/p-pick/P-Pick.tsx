@@ -9,12 +9,14 @@ import {
   PPICK_CONTRIBUTIONS,
   PPICK_INTRO,
 } from '@/components/project/p-pick/data';
+
 const PRELOAD_IMAGES = [
-  '/ppick/ppick1.png',
-  '/ppick/ppick2.png',
-  '/ppick/ppick3.png',
-  '/ppick/ppick4.png',
+  '/p-pick/ppick1.png',
+  '/p-pick/ppick2.png',
+  '/p-pick/ppick3.png',
+  '/p-pick/ppick4.png',
 ];
+
 export default function PPick() {
   return (
     <div className="p-5 h-full ">

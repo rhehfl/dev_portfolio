@@ -20,14 +20,17 @@ interface FeatureItem {
 interface ProjectFeatureProps {
   features: FeatureItem[];
   overview?: string;
+  [key: string]: any;
 }
 
 export default function ProjectFeature({
   features,
   overview,
+  ...props
 }: ProjectFeatureProps) {
   return (
     <Accordion
+      {...props}
       type="single"
       collapsible
       className="w-full mb-10 border rounded-xl bg-white dark:bg-gray-800 shadow-sm"

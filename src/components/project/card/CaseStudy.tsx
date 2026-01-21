@@ -153,14 +153,16 @@ interface RootProps {
 
 const Code = ({
   children,
-  language = 'ts',
+  language = 'tsx',
 }: {
   children: string;
   language?: string;
 }) => {
   return (
     <>
-      <MarkDownWrapper>{`\`\`\`${language} ${children}`}</MarkDownWrapper>
+      <MarkDownWrapper>{`\`\`\`${language}
+      ${children}
+      `}</MarkDownWrapper>
     </>
   );
 };
