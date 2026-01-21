@@ -91,7 +91,6 @@ export const useScrollRestoration = <T extends HTMLElement>({
     return () => {
       const historyKey = historyKeyRef.current;
       if (!historyKey) return;
-      console.log(ref);
       const scrollTarget = ref.current || window;
       const currentPos =
         scrollTarget instanceof Window
