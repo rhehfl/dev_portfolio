@@ -1,5 +1,51 @@
 import { CaseStudy } from '@/components/project/card/CaseStudy';
+import { Smartphone, Map } from 'lucide-react';
+export const PPICK_INTRO = {
+  overview: `P-Pick은 "계획 없는 여행도 완벽할 수 있다"는 모토로 시작된 MBTI 'P' 유형을 위한 여행 가이드 서비스입니다.
+  복잡한 검색 대신 숏폼 콘텐츠를 넘겨보듯 직관적인 UI로 주변 여행지를 탐색하고, 현재 위치를 기반으로 최적의 동선을 즉흥적으로 추천받을 수 있습니다.`,
+  features: [
+    {
+      title: '숏폼 스타일의 여행지 탐색',
+      description:
+        'TikTok이나 Reels처럼 스와이프 한 번으로 주변 관광지 정보를 빠르게 탐색할 수 있습니다. 텍스트보다 이미지와 영상을 강조하여 여행지의 매력을 직관적으로 전달합니다.',
+      mediaSrc: '/p-pick/ppick4.png', // *이미지 경로 확인 필요
+      isVideo: false,
+    },
+    {
+      title: '내 위치 기반 즉흥 경로 추천',
+      description:
+        '현재 위치를 실시간으로 추적하여 반경 내 가볼 만한 곳을 지도 위에 핀포인트로 시각화합니다. 카카오맵 API와 연동하여 도보, 대중교통 경로를 바로 안내합니다.',
+      mediaSrc: '/p-pick/ppick2.png',
+      isVideo: false,
+    },
+    {
+      title: '바텀 시트를 이용한 직관적 정보 제공',
+      description:
+        'framer-motion 라이브러리를 활용해 바텀 시트를 구현, 사용자가 여행지의 상세 정보, 사진, 리뷰를 손쉽게 확인할 수 있도록 했습니다. 화면 전환 없이도 풍부한 정보를 제공하여 몰입감을 높였습니다.',
+      mediaSrc: '/p-pick/ppick3.png',
+      isVideo: false,
+    },
+    {
+      title: '실시간 여행자 리뷰 공유',
+      description:
+        'Firebase를 백엔드로 활용하여 로그인한 유저들이 실시간으로 여행지 리뷰와 별점을 남기고 공유할 수 있는 커뮤니티 기능을 제공합니다.',
+      mediaSrc: '/p-pick/ppick1.png',
+      isVideo: false,
+    },
+  ],
+};
 
+export const PPICK_CONTRIBUTIONS = [
+  {
+    title: 'UI/UX & Interactive Design',
+    tag: 'User Experience',
+    icon: <Smartphone className="w-5 h-5 text-green-500" />,
+    points: [
+      'Swiper.js를 활용한 숏폼 스타일 인터페이스 개발',
+      '데이터 페칭 시 스켈레톤 UI를 적용하여 CLS를 방지하고 체감 로딩 속도 개선',
+    ],
+  },
+];
 export const PERFORMANCE = [
   {
     title: '네트워크 워터폴 현상 개선',
@@ -21,7 +67,7 @@ export const PERFORMANCE = [
           </CaseStudy.Markdown>
 
           <CaseStudy.Code>
-            {`// ✅ 현재 슬라이드 진입 시, 다음 슬라이드 데이터(API+이미지) 미리 요청
+            {`
 <Swiper 
   modules={[Virtual]} 
   virtual={{ enabled: true }}

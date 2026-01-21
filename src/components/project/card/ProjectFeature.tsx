@@ -72,12 +72,11 @@ export default function ProjectFeature({
                       alt={feature.title}
                       width={CASE_STUDY_THUMB_WIDTH}
                       height={CASE_STUDY_THUMB_HEIGHT}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   )}
                 </div>
 
-                {/* 텍스트 영역 */}
                 <div>
                   <h4 className="font-bold text-lg text-gray-800 dark:text-gray-100 flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs">
