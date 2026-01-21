@@ -76,7 +76,6 @@ export default function PreloadHover({
               width={CASE_STUDY_THUMB_WIDTH}
               height={CASE_STUDY_THUMB_HEIGHT}
               priority={true}
-              sizes={`(max-width: 768px) 100vw, ${CASE_STUDY_THUMB_WIDTH}px`}
             />
           ))}
         </div>

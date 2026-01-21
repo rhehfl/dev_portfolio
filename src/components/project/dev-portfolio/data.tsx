@@ -134,21 +134,47 @@ export const PORTFOLIO_PERFORMANCE = [
           <CaseStudy.Markdown>
             {`\`PreloadHover\` 컴포넌트를 구현하여 **Hover Intent** 감지 시스템을 구축했습니다.
             1. 사용자가 카드 위에 마우스를 특정 시간 이상 올리고 있을 때만 상세 페이지 이미지를 요청합니다.
-            2. Next.js의 \`getImageProps\`로 최적화된 URL을 생성하고, React 19의 \`preload\` API를 호출하여 브라우저 캐시에 미리 적재합니다.
+            2. Next.js의 \`Image\`태그를 숨겨서 렌더링하여 최적화된 이미지를 브라우저에 미리 적재합니다.
             3. Slot 패턴을 사용하여 다양한 카드 컴포넌트에 재사용할 수 있도록 설계했습니다.`}
           </CaseStudy.Markdown>
           <CaseStudy.Code>
-            {`// PreloadHover.tsx
-const handleMouseEnter = () => {
-  timerRef.current = setTimeout(() => {
-    // 사용자의 관심이 확인된 시점에 preload 실행
-    const optimizedSrc = getOptimizedUrl({ src, alt: '' });
-    ReactDOM.preload(optimizedSrc, { as: 'image' });
-  }, delay); // 200ms 딜레이
-};`}
+            {`
+ {shouldLoad && (
+        <div className="absolute top-0 left-0 -z-50 w-px h-px overflow-hidden opacity-0 pointer-events-none">
+          {imageSources.map((src, idx) => (
+            <Image
+              key={idx}
+              src={src}
+              alt="preload-hidden"
+              width={CASE_STUDY_THUMB_WIDTH}
+              height={CASE_STUDY_THUMB_HEIGHT}
+              priority={true}
+            />
+          ))}
+        </div>
+
+`}
           </CaseStudy.Code>
         </CaseStudy.Section>
-
+        <CaseStudy.Section
+          title="성능 측정 (Fast 3G 환경)"
+          dotColor="bg-green-400"
+        >
+          <CaseStudy.Metrics>
+            <CaseStudy.MetricItem
+              name="즉시 클릭 시"
+              before="2,100ms"
+              after="1,800ms"
+              rate="15% 단축"
+            />
+            <CaseStudy.MetricItem
+              name="호버 후(1초 이상) 클릭"
+              before="2,100ms"
+              after="28ms"
+              rate="Zero Latency"
+            />
+          </CaseStudy.Metrics>
+        </CaseStudy.Section>
         <CaseStudy.Result isHighlighted>
           상세 페이지 진입 시 이미지 로딩 시간 '0초'에 수렴 (LCP 최적화)
         </CaseStudy.Result>
