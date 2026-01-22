@@ -72,7 +72,7 @@ export default function Header() {
             href="/"
             className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
           >
-            Gu Doyun
+            Gu Doyoon
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">

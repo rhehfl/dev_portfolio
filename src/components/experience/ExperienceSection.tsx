@@ -46,7 +46,9 @@ const experiences = [
     description: `모던 자바스크립트의 핵심 개념과 심화 주제를 다루는 도서 스터디
 
     - 클로저, 제네레이터 등 고급 자바스크립트 문법 학습`,
+    link: 'https://github.com/rhehfl/Modern-JS-Deep-Dive/tree/main',
   },
+
   {
     id: 4,
     type: 'study-casual',
@@ -71,7 +73,7 @@ export default function ExperienceSection() {
           viewport={{ once: true }}
           className="text-3xl font-bold"
         >
-          __경험 및 활동
+          __Experience
         </motion.h2>
       </header>
 
