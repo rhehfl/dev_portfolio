@@ -1,4 +1,4 @@
-import { CaseStudy } from '@/features/project/components/CaseStudy';
+import CaseStudy from '@/features/project/components/CaseStudy';
 
 // 1. 트러블 슈팅 (Troubleshooting)
 export const PORTFOLIO_TROUBLESHOOTING = [

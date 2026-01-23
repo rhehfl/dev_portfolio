@@ -1,15 +1,16 @@
-import { CaseStudy } from '@/features/project/components/CaseStudy';
+import CaseStudy from '@/features/project/components/CaseStudy';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
+
+import PreloadHover from '@/components/common/PreloadHover';
+import ProjectFeature from '@/features/project/components/ProjectFeature';
+import KeyAchievements from '@/features/project/components/KeyAchievements';
 import {
   DORAN_CONTRIBUTIONS,
   DORAN_INTRO,
   DORAN_PERFORMANCE,
   DORAN_TROUBLESHOOTING,
-} from '@/components/project/doran-doran/data';
-import PreloadHover from '@/components/common/PreloadHover';
-import ProjectFeature from '@/features/project/components/ProjectFeature';
-import KeyAchievements from '@/features/project/components/KeyAchievements';
+} from '@/features/project/contents/doran-doran/data';
 
 const PRELOAD_IMAGES = [
   '/doran-doran/doran1.png',

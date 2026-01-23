@@ -3,8 +3,8 @@ import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
-import CokoTroubleshooting from '@/components/project/coko/coko-troubleshooting.mdx';
-import CokoPerformance from '@/components/project/coko/coko-performance.mdx';
+import CokoTroubleshooting from '@/features/project/contents/coko/coko-troubleshooting.mdx';
+import CokoPerformance from '@/features/project/contents/coko/coko-performance.mdx';
 import {
   COKO_CONTRIBUTIONS,
   COKO_INTRO,

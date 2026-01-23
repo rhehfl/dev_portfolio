@@ -187,7 +187,7 @@ function ContentWrapper({ children }: { children: React.ReactNode }) {
   return <CardContent className="space-y-6">{children}</CardContent>;
 }
 
-export const CaseStudy = Object.assign(CaseStudyRoot, {
+const CaseStudy = Object.assign(CaseStudyRoot, {
   Header,
   Body: ContentWrapper, // CardContent 역할
   Section,
@@ -198,3 +198,5 @@ export const CaseStudy = Object.assign(CaseStudyRoot, {
   Code,
   Markdown,
 });
+
+export default CaseStudy;

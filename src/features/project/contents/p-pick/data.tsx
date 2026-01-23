@@ -1,4 +1,4 @@
-import { CaseStudy } from '@/features/project/components/CaseStudy';
+import CaseStudy from '@/features/project/components/CaseStudy';
 import { Smartphone, Map } from 'lucide-react';
 export const PPICK_INTRO = {
   overview: `P-Pick은 "계획 없는 여행도 완벽할 수 있다"는 모토로 시작된 MBTI 'P' 유형을 위한 여행 가이드 서비스입니다.

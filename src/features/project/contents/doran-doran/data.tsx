@@ -1,4 +1,4 @@
-import { CaseStudy } from '@/features/project/components/CaseStudy';
+import CaseStudy from '@/features/project/components/CaseStudy';
 import { Cpu, Server, Lock } from 'lucide-react';
 
 export const DORAN_TROUBLESHOOTING = [

@@ -1,14 +1,14 @@
 import PreloadHover from '@/components/common/PreloadHover';
-import { CaseStudy } from '@/features/project/components/CaseStudy';
+import CaseStudy from '@/features/project/components/CaseStudy';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 import {
-  PERFORMANCE,
-  PPICK_CONTRIBUTIONS,
   PPICK_INTRO,
-} from '@/components/project/p-pick/data';
+  PPICK_CONTRIBUTIONS,
+  PERFORMANCE,
+} from '@/features/project/contents/p-pick/data';
 
 const PRELOAD_IMAGES = [
   '/p-pick/ppick1.png',

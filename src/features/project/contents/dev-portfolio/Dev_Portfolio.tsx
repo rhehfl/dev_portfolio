@@ -1,19 +1,12 @@
-import PreloadHover from '@/components/common/PreloadHover';
-import { CaseStudy } from '@/features/project/components/CaseStudy';
-import KeyAchievements from '@/features/project/components/KeyAchievements';
-import ProjectFeature from '@/features/project/components/ProjectFeature';
-import {
-  PORTFOLIO_INTRO,
-  PORTFOLIO_PERFORMANCE,
-  PORTFOLIO_TROUBLESHOOTING,
-} from '@/components/project/dev-portfolio/data'; // 위에서 작성한 data 파일 import
+import CaseStudy from '@/features/project/components/CaseStudy';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
+import {
+  PORTFOLIO_PERFORMANCE,
+  PORTFOLIO_TROUBLESHOOTING,
+} from '@/features/project/contents/dev-portfolio/data';
 
-const PRELOAD_IMAGES = [
-  '/dev-portfolio/preview.png',
-  // 추가 스크린샷이 있다면 여기에 경로 추가
-];
+const PRELOAD_IMAGES = ['/dev-portfolio/preview.png'];
 
 export default function DevPortfolio() {
   return (
