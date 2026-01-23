@@ -4,8 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { ArrowRight, CheckCircle2, TrendingUp, Wrench } from 'lucide-react';
-import ZoomableImage from '@/components/common/ZoomableImage';
-
+import Image from 'next/image';
 interface HeaderProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
@@ -51,7 +50,7 @@ const Section = ({
   );
 };
 
-interface FigureProps extends React.ComponentProps<typeof ZoomableImage> {
+interface FigureProps extends React.ComponentProps<typeof Image> {
   caption?: string;
 }
 
@@ -66,7 +65,7 @@ const Figure = ({
 }: FigureProps) => (
   <figure className="flex flex-col overflow-hidden my-2 ">
     <div className="flex py-4 px-2">
-      <ZoomableImage
+      <Image
         src={src}
         alt={alt || 'reference image'}
         width={width}

@@ -40,18 +40,18 @@ import CaseStudy from '@/features/project/components/CaseStudy';
 
     <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
       복잡한 복구 로직 대신, 브라우저의 `beforeunload` 이벤트를 활용해 실수를 방지하는 것이 MVP 단계에서 가장 효율적인 해결책이라 판단했습니다.
+      <CaseStudy.Code>
+      {`useEffect(() => {
+          if (!enabled) return;
 
-      ```typescript
-      useEffect(() => {
-        if (!enabled) return;
+          window.addEventListener("beforeunload", handleBeforeUnload);
 
-        window.addEventListener("beforeunload", handleBeforeUnload);
+          return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+          };
+        }, [enabled, handleBeforeUnload]);`}
+      </CaseStudy.Code>
 
-        return () => {
-          window.removeEventListener("beforeunload", handleBeforeUnload);
-        };
-      }, [enabled, handleBeforeUnload]);
-      ```
       <span className="text-sm text-gray-500">훅 내부의 일부 코드</span>
     </CaseStudy.Section>
 
@@ -84,8 +84,8 @@ import CaseStudy from '@/features/project/components/CaseStudy';
       1. 제네릭 `P`를 통해 원본 컴포넌트의 `props` 타입을 보존 후 HOC가 제공해주는 데이터를 `InjectedProps`로 분리
       2. 고차 컴포넌트가 반환할 컴포넌트의 props 타입을 `as P`를 통해 타입 단언하여 TS가 부모 컴포넌트에게 `quizzes` Props를 요구하지 않도록 처리
 
-      ```typescript
-      // 제네릭 P를 통해 원본 컴포넌트의 Props를 보존
+      <CaseStudy.Code>
+     {` // 제네릭 P를 통해 원본 컴포넌트의 Props를 보존
       const withQuizzes = <P extends object>(
         // 래핑 대상: 기존 Props(P) + 주입받을 Props(quizzes) 필요
         WrappedComponent: FC<P & InjectedProps>
@@ -103,8 +103,8 @@ import CaseStudy from '@/features/project/components/CaseStudy';
           );
         };
         return ComponentWithQuizzes;
-      };
-      ```
+      };`}
+      </CaseStudy.Code>
     </CaseStudy.Section>
 
     <CaseStudy.Result isHighlighted>

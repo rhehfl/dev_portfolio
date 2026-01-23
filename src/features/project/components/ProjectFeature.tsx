@@ -2,7 +2,7 @@ import {
   CASE_STUDY_THUMB_HEIGHT,
   CASE_STUDY_THUMB_WIDTH,
 } from '@/components/common/PreloadHover';
-import ZoomableImage from '@/components/common/ZoomableImage';
+import Image from 'next/image';
 import {
   Accordion,
   AccordionContent,
@@ -69,7 +69,7 @@ export default function ProjectFeature({
                       className="w-full h-full object-cover "
                     />
                   ) : (
-                    <ZoomableImage
+                    <Image
                       src={feature.mediaSrc}
                       alt={feature.title}
                       width={CASE_STUDY_THUMB_WIDTH}

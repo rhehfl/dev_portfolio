@@ -4,15 +4,13 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
-import { useScrollLock } from '@modern-kit/react';
+import { createPortal } from 'react-dom';
 
 export default function ImageViewer() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const zoomImage = searchParams.get('zoom');
-
-  useScrollLock({ autoLock: !!zoomImage });
 
   const handleClose = () => {
     router.back();
@@ -28,7 +26,7 @@ export default function ImageViewer() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [zoomImage]);
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {zoomImage && (
         <motion.div
@@ -36,14 +34,11 @@ export default function ImageViewer() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/45 backdrop-blur-sm"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/45 backdrop-blur-sm"
           onClick={handleClose}
         >
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClose();
-            }}
+            onClick={handleClose}
             className="absolute top-4 right-4 p-3 text-white/70 hover:text-white bg-black/20 rounded-full z-50 transition-colors"
           >
             <X size={32} />
@@ -74,6 +69,7 @@ export default function ImageViewer() {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
