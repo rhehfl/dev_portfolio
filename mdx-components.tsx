@@ -1,0 +1,8 @@
+// src/mdx-components.tsx (또는 mdx-components.tsx)
+import type { MDXComponents } from 'mdx/types';
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    ...components,
+  };
+}

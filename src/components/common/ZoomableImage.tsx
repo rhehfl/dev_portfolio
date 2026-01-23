@@ -31,7 +31,7 @@ export default function ZoomableImage({ ...props }: ImageOptions) {
       scroll={false}
     >
       <MotionImage
-        className="hover:scale-105 transition-transform duration-200 border-2 border-gray-200 rounded-md cursor-pointer"
+        className="rounded-md cursor-pointer"
         variants={containerVariants}
         initial="offscreen"
         animate="onscreen"

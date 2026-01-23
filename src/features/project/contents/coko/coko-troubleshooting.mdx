@@ -1,0 +1,115 @@
+import { CaseStudy } from '@/components/project/card/CaseStudy';
+
+<CaseStudy>
+  <CaseStudy.Header>ref 콜백 함수 전달로 인한 무한 리렌더링 이슈 해결</CaseStudy.Header>
+  <CaseStudy.Body>
+    <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
+      <CaseStudy.Figure 
+        src="/coko/t1.png" 
+        caption="팝업 컴포넌트 마운트 시 무한 리렌더링 발생" 
+      />
+      `DOM rect` 정보를 전역 상태로 저장하기 위해 콜백 ref로 DOM 노드에 접근해야 했습니다. 
+      하지만 특정 팝업 컴포넌트가 마운트되면 **무한 리렌더링이 발생하여 브라우저가 프리징**되는 현상이 있었습니다.
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="원인 파악" dotColor="bg-orange-400">
+      React의 `ref` 콜백은 렌더링마다 새로운 함수 참조가 전달되면 다시 실행됩니다.
+      **ref 실행 → 상태 변경 → 리렌더링 → ref 재실행**의 무한 루프가 원인이었습니다.
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
+      <CaseStudy.Figure
+        src="/coko/t2.png"
+        caption="ref 콜백을 useCallback으로 감싸 참조를 고정"
+      />
+    </CaseStudy.Section>
+
+    <CaseStudy.Result isHighlighted>
+      useCallback을 활용한 ref 참조 안정화 및 렌더링 최적화
+    </CaseStudy.Result>
+
+  </CaseStudy.Body>
+</CaseStudy>
+<CaseStudy>
+  <CaseStudy.Header>퀴즈 데이터 유실 방지</CaseStudy.Header>
+  <CaseStudy.Body>
+    <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
+      퀴즈 풀이 도중 실수로 **새로고침**이나 **뒤로가기**를 눌렀을 때, 
+      전역 상태가 초기화되어 진행 상황이 모두 날아가는 문제가 있었습니다.
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
+      복잡한 복구 로직 대신, 브라우저의 `beforeunload` 이벤트를 활용해 실수를 방지하는 것이 MVP 단계에서 가장 효율적인 해결책이라 판단했습니다.
+
+      ```typescript
+      useEffect(() => {
+        if (!enabled) return;
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+          window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+      }, [enabled, handleBeforeUnload]);
+      ```
+      <span className="text-sm text-gray-500">훅 내부의 일부 코드</span>
+    </CaseStudy.Section>
+
+    <CaseStudy.Result isHighlighted>
+      실수로 인한 퀴즈 데이터 유실 방지 및 사용자 경험 향상
+    </CaseStudy.Result>
+
+  </CaseStudy.Body>
+</CaseStudy>
+
+<CaseStudy>
+  <CaseStudy.Header>HOC 패턴과 제네릭을 활용한 복잡한 데이터 로직 추상화</CaseStudy.Header>
+  <CaseStudy.Body>
+    <CaseStudy.Section title="도입 이유" dotColor="bg-red-400">
+      퀴즈 컴포넌트가 **실전 모드, 튜토리얼 모드, 잠김 상태** 등 다양한 상황에서 재사용되어야 했습니다.
+      하지만 각 모드마다 데이터를 가져오는 로직이 달라, 컴포넌트 내부에 **비즈니스 로직이 강하게 결합**되고 코드 중복이 발생했습니다.
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="문제 발생" dotColor="bg-orange-400">
+      로직 분리를 위해 **HOC**를 도입했으나, TypeScript 환경에서 **Props 타입 추론**이 깨지는 문제가 발생했습니다.
+
+      * 래핑된 컴포넌트는 `quizzes` 데이터가 필요함
+      * 하지만 HOC를 사용하는 부모 입장에서는 `quizzes`를 전달할 필요가 없어야 함
+      * 단순 래핑 시 TS는 여전히 부모에게 `quizzes` Props를 요구함
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
+      **제네릭**과 **교차 타입**을 활용해 타입 안전성을 확보했습니다.
+
+      1. 제네릭 `P`를 통해 원본 컴포넌트의 `props` 타입을 보존 후 HOC가 제공해주는 데이터를 `InjectedProps`로 분리
+      2. 고차 컴포넌트가 반환할 컴포넌트의 props 타입을 `as P`를 통해 타입 단언하여 TS가 부모 컴포넌트에게 `quizzes` Props를 요구하지 않도록 처리
+
+      ```typescript
+      // 제네릭 P를 통해 원본 컴포넌트의 Props를 보존
+      const withQuizzes = <P extends object>(
+        // 래핑 대상: 기존 Props(P) + 주입받을 Props(quizzes) 필요
+        WrappedComponent: FC<P & InjectedProps>
+      ) => {
+        // 반환 컴포넌트: quizzes는 내부 주입되므로 외부에서는 P와 설정값만 받음
+        const ComponentWithQuizzes: FC<P & WithQuizzesProps> = ({
+          partId, partStatus, ...props
+        }) => {
+          // ... 데이터 페칭 및 분기 로직 ...
+          return (
+            <WrappedComponent
+              {...(props as P)} // 제네릭 타입 단언
+              quizzes={quizzes} // 데이터 주입(Injection)
+            />
+          );
+        };
+        return ComponentWithQuizzes;
+      };
+      ```
+    </CaseStudy.Section>
+
+    <CaseStudy.Result isHighlighted>
+      복잡한 분기 로직을 분리 및 추상화하고 타입 안전성을 유지하며 컴포넌트 재사용성 극대화
+    </CaseStudy.Result>
+
+  </CaseStudy.Body>
+</CaseStudy>

@@ -1,0 +1,66 @@
+'use client';
+
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { GraduationCap, Trophy } from 'lucide-react';
+import type { AwardEducationItem } from '@/features/awardEducation/types/awardEducationItem';
+
+interface AwardEducationItemProps extends AwardEducationItem {
+  index: number;
+}
+
+export default function AwardEducationItem({
+  id,
+  type,
+  date,
+  title,
+  subtitle,
+  index,
+}: AwardEducationItemProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-30px' });
+
+  const Icon = type === 'education' ? GraduationCap : Trophy;
+  const isAward = type === 'award';
+
+  return (
+    <motion.div
+      ref={ref}
+      id="education"
+      className="flex flex-col md:flex-row gap-4 md:gap-8 relative group pb-8 last:pb-0"
+      initial={{ opacity: 0, y: 10 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+    >
+      <div className="flex-none md:basis-1/4 md:shrink-0 flex items-center md:items-start md:justify-end">
+        <span className="text-sm font-semibold text-muted-foreground font-mono">
+          {date}
+        </span>
+      </div>
+
+      <div className="flex-1 relative pl-6 md:pl-8">
+        <div
+          className={`absolute left-[-4px] md:left-[-8px] top-1.5 md:top-1 w-[8px] h-[8px] md:w-[16px] md:h-[16px] rounded-full z-10 border-2 md:border-4 ring-4 ring-background ${
+            isAward
+              ? 'bg-yellow-400 border-yellow-400'
+              : 'bg-background border-primary'
+          }`}
+        />
+        <div className="-mt-1">
+          <div className="flex items-center gap-2 mb-1">
+            <Icon
+              className={`w-4 h-4 ${
+                isAward ? 'text-yellow-500' : 'text-primary'
+              }`}
+            />
+            <h3 className="text-lg md:text-xl font-bold">{title}</h3>
+          </div>
+
+          <p className="text-sm md:text-base text-muted-foreground pl-6 md:pl-0">
+            {subtitle}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}

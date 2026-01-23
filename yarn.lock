@@ -875,7 +875,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/mdx@npm:^3.0.1":
+"@mdx-js/loader@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@mdx-js/loader@npm:3.1.1"
+  dependencies:
+    "@mdx-js/mdx": "npm:^3.0.0"
+    source-map: "npm:^0.7.0"
+  peerDependencies:
+    webpack: ">=5"
+  peerDependenciesMeta:
+    webpack:
+      optional: true
+  checksum: 10c0/b277b0be53646e2cb047c5ee013631d6624c7924416c0ced203000eaf82401211c453250b716aca229401b34cb7a314b0f5c8b277a3230fbda4ddb568989e41e
+  languageName: node
+  linkType: hard
+
+"@mdx-js/mdx@npm:^3.0.0, @mdx-js/mdx@npm:^3.0.1":
   version: 3.1.1
   resolution: "@mdx-js/mdx@npm:3.1.1"
   dependencies:
@@ -908,7 +923,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^3.0.1":
+"@mdx-js/react@npm:^3.0.1, @mdx-js/react@npm:^3.1.1":
   version: 3.1.1
   resolution: "@mdx-js/react@npm:3.1.1"
   dependencies:
@@ -975,6 +990,23 @@ __metadata:
   dependencies:
     fast-glob: "npm:3.3.1"
   checksum: 10c0/fc9836536deacb095c442c67c22d963871c24e47d07721c2d08511cc8fa422b5aa19bf84dbd0d90b1b37783727e710d2cb6e16e0fd0d1ad4eee35f34cdf78785
+  languageName: node
+  linkType: hard
+
+"@next/mdx@npm:^16.1.4":
+  version: 16.1.4
+  resolution: "@next/mdx@npm:16.1.4"
+  dependencies:
+    source-map: "npm:^0.7.0"
+  peerDependencies:
+    "@mdx-js/loader": ">=0.15.0"
+    "@mdx-js/react": ">=0.15.0"
+  peerDependenciesMeta:
+    "@mdx-js/loader":
+      optional: true
+    "@mdx-js/react":
+      optional: true
+  checksum: 10c0/50fa39b820f2b638a604e493d0452d7c06a8f4f1fc3279c9ad6e02f12f9dc5d214b98f9c05d66e887c6db5aca3f04ec7642647271ee45dd2ccdc40eed537ea4b
   languageName: node
   linkType: hard
 
@@ -2180,7 +2212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mdx@npm:^2.0.0":
+"@types/mdx@npm:^2.0.0, @types/mdx@npm:^2.0.13":
   version: 2.0.13
   resolution: "@types/mdx@npm:2.0.13"
   checksum: 10c0/5edf1099505ac568da55f9ae8a93e7e314e8cbc13d3445d0be61b75941226b005e1390d9b95caecf5dcb00c9d1bab2f1f60f6ff9876dc091a48b547495007720
@@ -6195,7 +6227,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "my-portfolio@workspace:."
   dependencies:
+    "@mdx-js/loader": "npm:^3.1.1"
+    "@mdx-js/react": "npm:^3.1.1"
     "@modern-kit/react": "npm:^2.8.0"
+    "@next/mdx": "npm:^16.1.4"
     "@radix-ui/react-accordion": "npm:^1.2.12"
     "@radix-ui/react-select": "npm:^2.2.6"
     "@radix-ui/react-separator": "npm:^1.1.8"
@@ -6204,6 +6239,7 @@ __metadata:
     "@supabase/supabase-js": "npm:^2.91.0"
     "@tailwindcss/postcss": "npm:^4"
     "@tailwindcss/typography": "npm:^0.5.19"
+    "@types/mdx": "npm:^2.0.13"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"

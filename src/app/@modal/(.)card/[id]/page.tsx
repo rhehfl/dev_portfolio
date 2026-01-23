@@ -1,53 +1,37 @@
 'use client';
 
-import DetailOverlay from '@/components/common/view/DetailOverlay';
 import { ViewMode } from '@/components/common/view/type';
-import Coko from '@/components/project/coko/Coko';
-import DevPortfolio from '@/components/project/dev-portfolio/Dev_Portfolio';
-import DoranDoran from '@/components/project/doran-doran/Doran-Doran';
-import PPick from '@/components/project/p-pick/P-Pick';
 import { useScrollLock, useSessionStorage } from '@modern-kit/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
-
-const cardDetailMap = {
-  coko: <Coko />,
-  'p-pick': <PPick />,
-  'doran-doran': <DoranDoran />,
-  'dev-portfolio': <DevPortfolio />,
-} as const;
+import ProjectRenderer from '@/features/project/components/ProjectRenderer';
+import OverlayContainer from '@/components/overlays/OverlayContainer';
 
 export default function CardDetailPage() {
   const { state, setState } = useSessionStorage<ViewMode>({
     key: 'overlay-view-mode',
     initialValue: 'drawer',
   });
-  const [mode, setMode] = useState<ViewMode>(state);
 
   const params = useParams();
-  const id = params.id as keyof typeof cardDetailMap;
+  const id = params.id as string;
   const router = useRouter();
-  const content = cardDetailMap[id];
 
   const handleSetMode = (newMode: ViewMode) => {
-    setMode(newMode);
+    setState(newMode);
     if (newMode !== 'hidden') {
       setState(newMode);
     }
   };
-
   useScrollLock();
-  if (!content) {
-    return null;
-  }
 
   return (
-    <DetailOverlay
-      mode={mode}
+    <OverlayContainer
+      mode={state}
       onChangeMode={handleSetMode}
       onExitComplete={() => router.back()}
     >
-      {content}
-    </DetailOverlay>
+      <ProjectRenderer id={id} />
+    </OverlayContainer>
   );
 }
