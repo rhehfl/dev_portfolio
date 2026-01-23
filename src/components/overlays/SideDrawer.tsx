@@ -3,8 +3,8 @@
 import { useState } from 'react'; // useState 추가
 import { motion, Variants } from 'framer-motion';
 import { Maximize2, X } from 'lucide-react';
-import { CommonViewProps, ViewMode } from '@/components/common/view/type';
-import { ViewModeSelect } from '@/components/common/view/ViewmodeSelect';
+import { CommonViewProps, ViewMode } from '@/components/overlays/type';
+import { ViewModeSelect } from '@/components/overlays/ViewmodeSelect';
 import { useIntroStore } from '@/store/useIntroStore';
 
 export default function SideDrawer({

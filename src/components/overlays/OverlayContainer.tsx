@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import Modal from '@/components/overlays/Modal';
 import SideDrawer from '@/components/overlays/SideDrawer';
 import { usePrevious } from '@modern-kit/react';
-import { ViewMode } from '@/components/common/view/type';
+import { ViewMode } from '@/components/overlays/type';
 import FullScreen from '@/components/overlays/FullScreen';
 import { useEffect } from 'react';
 import { useIntroStore } from '@/store/useIntroStore';

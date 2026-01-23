@@ -1,6 +1,6 @@
 'use client';
 
-import { ViewMode } from '@/components/common/view/type';
+import { ViewMode } from '@/components/overlays/type';
 import {
   Select,
   SelectContent,

@@ -1,5 +1,5 @@
-import { ViewMode } from '@/components/common/view/type';
-import { ViewModeSelect } from '@/components/common/view/ViewmodeSelect';
+import { ViewMode } from '@/components/overlays/type';
+import { ViewModeSelect } from '@/components/overlays/ViewmodeSelect';
 import { useIntroStore } from '@/store/useIntroStore';
 import { motion, Variants } from 'framer-motion';
 import { ArrowRight, X } from 'lucide-react';

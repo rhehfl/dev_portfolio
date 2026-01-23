@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { X } from 'lucide-react';
-import { CommonViewProps, ViewMode } from '@/components/common/view/type';
-import { ViewModeSelect } from '@/components/common/view/ViewmodeSelect';
+import { CommonViewProps, ViewMode } from '@/components/overlays/type';
+import { ViewModeSelect } from '@/components/overlays/ViewmodeSelect';
 import { useIntroStore } from '@/store/useIntroStore';
 
 export default function Modal({

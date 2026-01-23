@@ -1,6 +1,6 @@
 'use client';
 
-import { ViewMode } from '@/components/common/view/type';
+import { ViewMode } from '@/components/overlays/type';
 import { useScrollLock, useSessionStorage } from '@modern-kit/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
