@@ -37,11 +37,11 @@ export default function ImageViewer() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/45 backdrop-blur-sm"
-          onClick={handleClose} // 배경 클릭 시 닫기
+          onClick={handleClose}
         >
           <button
             onClick={(e) => {
-              e.stopPropagation(); // 🔥 [해결] 이벤트가 배경으로 전파되는 것을 막음!
+              e.stopPropagation();
               handleClose();
             }}
             className="absolute top-4 right-4 p-3 text-white/70 hover:text-white bg-black/20 rounded-full z-50 transition-colors"
