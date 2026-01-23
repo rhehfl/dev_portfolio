@@ -1,15 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { Post } from '@/types/Blog';
 
 interface BlogCardProps {
-  post: {
-    id: string;
-    title: string;
-    created_at: string;
-    tags: string[] | null;
-    thumbnail: string | null;
-    view_count: number;
-  };
+  post: Post;
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
@@ -20,10 +16,9 @@ export default function BlogCard({ post }: BlogCardProps) {
     >
       {post.thumbnail && (
         <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
-          <Image
+          <img
             src={post.thumbnail}
             alt={post.title}
-            fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>

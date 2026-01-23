@@ -4,4 +4,6 @@ export interface Post {
   content: string;
   tags: string[];
   created_at: string;
+  thumbnail: string | null;
+  view_count: number;
 }

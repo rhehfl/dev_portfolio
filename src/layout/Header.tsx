@@ -14,10 +14,11 @@ import { Separator } from '@/components/ui/separator';
 import { useState } from 'react';
 
 const navItems = [
-  { name: 'Intro', href: '#intro' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Education', href: '#education' },
+  { name: 'Intro', href: '/#intro' },
+  { name: 'Projects', href: '/#projects' },
+  { name: 'Experience', href: '/#experience' },
+  { name: 'Education', href: '/#education' },
+  { name: 'blog', href: '/blog' },
 ];
 
 export default function Header() {
@@ -31,27 +32,6 @@ export default function Header() {
       setIsScrolled(isOverThreshold);
     }
   });
-
-  const handleScrollTo = (e: React.MouseEvent, href: string) => {
-    e.preventDefault();
-    setIsMenuOpen(false);
-
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    } else if (href === '#intro') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
 
   return (
     <>
@@ -83,12 +63,7 @@ export default function Header() {
                 asChild
                 className="text-muted-foreground hover:text-primary font-medium transition-colors"
               >
-                <Link
-                  href={item.href}
-                  onClick={(e) => handleScrollTo(e, item.href)}
-                >
-                  {item.name}
-                </Link>
+                <Link href={item.href}>{item.name}</Link>
               </Button>
             ))}
           </nav>
@@ -128,7 +103,7 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    onClick={(e) => handleScrollTo(e, item.href)}
+                    onClick={() => setIsMenuOpen(false)}
                     className="block text-2xl font-semibold text-gray-800 py-3 hover:text-blue-600 transition-colors"
                   >
                     {item.name}
