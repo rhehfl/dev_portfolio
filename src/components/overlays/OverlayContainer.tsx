@@ -6,7 +6,6 @@ import SideDrawer from '@/components/overlays/SideDrawer';
 import { usePrevious } from '@modern-kit/react';
 import { ViewMode } from '@/components/overlays/type';
 import FullScreen from '@/components/overlays/FullScreen';
-import { useEffect } from 'react';
 import { useIntroStore } from '@/store/useIntroStore';
 
 interface OverlayContainerProps {
@@ -25,19 +24,20 @@ export default function OverlayContainer({
 }: OverlayContainerProps) {
   const prevMode = usePrevious(mode);
   const isViewTransition = prevMode !== 'hidden' && prevMode !== mode;
-  const { setHasPlayed } = useIntroStore();
   const onClose = () => {
     onChangeMode('hidden');
-    setHasPlayed(false);
   };
 
-  useEffect(() => {
-    setHasPlayed(true);
-  }, []);
+  const commonProps = {
+    layoutId: LAYOUT_ID,
+    isViewTransition,
+    onChangeMode,
+    onClose,
+  };
 
   return (
     <AnimatePresence
-      mode="popLayout"
+      mode="sync"
       onExitComplete={() => {
         if (mode === 'hidden') {
           onExitComplete?.();
@@ -45,34 +45,11 @@ export default function OverlayContainer({
       }}
     >
       {mode === 'drawer' && (
-        <SideDrawer
-          layoutId={LAYOUT_ID}
-          isViewTransition={isViewTransition}
-          onChangeMode={onChangeMode}
-          onClose={onClose}
-        >
-          {children}
-        </SideDrawer>
+        <SideDrawer {...commonProps}>{children}</SideDrawer>
       )}
-      {mode === 'modal' && (
-        <Modal
-          layoutId={LAYOUT_ID}
-          isViewTransition={isViewTransition}
-          onChangeMode={onChangeMode}
-          onClose={onClose}
-        >
-          {children}
-        </Modal>
-      )}
+      {mode === 'modal' && <Modal {...commonProps}>{children}</Modal>}
       {mode === 'fullscreen' && (
-        <FullScreen
-          layoutId={LAYOUT_ID}
-          isViewTransition={isViewTransition}
-          onChangeMode={onChangeMode}
-          onClose={onClose}
-        >
-          {children}
-        </FullScreen>
+        <FullScreen {...commonProps}>{children}</FullScreen>
       )}
     </AnimatePresence>
   );

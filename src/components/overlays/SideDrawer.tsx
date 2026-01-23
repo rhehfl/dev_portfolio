@@ -2,7 +2,7 @@
 
 import { motion, Variants } from 'framer-motion';
 import { X } from 'lucide-react';
-import { CommonViewProps, ViewMode } from '@/components/overlays/type';
+import { CommonViewProps } from '@/components/overlays/type';
 import { ViewModeSelect } from '@/components/overlays/ViewmodeSelect';
 
 const sideDrawerVariants: Variants = {
@@ -39,10 +39,6 @@ export default function SideDrawer({
   onChangeMode,
   isViewTransition,
 }: CommonViewProps) {
-  const handleToggle = (targetMode: ViewMode) => {
-    onChangeMode(targetMode);
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex justify-end items-center pointer-events-none">
       <div
@@ -68,12 +64,7 @@ export default function SideDrawer({
             "
       >
         <div className="flex items-center justify-between p-4 border-b">
-          <ViewModeSelect
-            value="drawer"
-            onChange={(viewMode) => {
-              handleToggle(viewMode);
-            }}
-          />
+          <ViewModeSelect value="drawer" onChange={onChangeMode} />
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"

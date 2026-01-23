@@ -20,10 +20,6 @@ export default function Modal({
   layoutId,
   isViewTransition,
 }: CommonViewProps) {
-  const handleToggle = (targetMode: ViewMode) => {
-    onChangeMode(targetMode);
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center pointer-events-none">
       <div
@@ -51,12 +47,7 @@ export default function Modal({
             "
       >
         <div className="flex items-center justify-between p-4 border-b">
-          <ViewModeSelect
-            value="modal"
-            onChange={(viewMode) => {
-              handleToggle(viewMode);
-            }}
-          />
+          <ViewModeSelect value="modal" onChange={onChangeMode} />
 
           <button
             onClick={onClose}
