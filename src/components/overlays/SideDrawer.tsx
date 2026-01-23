@@ -1,80 +1,89 @@
 'use client';
 
-import { useState } from 'react'; // useState 추가
 import { motion, Variants } from 'framer-motion';
-import { Maximize2, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { CommonViewProps, ViewMode } from '@/components/overlays/type';
 import { ViewModeSelect } from '@/components/overlays/ViewmodeSelect';
-import { useIntroStore } from '@/store/useIntroStore';
+
+const sideDrawerVariants: Variants = {
+  initial: (isSwitching: boolean) =>
+    isSwitching
+      ? { opacity: 1 }
+      : { x: '70%', opacity: 1, duration: 0.5, ease: [0.32, 0.72, 0, 1] },
+
+  animate: (isSwitching: boolean) =>
+    isSwitching
+      ? { opacity: 1 }
+      : {
+          x: '0%',
+          opacity: 1,
+          transition: {
+            type: 'spring',
+            damping: 30,
+            stiffness: 300,
+            mass: 0.8,
+          },
+        },
+
+  exit: {
+    x: '100%',
+    opacity: 1,
+    transition: { duration: 0.5, ease: [0.32, 0.72, 0, 1] },
+  },
+};
 
 export default function SideDrawer({
   children,
   onClose,
   layoutId,
   onChangeMode,
-  isSwitching,
+  isViewTransition,
 }: CommonViewProps) {
-  const [isMorphing, setIsMorphing] = useState(false);
-  const { hasPlayed } = useIntroStore();
   const handleToggle = (targetMode: ViewMode) => {
-    setIsMorphing(true);
     onChangeMode(targetMode);
   };
 
-  const wrapperVariants: Variants = {
-    initial: {
-      x: isSwitching ? '0%' : '100%',
-    },
-    animate: {
-      x: '0%',
-      opacity: 1,
-      transition: { type: 'tween', duration: 0.8 },
-    },
-    exit: {
-      x: '100%',
-      transition: { duration: isMorphing ? 0 : 0.5 },
-    },
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex justify-end pointer-events-none">
-      <div className="absolute inset-0 pointer-events-auto" onClick={onClose} />
-
-      <motion.div
-        variants={wrapperVariants}
-        initial={hasPlayed ? false : 'initial'}
+    <div className="fixed inset-0 z-50 flex justify-end items-center pointer-events-none">
+      <div
+        className="absolute inset-0 bg-black/20 pointer-events-auto backdrop-blur-sm"
+        onClick={onClose}
+      />
+      <motion.aside
+        layoutId={layoutId}
+        custom={isViewTransition}
+        variants={sideDrawerVariants}
+        initial="initial"
         animate="animate"
+        layout
         exit="exit"
-        className="pointer-events-auto h-full w-full flex justify-end"
-      >
-        <motion.aside
-          layoutId={layoutId}
-          className="
+        className="
+                relative h-full bg-white overflow-y-hidden
                 flex flex-col
-                relative h-full bg-white shadow-2xl overflow-y-hidden
-                w-full md:w-lg lg:w-4xl        
-                rounded-none md:rounded-l-2xl    
+                w-full        
+                md:max-w-lg 
+                lg:max-w-4xl        
+                rounded-l-2xl
+                pointer-events-auto    
             "
-        >
-          <div className="flex items-center justify-between p-4 border-b">
-            <ViewModeSelect
-              value="drawer"
-              onChange={(viewMode) => {
-                handleToggle(viewMode);
-              }}
-            />
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-2xl"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-          <div className="overflow-y-scroll h-full scroll-smooth">
-            {children}
-          </div>
-        </motion.aside>
-      </motion.div>
+      >
+        <div className="flex items-center justify-between p-4 border-b">
+          <ViewModeSelect
+            value="drawer"
+            onChange={(viewMode) => {
+              handleToggle(viewMode);
+            }}
+          />
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="overflow-y-scroll h-full">{children}</div>
+      </motion.aside>
     </div>
   );
 }

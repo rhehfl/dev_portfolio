@@ -24,7 +24,7 @@ export default function OverlayContainer({
   onExitComplete,
 }: OverlayContainerProps) {
   const prevMode = usePrevious(mode);
-  const isSwitching = prevMode !== 'hidden' && prevMode !== mode;
+  const isViewTransition = prevMode !== 'hidden' && prevMode !== mode;
   const { setHasPlayed } = useIntroStore();
   const onClose = () => {
     onChangeMode('hidden');
@@ -47,7 +47,7 @@ export default function OverlayContainer({
       {mode === 'drawer' && (
         <SideDrawer
           layoutId={LAYOUT_ID}
-          isSwitching={isSwitching}
+          isViewTransition={isViewTransition}
           onChangeMode={onChangeMode}
           onClose={onClose}
         >
@@ -57,7 +57,7 @@ export default function OverlayContainer({
       {mode === 'modal' && (
         <Modal
           layoutId={LAYOUT_ID}
-          isSwitching={isSwitching}
+          isViewTransition={isViewTransition}
           onChangeMode={onChangeMode}
           onClose={onClose}
         >
@@ -67,7 +67,7 @@ export default function OverlayContainer({
       {mode === 'fullscreen' && (
         <FullScreen
           layoutId={LAYOUT_ID}
-          isSwitching={isSwitching}
+          isViewTransition={isViewTransition}
           onChangeMode={onChangeMode}
           onClose={onClose}
         >

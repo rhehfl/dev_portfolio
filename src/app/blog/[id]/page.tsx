@@ -1,5 +1,5 @@
-import ViewCounter from '@/components/blog/ViewCounter';
 import MarkDownWrapper from '@/components/common/MarkDownWrapper';
+import ViewCounter from '@/features/blog/components/ViewCounter';
 import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -70,7 +70,7 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
   return (
     <article className="max-w-3xl mx-auto py-10 prose lg:prose-xl">
       <ViewCounter id={id} />
-      <h1>{post.title}</h1>
+      <h1 className="leading-loose">{post.title}</h1>
       <div className="text-gray-500 mb-8">
         {new Date(post.created_at).toLocaleDateString()} 작성
       </div>

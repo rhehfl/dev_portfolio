@@ -1,36 +1,27 @@
 'use client';
 
-import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { X } from 'lucide-react';
 import { CommonViewProps, ViewMode } from '@/components/overlays/type';
 import { ViewModeSelect } from '@/components/overlays/ViewmodeSelect';
-import { useIntroStore } from '@/store/useIntroStore';
 
+const modalVariants: Variants = {
+  initial: (isSwitching: boolean) =>
+    isSwitching ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 },
+
+  animate: { opacity: 1, scale: 1 },
+
+  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } },
+};
 export default function Modal({
   children,
   onClose,
   onChangeMode,
   layoutId,
+  isViewTransition,
 }: CommonViewProps) {
-  const [isMorphing, setIsMorphing] = useState(false);
-  const { hasPlayed } = useIntroStore();
-
   const handleToggle = (targetMode: ViewMode) => {
-    setIsMorphing(true);
     onChangeMode(targetMode);
-  };
-
-  const modalVariants: Variants = {
-    initial: { opacity: 0, scale: 0.95 },
-    animate: { opacity: 1, scale: 1 },
-    exit: {
-      opacity: isMorphing ? 1 : 0,
-      scale: isMorphing ? 1 : 0.95,
-      transition: {
-        duration: isMorphing ? 0.8 : 0.2,
-      },
-    },
   };
 
   return (
@@ -39,12 +30,12 @@ export default function Modal({
         className="absolute inset-0 bg-black/20 pointer-events-auto"
         onClick={onClose}
       />
-
       <motion.aside
         layoutId={layoutId}
         layout
+        custom={isViewTransition}
         variants={modalVariants}
-        initial={hasPlayed ? false : 'initial'}
+        initial="initial"
         animate="animate"
         exit="exit"
         className="
@@ -59,7 +50,7 @@ export default function Modal({
                 pointer-events-auto    
             "
       >
-        <motion.div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4 border-b">
           <ViewModeSelect
             value="modal"
             onChange={(viewMode) => {
@@ -73,7 +64,7 @@ export default function Modal({
           >
             <X className="w-6 h-6" />
           </button>
-        </motion.div>
+        </div>
         <div className="overflow-y-scroll h-full">{children}</div>
       </motion.aside>
     </div>

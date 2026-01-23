@@ -12,13 +12,14 @@ export default function CardDetailPage() {
     key: 'overlay-view-mode',
     initialValue: 'drawer',
   });
+  const [mode, setMode] = useState<ViewMode>(state);
 
   const params = useParams();
   const id = params.id as string;
   const router = useRouter();
 
   const handleSetMode = (newMode: ViewMode) => {
-    setState(newMode);
+    setMode(newMode);
     if (newMode !== 'hidden') {
       setState(newMode);
     }
@@ -27,7 +28,7 @@ export default function CardDetailPage() {
 
   return (
     <OverlayContainer
-      mode={state}
+      mode={mode}
       onChangeMode={handleSetMode}
       onExitComplete={() => router.back()}
     >
