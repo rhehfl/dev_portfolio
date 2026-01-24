@@ -1,3 +1,5 @@
+import CaseStudy from '@/features/project/components/CaseStudy';
+
 <CaseStudy>
   <CaseStudy.Header>Gemini 응답 지연 시각화</CaseStudy.Header>
   <CaseStudy.Body>
@@ -23,6 +25,7 @@ emitter.emit('ai-stream', { text: chunk.text });
 }
 }
 emitter.emit('ai-stream-done', { fullText });`}
+
 </CaseStudy.Code>
 </CaseStudy.Section>
 
@@ -62,6 +65,7 @@ socket.data.user = user;
 socket.disconnect(); // 인증 실패 시 즉시 연결 종료
 }
 }`}
+
 </CaseStudy.Code>
 </CaseStudy.Section>
 
@@ -96,6 +100,7 @@ return useSuspenseQuery(...);
 function useSuspenseUser() {
 return useSuspenseQuery(...);
 }`}
+
 </CaseStudy.Code>
 </CaseStudy.Section>
 
