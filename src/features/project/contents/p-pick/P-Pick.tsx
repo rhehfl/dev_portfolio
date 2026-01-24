@@ -7,9 +7,8 @@ import ProjectLinks from '@/features/project/components/ProjectLinks';
 import {
   PPICK_INTRO,
   PPICK_CONTRIBUTIONS,
-  PERFORMANCE,
 } from '@/features/project/contents/p-pick/data';
-
+import PERFORMANCE from '@/features/project/contents/p-pick/performance.mdx';
 const PRELOAD_IMAGES = [
   '/p-pick/ppick1.png',
   '/p-pick/ppick2.png',
@@ -45,12 +44,7 @@ export default function PPick() {
           성능 개선
         </h3>
         <section className="flex flex-col gap-8 ">
-          {PERFORMANCE.map((item, idx) => (
-            <CaseStudy key={idx}>
-              <CaseStudy.Header>{item.title}</CaseStudy.Header>
-              {item.contents}
-            </CaseStudy>
-          ))}
+          <PERFORMANCE />
         </section>
       </div>
     </div>

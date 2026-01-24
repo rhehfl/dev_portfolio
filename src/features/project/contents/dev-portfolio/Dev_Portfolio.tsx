@@ -1,12 +1,8 @@
 import CaseStudy from '@/features/project/components/CaseStudy';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
-import {
-  PORTFOLIO_PERFORMANCE,
-  PORTFOLIO_TROUBLESHOOTING,
-} from '@/features/project/contents/dev-portfolio/data';
-
-const PRELOAD_IMAGES = ['/dev-portfolio/preview.png'];
+import PORTFOLIO_TROUBLESHOOTING from '@/features/project/contents/dev-portfolio/troubleshooting.mdx';
+import PORTFOLIO_PERFORMANCE from '@/features/project/contents/dev-portfolio/performance.mdx';
 
 export default function DevPortfolio() {
   return (
@@ -27,24 +23,14 @@ export default function DevPortfolio() {
           트러블 슈팅
         </h3>
         <section className="flex flex-col gap-8">
-          {PORTFOLIO_TROUBLESHOOTING.map((study, idx) => (
-            <CaseStudy key={idx}>
-              <CaseStudy.Header>{study.title}</CaseStudy.Header>
-              {study.contents}
-            </CaseStudy>
-          ))}
+          <PORTFOLIO_TROUBLESHOOTING />
         </section>
 
         <h3 className="text-2xl my-5 font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
           성능 개선
         </h3>
         <section className="flex flex-col gap-8">
-          {PORTFOLIO_PERFORMANCE.map((study, idx) => (
-            <CaseStudy key={idx}>
-              <CaseStudy.Header>{study.title}</CaseStudy.Header>
-              {study.contents}
-            </CaseStudy>
-          ))}
+          <PORTFOLIO_PERFORMANCE />
         </section>
       </div>
     </div>

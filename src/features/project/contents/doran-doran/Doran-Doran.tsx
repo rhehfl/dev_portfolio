@@ -8,10 +8,9 @@ import KeyAchievements from '@/features/project/components/KeyAchievements';
 import {
   DORAN_CONTRIBUTIONS,
   DORAN_INTRO,
-  DORAN_PERFORMANCE,
-  DORAN_TROUBLESHOOTING,
 } from '@/features/project/contents/doran-doran/data';
-
+import DORAN_TROUBLESHOOTING from '@/features/project/contents/doran-doran/troubleshooting.mdx';
+import DORAN_PERFORMANCE from '@/features/project/contents/doran-doran/performance.mdx';
 const PRELOAD_IMAGES = [
   '/doran-doran/doran1.png',
   '/doran-doran/doran2.png',
@@ -47,24 +46,14 @@ export default function DoranDoran() {
           트러블 슈팅
         </h3>
         <section className="flex flex-col gap-8">
-          {DORAN_TROUBLESHOOTING.map((study, idx) => (
-            <CaseStudy key={idx}>
-              <CaseStudy.Header>{study.title}</CaseStudy.Header>
-              {study.contents}
-            </CaseStudy>
-          ))}
+          <DORAN_TROUBLESHOOTING />
         </section>
 
         <h3 className="text-2xl my-5 font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
           성능 개선 및 아키텍처
         </h3>
         <section className="flex flex-col gap-8">
-          {DORAN_PERFORMANCE.map((study, idx) => (
-            <CaseStudy key={idx}>
-              <CaseStudy.Header>{study.title}</CaseStudy.Header>
-              {study.contents}
-            </CaseStudy>
-          ))}
+          <DORAN_PERFORMANCE />
         </section>
       </div>
     </div>

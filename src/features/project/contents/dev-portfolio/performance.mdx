@@ -1,0 +1,57 @@
+<CaseStudy>
+  <CaseStudy.Header>이미지 프리로딩을 통한 체감 대기시간 감소</CaseStudy.Header>
+  <CaseStudy.Body>
+    <CaseStudy.Section title="도입 배경" dotColor="bg-red-400">
+      특정 아코디언 메뉴를 열었을 때 이미지가 즉시 로드되지 않아 사용자가 빈 이미지를 보게 되는 현상이 있었습니다.
+      이는 상세 화면으로 진입하는 순간에만 이미지를 로드하다 보니 발생하는 문제였습니다.
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="구현 내용" dotColor="bg-blue-400">
+      `PreloadHover` 컴포넌트를 구현하여 **Hover Intent** 감지 시스템을 구축했습니다.
+
+      1. 사용자가 카드 위에 마우스를 특정 시간 이상 올리고 있을 때만 상세 페이지 이미지를 요청합니다.
+      2. Next.js의 `Image`태그를 숨겨서 렌더링하여 최적화된 이미지를 브라우저에 미리 적재합니다.
+      3. Slot 패턴을 사용하여 다양한 카드 컴포넌트에 재사용할 수 있도록 설계했습니다.
+
+      <CaseStudy.Code>
+      {`{shouldLoad && (
+
+  <div className="absolute top-0 left-0 -z-50 w-px h-px overflow-hidden opacity-0 pointer-events-none">
+    {imageSources.map((src, idx) => (
+      <Image
+        key={idx}
+        src={src}
+        alt="preload-hidden"
+        width={CASE_STUDY_THUMB_WIDTH}
+        height={CASE_STUDY_THUMB_HEIGHT}
+        priority={true}
+      />
+    ))}
+  </div>
+)}`}
+      </CaseStudy.Code>
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="성능 측정 (Fast 3G 환경)" dotColor="bg-green-400">
+      <CaseStudy.Metrics>
+        <CaseStudy.MetricItem
+          name="즉시 클릭 시"
+          before="2,100ms"
+          after="1,800ms"
+          rate="15% 단축"
+        />
+        <CaseStudy.MetricItem
+          name="호버 후(1초 이상) 클릭"
+          before="2,100ms"
+          after="28ms"
+          rate="Zero Latency"
+        />
+      </CaseStudy.Metrics>
+    </CaseStudy.Section>
+
+    <CaseStudy.Result isHighlighted>
+      상세 페이지 진입 시 체감 이미지 로딩시간 약 15%이상 감소
+    </CaseStudy.Result>
+
+  </CaseStudy.Body>
+</CaseStudy>
