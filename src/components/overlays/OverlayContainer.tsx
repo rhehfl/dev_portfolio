@@ -6,7 +6,6 @@ import SideDrawer from '@/components/overlays/SideDrawer';
 import { usePrevious } from '@modern-kit/react';
 import { ViewMode } from '@/components/overlays/type';
 import FullScreen from '@/components/overlays/FullScreen';
-import { useIntroStore } from '@/store/useIntroStore';
 
 interface OverlayContainerProps {
   mode: ViewMode;

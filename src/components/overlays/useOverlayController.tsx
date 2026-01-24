@@ -5,7 +5,7 @@ import { useSessionStorage } from '@modern-kit/react';
 import { ViewMode } from '@/components/overlays/type';
 
 const STORAGE_KEY = 'overlay-view-mode';
-const INIT_MODE = 'drawer';
+const INIT_MODE = 'fullscreen';
 
 export const useOverlayController = () => {
   const { state: savedMode, setState: setSavedMode } =
