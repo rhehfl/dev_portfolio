@@ -8,7 +8,7 @@ export type ExperienceType =
   | 'open-source';
 
 export interface ExperienceItem {
-  id: number | string;
+  id: number;
   type: ExperienceType;
   period: string;
   title: string;
@@ -16,5 +16,4 @@ export interface ExperienceItem {
   role: string;
   description: string;
   link?: string;
-  index: number;
 }

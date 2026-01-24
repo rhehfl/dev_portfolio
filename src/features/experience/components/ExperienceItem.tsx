@@ -43,6 +43,9 @@ const getIcon = (type: string) => {
   }
 };
 
+interface ExperienceItemProps extends ExperienceItem {
+  index: number;
+}
 export default function ExperienceItem({
   description,
   period,
@@ -52,7 +55,7 @@ export default function ExperienceItem({
   company,
   link,
   index,
-}: ExperienceItem) {
+}: ExperienceItemProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -110,7 +113,7 @@ export default function ExperienceItem({
                   className="w-fit h-8 px-2 text-muted-foreground hover:text-primary"
                   asChild
                 >
-                  <Link href={link} target="_blank" rel="noopener noreferrer">
+                  <Link href={link} rel="noopener noreferrer">
                     <span className="text-xs mr-1">View Details</span>
                     <ExternalLink className="w-3 h-3" />
                   </Link>

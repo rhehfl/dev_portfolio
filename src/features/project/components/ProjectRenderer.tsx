@@ -5,13 +5,12 @@ import PPick from '@/features/project/contents/p-pick/P-Pick';
 import { notFound } from 'next/navigation';
 import { JSX } from 'react';
 
-export type ProjectId = 'coko' | 'p-pick' | 'doran-doran' | 'dev-portfolio';
-
-const PROJECT_COMPONENTS: Record<ProjectId, JSX.Element> = {
+const PROJECT_COMPONENTS: Record<string, JSX.Element> = {
   coko: <Coko />,
   'p-pick': <PPick />,
   'doran-doran': <DoranDoran />,
   'dev-portfolio': <DevPortfolio />,
+  'modern-kit': <DevPortfolio />,
 };
 
 interface ProjectRendererProps {
@@ -19,7 +18,7 @@ interface ProjectRendererProps {
 }
 
 export default function ProjectRenderer({ id }: ProjectRendererProps) {
-  const isValidProjectId = (key: string): key is ProjectId => {
+  const isValidProjectId = (key: string): key is string => {
     return Object.keys(PROJECT_COMPONENTS).includes(key);
   };
 

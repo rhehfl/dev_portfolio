@@ -1,4 +1,6 @@
-export const EXPERIENCE = [
+import { ExperienceItem } from '@/features/experience/types/experience';
+
+export const EXPERIENCE: ExperienceItem[] = [
   {
     id: 1,
     type: 'open-source',
@@ -14,7 +16,7 @@ export const EXPERIENCE = [
 - useCallbackOnce 훅 구현: 컴포넌트 생명주기 내에서 콜백 함수가 중복 실행되지 않고 최초 1회만 실행됨을 보장하는 훅 개발
 
 - 라이브러리 안정화: 각종 Type Guard 유틸 함수 추가 및 이슈 해결을 통한 기여`,
-    link: 'https://github.com/modern-agile-team/modern-kit',
+    link: '/card/modern-kit',
   },
   {
     id: 2,
@@ -54,4 +56,4 @@ export const EXPERIENCE = [
     description:
       '매주 일요일 정기적으로 모여 각자의 부족한 부분을 보충하고, 코딩 관련 지식을 자유롭게 교류하는 소규모 스터디 활동',
   },
-] as const;
+];
