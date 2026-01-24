@@ -1,8 +1,8 @@
 'use client';
 
-import { CAPABILITIES } from '@/features/hero/components/capabilites';
 import CapabilityCard from '@/features/hero/components/CapabilityCard';
 import ProfileCard from '@/features/hero/components/ProfileCard';
+import { CAPABILITIES } from '@/features/hero/contents/capabilites';
 import { motion } from 'framer-motion';
 
 const containerVars = {

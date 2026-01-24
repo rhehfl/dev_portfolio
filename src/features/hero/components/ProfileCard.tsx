@@ -1,4 +1,4 @@
-import { Github, Home, Mail, School, UserRound } from 'lucide-react';
+import { Github, Mail, UserRound } from 'lucide-react';
 import Image from 'next/image';
 
 export default function ProfileCard() {

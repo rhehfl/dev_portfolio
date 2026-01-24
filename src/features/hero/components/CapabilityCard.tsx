@@ -61,7 +61,7 @@ export default function CapabilityCard({
         <h3 className="text-xl font-bold text-gray-900">{title}</h3>
       </div>
 
-      <p className="text-gray-600 leading-relaxed text-[15px] break-keep">
+      <p className="text-gray-600 leading-relaxed text-[15px] white-space-pre-wrap">
         {description}
       </p>
     </motion.article>
