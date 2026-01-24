@@ -1,12 +1,26 @@
-import { AwardEducationItem } from '@/features/awardEducation/types/awardEducationItem';
+import { CredentialItem } from '@/features/awardEducation/types/CredentialItem';
 
-export const AWARD_EDUCATION_DATA: AwardEducationItem[] = [
+export const CREDENTIAL_ITEM_DATA: CredentialItem[] = [
   {
     id: 1,
     type: 'education',
     date: '2021.03 - 현재',
     title: '인덕대학교',
     subtitle: '컴퓨터소프트웨어학과 재학 (학점 4.37/4.5)',
+  },
+  {
+    id: 6,
+    type: 'certificate',
+    date: '2025.09',
+    title: '정보처리산업기사',
+    subtitle: '한국산업인력공단',
+  },
+  {
+    id: 7,
+    type: 'certificate',
+    date: '2024.12',
+    title: 'AWS Certified Cloud Practitioner',
+    subtitle: 'Amazon Web Services',
   },
   {
     id: 2,
@@ -26,6 +40,15 @@ export const AWARD_EDUCATION_DATA: AwardEducationItem[] = [
   },
   {
     id: 4,
+    type: 'award',
+    date: '2024.12',
+    title: '인덕 도서관상 우수상',
+    subtitle:
+      '교내 도서관을 적극 활용한 학생에게 수여되는 인덕 도서관상을 수상함',
+  },
+  // [참고] id 4번과 내용이 완전히 같습니다. 중복이 아니라면 유지하세요.
+  {
+    id: 5,
     type: 'award',
     date: '2024.12',
     title: '인덕 도서관상 우수상',

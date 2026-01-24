@@ -1,7 +1,7 @@
 'use client';
 
 import ProjectCard from '@/features/project/components/ProjectCard';
-import AwardEducationSection from '@/features/awardEducation/components/AwardEducationSection';
+import CredentialSection from '@/features/awardEducation/components/CredentialsSection';
 import ExperienceSection from '@/features/experience/components/ExperienceSection';
 import HeroSection from '@/features/hero/components/HeroSection';
 import { ProjectCardData } from '@/features/project/contents/common/projectCardData';
@@ -21,7 +21,7 @@ export default function Home() {
         </div>
       </section>
       <ExperienceSection />
-      <AwardEducationSection />
+      <CredentialSection />
     </main>
   );
 }
