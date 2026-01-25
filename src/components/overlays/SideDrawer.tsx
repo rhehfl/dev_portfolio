@@ -51,7 +51,7 @@ export default function SideDrawer({
         variants={sideDrawerVariants}
         initial="initial"
         animate="animate"
-        layout
+        layout="position"
         exit="exit"
         className="
                 relative h-full bg-white overflow-y-hidden

@@ -2,7 +2,7 @@
 
 import { useScrollLock } from '@modern-kit/react';
 import { useParams, useRouter } from 'next/navigation';
-import ProjectRenderer from '@/features/project/components/ProjectRenderer';
+import CardRenderer from '@/components/common/CardRenderer';
 import OverlayContainer from '@/components/overlays/OverlayContainer';
 import { useOverlayController } from '@/components/overlays/useOverlayController';
 
@@ -21,7 +21,7 @@ export default function CardDetailPage() {
       onChangeMode={handleSetMode}
       onExitComplete={() => router.back()}
     >
-      <ProjectRenderer id={id} />
+      <CardRenderer id={id} />
     </OverlayContainer>
   );
 }

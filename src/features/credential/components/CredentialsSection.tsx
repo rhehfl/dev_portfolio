@@ -1,7 +1,7 @@
 'use client';
 
-import CredentialItem from '@/features/awardEducation/components/CredentialItem';
-import { CREDENTIAL_ITEM_DATA } from '@/features/awardEducation/contents/CredentialItemData';
+import CredentialItem from '@/features/credential/components/CredentialItem';
+import { CREDENTIAL_ITEM_DATA } from '@/features/credential/contents/CredentialItemData';
 import { motion } from 'framer-motion';
 
 export default function CredentialsSection() {

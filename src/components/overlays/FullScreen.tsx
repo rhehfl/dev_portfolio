@@ -33,6 +33,7 @@ export default function FullScreen({
         layoutId={layoutId}
         custom={isViewTransition}
         variants={fullScreenVariants}
+        layout="position"
         initial="initial"
         animate="animate"
         exit="exit"

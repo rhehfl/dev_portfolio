@@ -1,4 +1,4 @@
-import { CredentialItem } from '@/features/awardEducation/types/CredentialItem';
+import { CredentialItem } from '@/features/credential/types/CredentialItem';
 
 export const CREDENTIAL_ITEM_DATA: CredentialItem[] = [
   {

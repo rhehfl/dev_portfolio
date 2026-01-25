@@ -3,8 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { GraduationCap, Trophy, BadgeCheck } from 'lucide-react';
-import type { CredentialItem } from '@/features/awardEducation/types/CredentialItem';
-
+import type { CredentialItem } from '@/features/credential/types/CredentialItem';
 interface CredentialItemProps extends CredentialItem {
   index: number;
 }
