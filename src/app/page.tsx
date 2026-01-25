@@ -1,10 +1,10 @@
 'use client';
 
 import ProjectCard from '@/features/project/components/ProjectCard';
-import CredentialSection from '@/features/awardEducation/components/CredentialsSection';
 import ExperienceSection from '@/features/experience/components/ExperienceSection';
 import HeroSection from '@/features/hero/components/HeroSection';
 import { ProjectCardData } from '@/features/project/contents/common/projectCardData';
+import CredentialSection from '@/features/credential/components/CredentialsSection';
 
 export default function Home() {
   return (
