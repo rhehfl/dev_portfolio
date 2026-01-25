@@ -39,15 +39,6 @@ export const CREDENTIAL_ITEM_DATA: CredentialItem[] = [
       '교내 학과에서 주최한 AWS 서비스 활용능력 경진대회에서 최우수상을 수상함',
   },
   {
-    id: 4,
-    type: 'award',
-    date: '2024.12',
-    title: '인덕 도서관상 우수상',
-    subtitle:
-      '교내 도서관을 적극 활용한 학생에게 수여되는 인덕 도서관상을 수상함',
-  },
-  // [참고] id 4번과 내용이 완전히 같습니다. 중복이 아니라면 유지하세요.
-  {
     id: 5,
     type: 'award',
     date: '2024.12',
