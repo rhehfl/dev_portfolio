@@ -28,7 +28,7 @@ export default function Modal({
       />
       <motion.aside
         layoutId={layoutId}
-        layout
+        layout="position"
         custom={isViewTransition}
         variants={modalVariants}
         initial="initial"

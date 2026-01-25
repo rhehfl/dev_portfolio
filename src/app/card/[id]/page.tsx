@@ -1,4 +1,4 @@
-import ProjectRenderer from '@/features/project/components/ProjectRenderer';
+import CardRenderer from '@/components/common/CardRenderer';
 
 interface CardDetailPageProps {
   params: Promise<{ id: string }>;
@@ -7,5 +7,5 @@ interface CardDetailPageProps {
 export default async function CardDetailPage({ params }: CardDetailPageProps) {
   const { id } = await params;
 
-  return <ProjectRenderer id={id} />;
+  return <CardRenderer id={id} />;
 }

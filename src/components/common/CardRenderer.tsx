@@ -1,23 +1,23 @@
+import ModernKit from '@/features/hero/contents/modern-kit/ModernKit';
 import Coko from '@/features/project/contents/coko/Coko';
 import DevPortfolio from '@/features/project/contents/dev-portfolio/Dev_Portfolio';
 import DoranDoran from '@/features/project/contents/doran-doran/Doran-Doran';
 import PPick from '@/features/project/contents/p-pick/P-Pick';
 import { notFound } from 'next/navigation';
-import { JSX } from 'react';
 
-const PROJECT_COMPONENTS: Record<string, JSX.Element> = {
+const PROJECT_COMPONENTS: Record<string, React.ReactElement> = {
   coko: <Coko />,
   'p-pick': <PPick />,
   'doran-doran': <DoranDoran />,
   'dev-portfolio': <DevPortfolio />,
-  'modern-kit': <DevPortfolio />,
+  'modern-kit': <ModernKit />,
 };
 
-interface ProjectRendererProps {
+interface CardRendererProps {
   id: string;
 }
 
-export default function ProjectRenderer({ id }: ProjectRendererProps) {
+export default function CardRenderer({ id }: CardRendererProps) {
   const isValidProjectId = (key: string): key is string => {
     return Object.keys(PROJECT_COMPONENTS).includes(key);
   };

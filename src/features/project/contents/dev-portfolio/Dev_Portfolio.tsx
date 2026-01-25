@@ -11,10 +11,10 @@ export default function DevPortfolio() {
       <div className="lg:p-10">
         <ProjectHeader
           title="Dev Portfolio"
-          description="Next.js 16과 React 19로 구축한 인터랙티브 포트폴리오"
-          techStack={['Next.js', 'TypeScript', 'Framer Motion', 'Zustand']}
+          description="Next js 기반 포트폴리오"
+          techStack={['Next.js', 'TypeScript', 'Framer Motion']}
           period="2025.01 - 2025.02 (진행 중)"
-          role="프론트엔드 개발 및 UI/UX 디자인"
+          role="프론트엔드 개발"
           teamSize="1명 (개인 프로젝트)"
         />
         <ProjectLinks github="https://github.com/rhehfl/dev_portfolio" />
