@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
+
 code:not(pre code) {
   color: rgb(238, 29, 29);
   background-color: oklch(90.365% 0.0001 271.152);

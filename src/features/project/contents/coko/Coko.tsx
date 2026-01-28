@@ -1,3 +1,5 @@
+'use client';
+
 import PreloadHover from '@/components/common/PreloadHover';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
@@ -9,6 +11,7 @@ import {
   COKO_CONTRIBUTIONS,
   COKO_INTRO,
 } from '@/features/project/contents/coko/data';
+import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 
 const PRELOAD_IMAGES = [
   '/coko/coko1.png',
@@ -18,6 +21,10 @@ const PRELOAD_IMAGES = [
 ];
 
 export default function Coko() {
+  const readmeContent = useReadmeContent({
+    repo: '8term-coko-Front',
+    branch: 'develop',
+  });
   return (
     <div className="p-5 h-full ">
       <div className="my-8"></div>
@@ -39,7 +46,7 @@ export default function Coko() {
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
         <PreloadHover images={PRELOAD_IMAGES}>
-          <ProjectFeature {...COKO_INTRO} />
+          <ProjectFeature readmeContent={readmeContent} />
         </PreloadHover>
         <KeyAchievements items={COKO_CONTRIBUTIONS} />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">

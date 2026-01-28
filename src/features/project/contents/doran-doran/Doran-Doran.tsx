@@ -1,4 +1,4 @@
-import CaseStudy from '@/features/project/components/CaseStudy';
+'use client';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 
@@ -11,12 +11,17 @@ import {
 } from '@/features/project/contents/doran-doran/data';
 import DORAN_TROUBLESHOOTING from '@/features/project/contents/doran-doran/troubleshooting.mdx';
 import DORAN_PERFORMANCE from '@/features/project/contents/doran-doran/performance.mdx';
+import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 const PRELOAD_IMAGES = [
   '/doran-doran/doran1.png',
   '/doran-doran/doran2.png',
   '/doran-doran/doran4.png',
 ];
 export default function DoranDoran() {
+  const readmeContent = useReadmeContent({
+    repo: 'doran-doran',
+    branch: 'main',
+  });
   return (
     <div className="p-5 h-full">
       <div className="lg:p-10">
@@ -37,7 +42,7 @@ export default function DoranDoran() {
         <ProjectLinks github="https://github.com/rhehfl/doran-doran" />
 
         <PreloadHover images={PRELOAD_IMAGES} delay={100}>
-          <ProjectFeature {...DORAN_INTRO} />
+          <ProjectFeature readmeContent={readmeContent} />
         </PreloadHover>
 
         <KeyAchievements items={DORAN_CONTRIBUTIONS} />

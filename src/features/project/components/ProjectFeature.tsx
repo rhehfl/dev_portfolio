@@ -9,23 +9,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-
-interface FeatureItem {
-  title: string;
-  description: string;
-  mediaSrc: string;
-  isVideo?: boolean;
-}
+import MarkDownWrapper from '@/components/common/MarkDownWrapper';
+import ReadmeRenderer from '@/components/common/ReadmeRenderer';
 
 interface ProjectFeatureProps {
-  features: FeatureItem[];
-  overview?: string;
-  [key: string]: any;
+  readmeContent: string;
 }
 
 export default function ProjectFeature({
-  features,
-  overview,
+  readmeContent,
   ...props
 }: ProjectFeatureProps) {
   return (
@@ -47,51 +39,8 @@ export default function ProjectFeature({
         </AccordionTrigger>
 
         <AccordionContent className="pt-2 pb-6 border-t border-gray-100 dark:border-gray-700 mt-2">
-          {overview && (
-            <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-100 dark:border-gray-700">
-              <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed whitespace-pre-line">
-                {overview}
-              </p>
-            </div>
-          )}
-
-          <div className="grid gap-8 md:grid-cols-2 pt-2 p-24">
-            {features.map((feature, idx) => (
-              <div key={idx} className="flex flex-col gap-3 group p-5">
-                <div className="aspect-video bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 shadow-sm relative">
-                  {feature.isVideo ? (
-                    <video
-                      src={feature.mediaSrc}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover "
-                    />
-                  ) : (
-                    <Image
-                      src={feature.mediaSrc}
-                      alt={feature.title}
-                      width={CASE_STUDY_THUMB_WIDTH}
-                      height={CASE_STUDY_THUMB_HEIGHT}
-                      className="w-full h-full object-contain"
-                    />
-                  )}
-                </div>
-
-                <div>
-                  <h4 className="font-bold text-lg text-gray-800 dark:text-gray-100 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs">
-                      {idx + 1}
-                    </span>
-                    {feature.title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mt-1 leading-relaxed pl-8">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="w-full max-w-full min-w-0 overflow-hidden">
+            <ReadmeRenderer content={readmeContent} />
           </div>
         </AccordionContent>
       </AccordionItem>

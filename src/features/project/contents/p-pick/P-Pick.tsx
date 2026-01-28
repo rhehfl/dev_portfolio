@@ -1,14 +1,13 @@
+'use client';
+
 import PreloadHover from '@/components/common/PreloadHover';
-import CaseStudy from '@/features/project/components/CaseStudy';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
-import {
-  PPICK_INTRO,
-  PPICK_CONTRIBUTIONS,
-} from '@/features/project/contents/p-pick/data';
+import { PPICK_CONTRIBUTIONS } from '@/features/project/contents/p-pick/data';
 import PERFORMANCE from '@/features/project/contents/p-pick/performance.mdx';
+import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 const PRELOAD_IMAGES = [
   '/p-pick/ppick1.png',
   '/p-pick/ppick2.png',
@@ -17,6 +16,7 @@ const PRELOAD_IMAGES = [
 ];
 
 export default function PPick() {
+  const readmeContent = useReadmeContent({ branch: 'develop', repo: 'P_PICK' });
   return (
     <div className="p-5 h-full ">
       <div className="lg:p-10">
@@ -37,7 +37,7 @@ export default function PPick() {
         />
         <ProjectLinks github="https://github.com/P-pick/front" />
         <PreloadHover images={PRELOAD_IMAGES} delay={100}>
-          <ProjectFeature {...PPICK_INTRO} />
+          <ProjectFeature readmeContent={readmeContent} />
         </PreloadHover>
         <KeyAchievements items={PPICK_CONTRIBUTIONS} />
         <h3 className="text-2xl my-5 font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">

@@ -1,81 +1,98 @@
 'use client';
 
 import { Slot } from '@radix-ui/react-slot';
-import { ReactNode, useRef, useState } from 'react';
-import { getImageProps, ImageProps, StaticImageData } from 'next/image';
-import Image from 'next/image';
-type ImageSource = string | StaticImageData;
+import Image, { type ImageProps, type StaticImageData } from 'next/image';
+import {
+  type ReactNode,
+  useRef,
+  useState,
+  useCallback,
+  type ComponentProps,
+  type Ref,
+} from 'react';
+
 export const CASE_STUDY_THUMB_WIDTH = 640;
 export const CASE_STUDY_THUMB_HEIGHT = 360;
-interface PreloadHoverProps {
+
+type ImageSource = string | StaticImageData;
+interface PreloadHoverProps<T extends HTMLElement> extends ComponentProps<
+  typeof Slot
+> {
   images: ImageSource | ImageSource[];
   children: ReactNode;
   delay?: number;
+  imageProps?: Partial<ImageProps>;
+  ref?: Ref<T>;
 }
 
-export const getOptimizedUrl = ({
-  src,
-  width = CASE_STUDY_THUMB_WIDTH,
-  height = CASE_STUDY_THUMB_HEIGHT,
-  alt = '',
-  ...args
-}: ImageProps) => {
-  const { props } = getImageProps({ src, width, height, alt, ...args });
-
-  return props.src;
-};
-
-interface PreloadHoverProps {
-  images: ImageSource | ImageSource[];
-  children: ReactNode;
-  delay?: number;
-}
-
-export default function PreloadHover({
+export default function PreloadHover<T extends HTMLElement>({
   images,
   children,
   delay = 200,
-}: PreloadHoverProps) {
+  imageProps,
+  onMouseEnter,
+  onMouseLeave,
+  ref,
+  ...props
+}: PreloadHoverProps<T>) {
   const [shouldLoad, setShouldLoad] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMouseEnter = () => {
-    if (shouldLoad) return;
-
-    if (timerRef.current) clearTimeout(timerRef.current);
-
-    timerRef.current = setTimeout(() => {
-      setShouldLoad(true);
-      timerRef.current = null;
-    }, delay);
-  };
-
-  const handleMouseLeave = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  };
-
-  // 배열로 통일
   const imageSources = Array.isArray(images) ? images : [images];
+
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      onMouseEnter?.(e);
+
+      if (shouldLoad) return;
+
+      if (timerRef.current) clearTimeout(timerRef.current);
+
+      timerRef.current = setTimeout(() => {
+        setShouldLoad(true);
+        timerRef.current = null;
+      }, delay);
+    },
+    [delay, shouldLoad, onMouseEnter],
+  );
+
+  const handleMouseLeave = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      onMouseLeave?.(e);
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    },
+    [onMouseLeave],
+  );
 
   return (
     <>
-      <Slot onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <Slot
+        ref={ref}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      >
         {children}
       </Slot>
 
       {shouldLoad && (
-        <div className="absolute top-0 left-0 -z-50 w-px h-px overflow-hidden opacity-0 pointer-events-none">
+        <div
+          aria-hidden="true"
+          className="absolute top-0 left-0 w-px h-px overflow-hidden opacity-0 pointer-events-none -z-50"
+        >
           {imageSources.map((src, idx) => (
             <Image
-              key={idx}
+              key={typeof src === 'string' ? src : idx}
               src={src}
               alt="preload-hidden"
               width={CASE_STUDY_THUMB_WIDTH}
               height={CASE_STUDY_THUMB_HEIGHT}
               priority={true}
+              {...imageProps}
             />
           ))}
         </div>
