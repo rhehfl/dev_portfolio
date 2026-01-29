@@ -17,3 +17,51 @@ import CaseStudy from '@/features/project/components/CaseStudy';
 
   </CaseStudy.Body>
 </CaseStudy>
+<CaseStudy>
+  <CaseStudy.Header>Redis 캐싱을 통한 채팅 내역 조회 성능 3.7배 향상</CaseStudy.Header>
+  <CaseStudy.Body>
+    <CaseStudy.Section title="문제 상황" dotColor="bg-red-400">
+      채팅방 진입 시마다 DB에서 전체 대화 내역을 매번 조회하다 보니, 트래픽이 몰릴 경우 **DB 부하가 급증**하고 응답 속도가 평균 **5.7ms**까지 지연되는 병목이 발생했습니다.
+    </CaseStudy.Section>
+
+    <CaseStudy.Section title="해결 과정" dotColor="bg-blue-400">
+      인메모리 DB인 **Redis**를 활용한 **Look-aside** 캐싱 전략을 도입했습니다.
+
+      1. 채팅 내역 조회 시 Redis 캐시를 먼저 확인하고(Cache Hit), 없을 경우에만 DB를 조회(Cache Miss)합니다.
+      2. 새로운 메시지가 전송되면 Write-through 방식으로 캐시와 DB를 동기화하여 데이터 일관성을 유지했습니다.
+
+      <CaseStudy.Code>
+      {`// chat.service.ts (Backend)
+
+async getChatHistory(roomId: string) {
+// 1. 캐시 조회 (메모리 I/O)
+const cached = await this.redis.get(\`chat:\${roomId}\`);
+if (cached) return JSON.parse(cached);
+
+// 2. DB 조회 (Disk I/O)
+const history = await this.chatRepo.find({ where: { roomId } });
+
+// 3. 캐싱 (TTL 설정으로 메모리 관리)
+await this.redis.set(\`chat:\${roomId}\`, JSON.stringify(history), 'EX', 3600);
+return history;
+}`}
+</CaseStudy.Code>
+</CaseStudy.Section>
+
+    <CaseStudy.Section title="성과 지표" dotColor="bg-green-400">
+      <CaseStudy.Metrics>
+        <CaseStudy.MetricItem
+          name="조회 응답 속도"
+          before="5.7ms"
+          after="1.5ms"
+          rate="3.7배 단축"
+        />
+      </CaseStudy.Metrics>
+    </CaseStudy.Section>
+
+    <CaseStudy.Result isHighlighted>
+      반복적인 읽기 작업의 DB 부하를 제거하고 사용자 경험(Latency) 대폭 개선
+    </CaseStudy.Result>
+
+  </CaseStudy.Body>
+</CaseStudy>

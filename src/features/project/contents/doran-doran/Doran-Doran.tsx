@@ -5,10 +5,7 @@ import ProjectLinks from '@/features/project/components/ProjectLinks';
 import PreloadHover from '@/components/common/PreloadHover';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
-import {
-  DORAN_CONTRIBUTIONS,
-  DORAN_INTRO,
-} from '@/features/project/contents/doran-doran/data';
+import { DORAN_CONTRIBUTIONS } from '@/features/project/contents/doran-doran/data';
 import DORAN_TROUBLESHOOTING from '@/features/project/contents/doran-doran/troubleshooting.mdx';
 import DORAN_PERFORMANCE from '@/features/project/contents/doran-doran/performance.mdx';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
