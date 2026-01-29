@@ -67,7 +67,10 @@ const Figure = ({
 }: FigureProps) => (
   <figure className="flex flex-col overflow-hidden my-2 ">
     <div className="flex py-4 px-2">
-      <PhotoDetailLink photoId={encodeURIComponent(src)}>
+      <PhotoDetailLink
+        photoId={encodeURIComponent(src)}
+        className="cursor-zoom-in"
+      >
         <Image
           src={src}
           alt={alt || 'reference image'}
