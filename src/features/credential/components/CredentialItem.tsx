@@ -45,7 +45,6 @@ export default function CredentialItem({
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
-      {/* 날짜 영역 */}
       <div className="flex-none md:basis-1/4 md:shrink-0 flex items-center md:items-start md:justify-end">
         <span className="text-sm font-semibold text-muted-foreground font-mono">
           {date}

@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { ArrowRight, CheckCircle2, TrendingUp, Wrench } from 'lucide-react';
 import Image from 'next/image';
+import PhotoDetailLink from '@/components/common/PhotoDetailLink';
 interface HeaderProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
@@ -41,7 +42,7 @@ const Section = ({
 }: SectionProps) => {
   return (
     <div className={cn('text-muted-foreground', className)}>
-      <h5 className="font-bold text-sm mb-2 flex items-center gap-2 text-foreground/80">
+      <h5 className="font-bold text-lg mb-2 flex items-center gap-2 text-foreground/80">
         <span className={cn('w-1.5 h-1.5 rounded-full shrink-0', dotColor)} />
         {title}
       </h5>
@@ -51,6 +52,7 @@ const Section = ({
 };
 
 interface FigureProps extends React.ComponentProps<typeof Image> {
+  src: string;
   caption?: string;
 }
 
@@ -65,13 +67,15 @@ const Figure = ({
 }: FigureProps) => (
   <figure className="flex flex-col overflow-hidden my-2 ">
     <div className="flex py-4 px-2">
-      <Image
-        src={src}
-        alt={alt || 'reference image'}
-        width={width}
-        height={height}
-        {...props}
-      />
+      <PhotoDetailLink photoId={encodeURIComponent(src)}>
+        <Image
+          src={src}
+          alt={alt || 'reference image'}
+          width={width}
+          height={height}
+          {...props}
+        />
+      </PhotoDetailLink>
     </div>
     {caption && (
       <figcaption className="p-3 text-xs sm:text-sm text-muted-foreground border-t border-border/50 ">

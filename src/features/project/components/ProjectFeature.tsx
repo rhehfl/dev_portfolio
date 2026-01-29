@@ -32,7 +32,7 @@ export default function ProjectFeature({
           <div className="flex items-center gap-3 text-left">
             <div className="flex flex-col">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                🖥️ 서비스 소개 및 주요 기능
+                🖥️ 프로젝트 소개(ReadMe)
               </h3>
             </div>
           </div>
