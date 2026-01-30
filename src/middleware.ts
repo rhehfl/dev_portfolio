@@ -58,7 +58,11 @@ export async function middleware(request: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  if (!session && request.nextUrl.pathname.startsWith('/blog/write')) {
+  if (
+    !session &&
+    (request.nextUrl.pathname.startsWith('/blog/write') ||
+      request.nextUrl.pathname.startsWith('/blog/edit'))
+  ) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
     return NextResponse.redirect(url);
@@ -74,5 +78,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/blog/write/:path*', '/login'],
+  matcher: ['/blog/edit/:path*', '/blog/write/:path*', '/login'],
 };
