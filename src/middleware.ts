@@ -59,7 +59,7 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getSession();
 
   // 로그인이 안 되어 있는데 /write에 접근한 경우
-  if (!session && request.nextUrl.pathname.startsWith('/write')) {
+  if (!session && request.nextUrl.pathname.startsWith('/blog/write')) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
     return NextResponse.redirect(url);
@@ -68,7 +68,7 @@ export async function middleware(request: NextRequest) {
   // 로그인이 되어 있는데 /login에 접근한 경우 (에디터로 보내버리기)
   if (session && request.nextUrl.pathname.startsWith('/login')) {
     const url = request.nextUrl.clone();
-    url.pathname = '/write';
+    url.pathname = '/blog/write';
     return NextResponse.redirect(url);
   }
 

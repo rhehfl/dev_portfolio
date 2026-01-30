@@ -1,4 +1,4 @@
-import {} from '@/components/common/PreloadHover';
+import {} from '@/components/common/ImagePreloader';
 import Image from 'next/image';
 import {
   Accordion,

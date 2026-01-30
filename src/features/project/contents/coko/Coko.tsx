@@ -1,18 +1,14 @@
 'use client';
 
-import PreloadHover from '@/components/common/PreloadHover';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 import CokoTroubleshooting from '@/features/project/contents/coko/coko-troubleshooting.mdx';
 import CokoPerformance from '@/features/project/contents/coko/coko-performance.mdx';
-import {
-  COKO_CONTRIBUTIONS,
-  COKO_INTRO,
-} from '@/features/project/contents/coko/data';
+import { COKO_CONTRIBUTIONS } from '@/features/project/contents/coko/data';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
-import ImagePreloader from '@/components/common/PreloadHover';
+import ImagePreloader from '@/components/common/ImagePreloader';
 
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/c9dc7ee4-c3e1-471d-ae2a-65d45bf5a782',
@@ -48,7 +44,7 @@ export default function Coko() {
           teamSize="6명"
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
-        <ImagePreloader images={PRELOAD_IMAGES}></ImagePreloader>
+        <ImagePreloader images={PRELOAD_IMAGES} />
         <ProjectFeature readmeContent={readmeContent} />
         <KeyAchievements items={COKO_CONTRIBUTIONS} />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">

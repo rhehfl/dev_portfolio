@@ -2,17 +2,18 @@
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 
-import PreloadHover from '@/components/common/PreloadHover';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import { DORAN_CONTRIBUTIONS } from '@/features/project/contents/doran-doran/data';
 import DORAN_TROUBLESHOOTING from '@/features/project/contents/doran-doran/troubleshooting.mdx';
 import DORAN_PERFORMANCE from '@/features/project/contents/doran-doran/performance.mdx';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
+import ImagePreloader from '@/components/common/ImagePreloader';
 const PRELOAD_IMAGES = [
-  '/doran-doran/doran1.png',
-  '/doran-doran/doran2.png',
-  '/doran-doran/doran4.png',
+  'https://github.com/user-attachments/assets/606374e7-bb1e-4d33-a714-873225720984',
+  'https://github.com/user-attachments/assets/3d921d3d-b7f1-468f-9943-2435420b1031',
+  'https://github.com/user-attachments/assets/f7ccb6d9-482a-4c98-b1bf-85ba46313b3d',
+  'https://github.com/user-attachments/assets/b08a4267-e15e-4607-88bf-1a9164ae8158',
 ];
 export default function DoranDoran() {
   const readmeContent = useReadmeContent({
@@ -38,9 +39,8 @@ export default function DoranDoran() {
         />
         <ProjectLinks github="https://github.com/rhehfl/doran-doran" />
 
-        <PreloadHover images={PRELOAD_IMAGES} delay={100}>
-          <ProjectFeature readmeContent={readmeContent} />
-        </PreloadHover>
+        <ImagePreloader images={PRELOAD_IMAGES} />
+        <ProjectFeature readmeContent={readmeContent} />
 
         <KeyAchievements items={DORAN_CONTRIBUTIONS} />
 
