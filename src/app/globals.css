@@ -10,6 +10,7 @@ code:not(pre code) {
   border-radius: 0.375rem;
   padding: 0.125rem 0.25rem;
 }
+
 .prose :where(code):not(:where([class~='not-prose'] *))::before,
 .prose :where(code):not(:where([class~='not-prose'] *))::after {
   content: '' !important;
@@ -134,5 +135,24 @@ code:not(pre code) {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+@layer components {
+  .markdown-body ul {
+    list-style-type: disc !important;
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+    padding-left: 2em !important;
+  }
+
+  .markdown-body ol {
+    list-style-type: decimal !important;
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+    padding-left: 2em !important;
+  }
+
+  .markdown-body li {
+    display: list-item !important;
   }
 }

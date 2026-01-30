@@ -1,63 +1,26 @@
 // @/features/experience/contents/modern-agile/modern-agile.ts
 
 export const MODERN_AGILE_CONTENT = `
-# 📂 Coko (자바스크립트 학습 플랫폼)
+# [모던 애자일(Modern Agile) | 프론트엔드 팀 리더]
+### 애자일 프로세스 주도 및 협업 문화 정착
 
-> **"누구나 쉽게 자바스크립트를 학습하고 공유하는 플랫폼"**
-> 개발 입문자를 위한 문제 풀이 및 개념 학습 서비스를 기획하고 개발했습니다.
+1주 단위의 애자일 스프린트 및 데일리 스크럼을 운영하며 팀의 진척도를 관리하고, 병목 현상을 조기에 발견하여 개발 효율을 높임.
+정기적인 **회고** 를 통해 팀 내부의 피드백을 즉각적으로 반영하는 유연한 협업 구조 구축.
+[스프린트 및 회고 링크](https://catnip-echium-964.notion.site/1037978f77644b55b20f805669a5812d)
 
-- **소속**: Modern Agile (모던 애자일)
-- **역할**: **Frontend Team Lead**, 관리자(Admin) 페이지 및 핵심 기능 개발
-- **기간**: 202X.XX ~ 202X.XX (약 X개월)
-- **GitHub**: [GitHub 레포지토리 링크]
-- **URL**: [배포된 서비스 링크 (있는 경우)]
+### 함께 성장하기 위한 테크톡
+**테크톡(Tech Talk)** 을 기획 및 진행하여, 기술 스택 도입의 타당성을 검토하고 팀 전체의 기술적 상향 평준화에 기여.
+* [OSI 7 Layer](https://www.youtube.com/watch?v=Fx7FbO5Pwd0)
+* [Web Server Vs WAS](https://www.youtube.com/watch?v=MyBypljgtSE)
+* [Tanstack Query](https://www.youtube.com/watch?v=MhFRXdHasLc)
+* [AJAX](https://www.youtube.com/watch?v=wNt8gCOR7Yo)
+* [실행 컨텍스트](https://www.youtube.com/watch?v=dcS7ysaiXB4)
+* [React](https://www.youtube.com/watch?v=y979_waliKA)
 
----
+### 팀 컨벤션 수립
+프로젝트 초기 단계에서 코드 스타일, 커밋 메시지 규칙, 브랜치 전략 등 팀 컨벤션을 수립하여 일관된 코드베이스 유지.
+ESLint, Prettier 등의 도구를 활용해 자동화된 규칙 검사를 도입, 코드 품질 향상에 기여.
 
-## 🛠️ Tech Stack
-- **Framework & Library**: React, TypeScript, Next.js
-- **State Management**: [Recoil / Zustand / React Query 중 사용한 것]
-- **Styling**: [Styled-components / Tailwind CSS 중 사용한 것]
-- **Tools**: Git/GitHub, Jira, Slack, ESLint, Prettier
-
----
-
-## 💻 주요 업무 및 성과
-
-### 1. 확장성을 고려한 관리자(Admin) 페이지 아키텍처 설계
-**[Background]**
-학습 콘텐츠 관리와 사용자 데이터를 처리할 관리자 페이지가 필요했으나, 복잡한 데이터 구조로 인해 유지보수가 어려울 것으로 예상되었습니다.
-
-**[Action]**
-- **재사용 컴포넌트 모듈화**: \`Table\`, \`Form\`, \`SearchFilter\` 등 반복되는 UI를 공통 컴포넌트로 분리하여 개발 생산성을 높였습니다.
-- **서버 상태 관리 최적화**: [React Query 등]를 도입하여 데이터 캐싱 및 동기화 로직을 효율적으로 처리했습니다.
-- **권한 관리 시스템**: JWT를 활용해 일반 사용자와 관리자의 접근 권한을 철저히 분리하는 라우팅 가드를 구현했습니다.
-
-**[Result]**
-- 기획 변경에 유연하게 대처할 수 있는 관리자 대시보드 구축 완료.
-- 콘텐츠 업로드 및 수정 소요 시간 단축에 기여.
-
-### 2. 프론트엔드 팀 리딩 및 개발 문화 조성
-- **코드 컨벤션 도입**: ESLint, Prettier 및 Husky를 설정하여 팀원 간 코드 스타일을 통일하고 불필요한 리뷰 시간을 단축했습니다.
-- **기술 온보딩 주도**: 주 1회 코드 리뷰 세션을 주최하여 팀 내 기술 격차를 해소하고, Best Practice를 공유했습니다.
-- **협업 프로세스 개선**: Jira와 GitHub를 연동하여 이슈 추적을 자동화했습니다.
-
----
-
-## 🚀 트러블 슈팅 (Problem Solving)
-
-### 1. 대용량 데이터 렌더링 성능 최적화
-- **문제**: 관리자 페이지에서 회원 목록(1,000건 이상)을 조회할 때 초기 렌더링 속도가 저하되는 현상 발생.
-- **해결**: 페이지네이션(Pagination) 적용 및 데이터 프리패칭(Prefetching) 전략 도입.
-- **결과**: 초기 로딩 속도를 **X초 → Y초**로 약 **Z%** 개선.
-
-### 2. 복잡한 폼 상태 관리 효율화
-- **문제**: 문제 등록 페이지에서 다수의 입력 필드와 유효성 검사 로직으로 인해 컴포넌트 복잡도 증가.
-- **해결**: \`React Hook Form\`을 도입하여 비제어 컴포넌트 방식으로 리렌더링 최소화 및 코드 라인 수 **X%** 감소.
-
----
-
-## 📝 배운 점 (Retrospective)
-- **DX(개발자 경험)의 중요성**: 팀원들이 효율적으로 일할 수 있는 환경(린트, 공통 컴포넌트)을 구축하는 것이 프로젝트 속도에 큰 영향을 미친다는 것을 배웠습니다.
-- **비즈니스 로직에 대한 이해**: 관리자 페이지를 개발하며 프론트엔드뿐만 아니라 데이터 모델링과 백엔드 API 설계 흐름을 깊이 이해하게 되었습니다.
+### 코드 리뷰 문화 정착
+팀 내 **코드 리뷰** 프로세스를 도입하여 코드 품질을 향상시키고, 지식 공유를 촉진.
 `;

@@ -1,5 +1,5 @@
 import ModernAgile from '@/features/experience/contents/modern-agile/ModernAgile';
-import ModernKit from '@/features/hero/contents/modern-kit/ModernKit';
+import ModernKit from '@/features/experience/contents/modern-kit/ModernKit';
 import Coko from '@/features/project/contents/coko/Coko';
 import DevPortfolio from '@/features/project/contents/dev-portfolio/Dev_Portfolio';
 import DoranDoran from '@/features/project/contents/doran-doran/Doran-Doran';

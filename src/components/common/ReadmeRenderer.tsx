@@ -22,12 +22,7 @@ export default function ReadmeRenderer({
 }: ReadmeRendererProps) {
   return (
     <div className={`readme-container w-full min-w-0 ${className || ''}`}>
-      {/* ✅ 스타일 격리 (Scoped Style)
-        이 컴포넌트 내부의 .markdown-body에만 적용되는 강력한 스타일입니다.
-        globals.css를 수정할 필요 없이 이 컴포넌트만 가져다 쓰면 해결됩니다.
-      */}
       <style jsx global>{`
-        /* 배경 투명화 및 기본 폰트 설정 */
         .readme-container .markdown-body {
           background-color: transparent !important;
           font-family:
@@ -37,11 +32,10 @@ export default function ReadmeRenderer({
           min-width: 0;
         }
 
-        /* 🚨 테이블 레이아웃 강제 교정 (핵심) */
         .readme-container .markdown-body table {
-          display: table !important; /* block으로 변하는 것 방지 */
+          display: table !important;
           width: 100% !important;
-          table-layout: auto !important; /* 내용물에 맞춰 칸 조절 */
+          table-layout: auto !important;
           border-collapse: collapse !important;
           margin: 1rem 0 !important;
         }
