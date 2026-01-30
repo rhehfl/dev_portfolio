@@ -4,7 +4,10 @@ import TextareaAutosize from 'react-textarea-autosize';
 import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 import { useEditor } from '@/features/blog/hooks/useEditor';
 
-export default function Editor() {
+interface EditorUIProps {
+  postId?: string;
+}
+export default function Editor({ postId }: EditorUIProps) {
   const {
     post,
     tagInput,
@@ -16,7 +19,7 @@ export default function Editor() {
     removeTag,
     handlePaste,
     handleSubmit,
-  } = useEditor();
+  } = useEditor(postId);
 
   return (
     <div className="flex flex-col h-screen w-full bg-white text-gray-900">

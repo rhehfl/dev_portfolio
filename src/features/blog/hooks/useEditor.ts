@@ -4,6 +4,7 @@ import {
   ChangeEvent,
   KeyboardEvent,
   ClipboardEvent,
+  useEffect,
 } from 'react';
 import { uploadImage } from '@/features/blog/utils/uploadImage';
 import { supabase } from '@/lib/supabase';
@@ -15,7 +16,7 @@ interface PostData {
   thumbnail: string;
 }
 
-export const useEditor = () => {
+export const useEditor = (postId?: string) => {
   const [post, setPost] = useState<PostData>({
     title: '',
     content: '',
@@ -24,7 +25,61 @@ export const useEditor = () => {
   });
   const [tagInput, setTagInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [isLoading, setIsLoading] = useState(!!postId);
 
+  useEffect(() => {
+    if (postId) {
+      const fetchPost = async () => {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .eq('id', postId)
+          .single();
+
+        if (data) {
+          setPost({
+            title: data.title,
+            content: data.content,
+            tags: data.tags || [],
+            thumbnail: data.thumbnail || '',
+          });
+        }
+        setIsLoading(false);
+      };
+      fetchPost();
+    }
+  }, [postId]);
+
+  // 2. 저장/업데이트 통합 핸들러
+  const handleSubmit = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return alert('권한이 없습니다.');
+
+    const postPayload = {
+      ...post,
+    };
+
+    try {
+      let error;
+      if (postId) {
+        // 수정 모드
+        ({ error } = await supabase
+          .from('posts')
+          .update(postPayload)
+          .eq('id', postId));
+      } else {
+        // 새 글 작성 모드
+        ({ error } = await supabase.from('posts').insert([postPayload]));
+      }
+
+      if (error) throw error;
+      alert(postId ? '수정되었습니다!' : '출간되었습니다!');
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
   // 기본 입력 핸들러
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPost((prev) => ({ ...prev, title: e.target.value }));
@@ -100,30 +155,6 @@ export const useEditor = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    if (!post.title || !post.content) {
-      alert('제목과 내용을 모두 입력해주세요!');
-      return;
-    }
-
-    try {
-      const { error } = await supabase.from('posts').insert([
-        {
-          title: post.title,
-          content: post.content,
-          tags: post.tags,
-          is_published: true,
-          thumbnail: post.thumbnail,
-        },
-      ]);
-      if (error) throw error;
-      alert('글이 성공적으로 출간되었습니다!');
-    } catch (error: any) {
-      console.error('출간 에러:', error.message);
-      alert('출간 중 오류가 발생했습니다.');
-    }
-  };
-
   return {
     post,
     tagInput,
@@ -135,5 +166,6 @@ export const useEditor = () => {
     removeTag,
     handlePaste,
     handleSubmit,
+    isLoading,
   };
 };
