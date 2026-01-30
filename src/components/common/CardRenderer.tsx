@@ -1,3 +1,4 @@
+import ModernAgile from '@/features/experience/contents/modern-agile/ModernAgile';
 import ModernKit from '@/features/hero/contents/modern-kit/ModernKit';
 import Coko from '@/features/project/contents/coko/Coko';
 import DevPortfolio from '@/features/project/contents/dev-portfolio/Dev_Portfolio';
@@ -11,6 +12,7 @@ const PROJECT_COMPONENTS: Record<string, React.ReactElement> = {
   'doran-doran': <DoranDoran />,
   'dev-portfolio': <DevPortfolio />,
   'modern-kit': <ModernKit />,
+  'modern-agile': <ModernAgile />,
 };
 
 interface CardRendererProps {

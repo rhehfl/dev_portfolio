@@ -29,7 +29,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     - 프론트엔드 팀장으로서 후배 기수 멘토링 및 프로젝트 관리 역할 수행
     - 동아리 내 오픈 소스 라이브러리 modern-kit에 기여하며 실무 경험 축적
     - 팀 프로젝트 'CoKo' 개발 참여: 기획부터 배포까지 전 과정에 참여하여 실전 개발 역량 강화`,
-    link: '/card/modern-kit',
+    link: '/card/modern-agile',
   },
   {
     id: 3,
