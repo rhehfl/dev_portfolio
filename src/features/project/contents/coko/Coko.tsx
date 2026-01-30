@@ -12,12 +12,15 @@ import {
   COKO_INTRO,
 } from '@/features/project/contents/coko/data';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
+import ImagePreloader from '@/components/common/PreloadHover';
 
 const PRELOAD_IMAGES = [
-  '/coko/coko1.png',
-  '/coko/coko2.png',
-  '/coko/coko3.png',
-  '/coko/coko4.png',
+  'https://github.com/user-attachments/assets/c9dc7ee4-c3e1-471d-ae2a-65d45bf5a782',
+  'https://github.com/user-attachments/assets/7ec48940-caa9-4544-b78a-ce7bd6005d4c',
+  'https://github.com/user-attachments/assets/b2a7859a-9bdb-404b-b022-01dbbb6ad715',
+  'https://github.com/user-attachments/assets/ab391b9d-50ca-4848-8ec7-78f31321da4e',
+  'https://github.com/user-attachments/assets/a2c37db9-4a67-4735-9318-536938741c3f',
+  'https://github.com/user-attachments/assets/154be841-bf5b-4d71-acd7-5ad670ea5bd2',
 ];
 
 export default function Coko() {
@@ -45,9 +48,8 @@ export default function Coko() {
           teamSize="6명"
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
-        <PreloadHover images={PRELOAD_IMAGES}>
-          <ProjectFeature readmeContent={readmeContent} />
-        </PreloadHover>
+        <ImagePreloader images={PRELOAD_IMAGES}></ImagePreloader>
+        <ProjectFeature readmeContent={readmeContent} />
         <KeyAchievements items={COKO_CONTRIBUTIONS} />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-l-4 border-red-500 pl-3">
           트러블 슈팅

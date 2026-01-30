@@ -1,7 +1,4 @@
-import {
-  CASE_STUDY_THUMB_HEIGHT,
-  CASE_STUDY_THUMB_WIDTH,
-} from '@/components/common/PreloadHover';
+import {} from '@/components/common/PreloadHover';
 import Image from 'next/image';
 import {
   Accordion,
