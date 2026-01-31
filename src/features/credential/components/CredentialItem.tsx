@@ -39,7 +39,6 @@ export default function CredentialItem({
   return (
     <motion.div
       ref={ref}
-      id="credential"
       className="flex flex-col md:flex-row gap-4 md:gap-8 relative group pb-8 last:pb-0"
       initial={{ opacity: 0, y: 10 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
@@ -52,14 +51,10 @@ export default function CredentialItem({
       </div>
 
       <div className="flex-1 relative pl-6 md:pl-8">
-        <div
-          className={`absolute left-[-4px] md:left-[-8px] top-1.5 md:top-1 w-[8px] h-[8px] md:w-[16px] md:h-[16px] rounded-full z-10 border-2 md:border-4 ring-4 ring-background ${dotStyle}`}
-        />
-
-        <div className="-mt-1">
+        <div className="mt-1">
           <div className="flex items-center gap-2 mb-1">
-            <Icon className={`w-4 h-4 ${iconColor}`} />
-            <h3 className="text-lg md:text-xl font-bold">{title}</h3>
+            <Icon className={`w-4 h-4 shrink-0 ${iconColor}`} />
+            <h3 className="text-lg ml-2 md:text-xl font-bold">{title}</h3>
           </div>
 
           <p className="text-sm md:text-base text-muted-foreground pl-6 md:pl-0">
