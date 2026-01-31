@@ -1,6 +1,5 @@
 import ProjectDetail from '@/features/project/components/ProjectDetail';
 
-// 1. 트러블 슈팅 (Troubleshooting)
 export const PORTFOLIO_TROUBLESHOOTING = [
   {
     title: '확장 불가능한 Flat 컴포넌트 구조의 한계 극복',

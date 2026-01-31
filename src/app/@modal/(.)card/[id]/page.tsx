@@ -10,7 +10,6 @@ export default function CardDetailPage() {
   const { mode, handleSetMode } = useOverlayController();
 
   const params = useParams();
-  console.log(params);
   const id = params.id as string;
   const router = useRouter();
 
