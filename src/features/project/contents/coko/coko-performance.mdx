@@ -1,20 +1,20 @@
-import CaseStudy from '@/features/project/components/CaseStudy';
+import ProjectDetail from '@/features/project/components/ProjectDetail';
 
-<CaseStudy>
-  <CaseStudy.Header>React.lazy를 활용한 번들 최적화 및 초기 로딩 속도 개선</CaseStudy.Header>
-  <CaseStudy.Body>
-    <CaseStudy.Section title="도입 배경" dotColor="bg-red-400">
+<ProjectDetail>
+  <ProjectDetail.Header>React.lazy를 활용한 번들 최적화 및 초기 로딩 속도 개선</ProjectDetail.Header>
+  <ProjectDetail.Body>
+    <ProjectDetail.Section title="도입 배경" dotColor="bg-red-400">
       SPA의 특성상 초기 진입 시 모든 페이지의 리소스를 한 번에 다운로드하여 FCP 지연이 우려되었습니다.
        특히 네트워크가 느린 모바일 환경에서 사용자 이탈 우려가 컸습니다.
-    </CaseStudy.Section>
+    </ProjectDetail.Section>
 
-    <CaseStudy.Section title="구현 내용" dotColor="bg-blue-400">
+    <ProjectDetail.Section title="구현 내용" dotColor="bg-blue-400">
       페이지별 진입 시점에 필요한 리소스만 로드하는 전략을 도입했습니다.
 
       1. `React.lazy`와 동적 `import()`를 사용하여 라우터 레벨에서 컴포넌트를 분리했습니다.
       2. `Suspense` 컴포넌트를 상위 트리에 배치하여, 청크(Chunk) 파일이 다운로드되는 동안 스켈레톤 UI를 노출해 UX 저하를 방지했습니다.
 
-      <CaseStudy.Code>
+      <ProjectDetail.Code>
       {`
 
 const About = lazy(() => import('./pages/About'));
@@ -29,24 +29,24 @@ return (
     </Routes>
   </Suspense>
 );`}
-      </CaseStudy.Code>
-    </CaseStudy.Section>
+      </ProjectDetail.Code>
+    </ProjectDetail.Section>
 
-    <CaseStudy.Section title="성능 측정" dotColor="bg-green-400">
-      <CaseStudy.Metrics>
-        <CaseStudy.MetricItem
+    <ProjectDetail.Section title="성능 측정" dotColor="bg-green-400">
+      <ProjectDetail.Metrics>
+        <ProjectDetail.MetricItem
           name="초기 번들 사이즈"
           before="2.0 MB"
           after="300 KB"
           rate="85% 감소"
         />
 
-      </CaseStudy.Metrics>
-    </CaseStudy.Section>
+      </ProjectDetail.Metrics>
+    </ProjectDetail.Section>
 
-    <CaseStudy.Result isHighlighted>
+    <ProjectDetail.Result isHighlighted>
       초기 리소스 용량을 85% 감축하여 쾌적한 진입 속도와 데이터 비용 절감 달성
-    </CaseStudy.Result>
+    </ProjectDetail.Result>
 
-  </CaseStudy.Body>
-</CaseStudy>
+  </ProjectDetail.Body>
+</ProjectDetail>

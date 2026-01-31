@@ -3,7 +3,15 @@ import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { ArrowRight, CheckCircle2, TrendingUp, Wrench } from 'lucide-react';
+import {
+  ArrowRight,
+  BookOpen,
+  Calendar,
+  CheckCircle2,
+  Link,
+  TrendingUp,
+  Wrench,
+} from 'lucide-react';
 import Image from 'next/image';
 import PhotoDetailLink from '@/components/common/PhotoDetailLink';
 
@@ -185,7 +193,7 @@ const Code = ({
   );
 };
 
-function CaseStudyRoot({ children, className }: RootProps) {
+function ProjectDetailRoot({ children, className }: RootProps) {
   return (
     <Card
       className={cn(
@@ -211,8 +219,59 @@ function ContentWrapper({ children }: { children: React.ReactNode }) {
     </CardContent>
   );
 }
+interface BlogPost {
+  title: string;
+  description: string;
+  date: string;
+  href: string;
+  tags?: string[];
+}
 
-const CaseStudy = Object.assign(CaseStudyRoot, {
+const RelatedBlog = ({ posts }: { posts: BlogPost[] }) => {
+  if (posts.length === 0) return null;
+
+  return (
+    <div className="mt-12 space-y-6">
+      <h5 className="font-bold text-lg flex items-center gap-2 text-foreground/90">
+        <BookOpen className="w-5 h-5 text-blue-500" />
+        관련 블로그 포스트
+      </h5>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {posts.map((post, idx) => (
+          <Link key={idx} href={post.href} className="group">
+            <div className="h-full p-5 rounded-xl border border-border/50 bg-slate-50/50 dark:bg-slate-900/20 hover:border-blue-500/50 transition-all duration-300">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                <Calendar className="w-3 h-3" />
+                {post.date}
+              </div>
+              <h6 className="font-bold text-base mb-2 group-hover:text-blue-600 transition-colors line-clamp-1">
+                {post.title}
+              </h6>
+              <p className="text-sm text-muted-foreground line-clamp-2 mb-4 leading-relaxed">
+                {post.description}
+              </p>
+              <div className="flex items-center justify-between mt-auto">
+                <div className="flex gap-1.5">
+                  {post.tags?.slice(0, 2).map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="text-[10px] px-1.5 py-0"
+                    >
+                      #{tag}
+                    </Badge>
+                  ))}
+                </div>
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
+const ProjectDetail = Object.assign(ProjectDetailRoot, {
   Header,
   Body: ContentWrapper,
   Section,
@@ -222,6 +281,7 @@ const CaseStudy = Object.assign(CaseStudyRoot, {
   Result,
   Code,
   Markdown,
+  RelatedBlog,
 });
 
-export default CaseStudy;
+export default ProjectDetail;
