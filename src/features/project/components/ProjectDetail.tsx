@@ -6,22 +6,24 @@ import { cn } from '@/lib/utils';
 import {
   ArrowRight,
   BookOpen,
-  Calendar,
   CheckCircle2,
-  Link,
+  ExternalLink,
   TrendingUp,
   Wrench,
 } from 'lucide-react';
 import Image from 'next/image';
 import PhotoDetailLink from '@/components/common/PhotoDetailLink';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface HeaderProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
   hasMetrics?: boolean;
+  link?: string;
 }
 
-const Header = ({ children, icon, hasMetrics }: HeaderProps) => {
+const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
   const DefaultIcon = hasMetrics ? (
     <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
   ) : (
@@ -29,13 +31,37 @@ const Header = ({ children, icon, hasMetrics }: HeaderProps) => {
   );
 
   return (
-    <CardHeader className="pb-6 border-b border-border/40 bg-slate-50/30 dark:bg-slate-900/10">
+    <CardHeader className="flex justify-between pb-6 border-b border-border/40 bg-slate-50/30 dark:bg-slate-900/10">
       <CardTitle className="text-xl sm:text-2xl font-extrabold flex items-center gap-3 tracking-tight">
         <span className="shrink-0">{icon || DefaultIcon}</span>
-        <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+        <span className="text-black from-foreground to-foreground/70 bg-clip-text ">
           {children}
         </span>
       </CardTitle>
+      {link && (
+        <Button
+          asChild
+          variant="ghost"
+          className="relative h-10 px-6 
+                     bg-white/80 dark:bg-white/5 backdrop-blur-sm
+                     border border-slate-200 dark:border-white/10
+                     shadow-sm"
+        >
+          <Link
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2"
+          >
+            <span className="text-sm text-slate-700 tracking-tight">
+              자세히 보기
+            </span>
+            <div className="relative">
+              <ExternalLink className="w-4 h-4" />
+            </div>
+          </Link>
+        </Button>
+      )}
     </CardHeader>
   );
 };
@@ -219,55 +245,36 @@ function ContentWrapper({ children }: { children: React.ReactNode }) {
     </CardContent>
   );
 }
-interface BlogPost {
+interface BlogLinkProps {
   title: string;
-  description: string;
-  date: string;
+  description?: string;
   href: string;
-  tags?: string[];
 }
 
-const RelatedBlog = ({ posts }: { posts: BlogPost[] }) => {
-  if (posts.length === 0) return null;
-
+const BlogLink = ({ title, description, href }: BlogLinkProps) => {
   return (
-    <div className="mt-12 space-y-6">
-      <h5 className="font-bold text-lg flex items-center gap-2 text-foreground/90">
-        <BookOpen className="w-5 h-5 text-blue-500" />
-        관련 블로그 포스트
-      </h5>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {posts.map((post, idx) => (
-          <Link key={idx} href={post.href} className="group">
-            <div className="h-full p-5 rounded-xl border border-border/50 bg-slate-50/50 dark:bg-slate-900/20 hover:border-blue-500/50 transition-all duration-300">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
-                <Calendar className="w-3 h-3" />
-                {post.date}
-              </div>
-              <h6 className="font-bold text-base mb-2 group-hover:text-blue-600 transition-colors line-clamp-1">
-                {post.title}
-              </h6>
-              <p className="text-sm text-muted-foreground line-clamp-2 mb-4 leading-relaxed">
-                {post.description}
-              </p>
-              <div className="flex items-center justify-between mt-auto">
-                <div className="flex gap-1.5">
-                  {post.tags?.slice(0, 2).map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="text-[10px] px-1.5 py-0"
-                    >
-                      #{tag}
-                    </Badge>
-                  ))}
-                </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
-              </div>
+    <div className="mt-8">
+      <Link href={href} className="group block">
+        <div className="flex items-center justify-between p-5 rounded-xl border border-border/50 bg-slate-50/50 dark:bg-slate-900/20 hover:border-blue-500/50 transition-all duration-300">
+          <div className="flex-1 pr-4">
+            <div className="flex items-center gap-2 mb-1">
+              <BookOpen className="w-4 h-4 text-blue-500" />
+              <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                Related Post
+              </span>
             </div>
-          </Link>
-        ))}
-      </div>
+            <h6 className="font-bold text-base group-hover:text-blue-600 transition-colors line-clamp-1">
+              {title}
+            </h6>
+            {description && (
+              <p className="text-sm text-muted-foreground line-clamp-1 mt-1">
+                {description}
+              </p>
+            )}
+          </div>
+          <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+        </div>
+      </Link>
     </div>
   );
 };
@@ -281,7 +288,7 @@ const ProjectDetail = Object.assign(ProjectDetailRoot, {
   Result,
   Code,
   Markdown,
-  RelatedBlog,
+  BlogLink,
 });
 
 export default ProjectDetail;
