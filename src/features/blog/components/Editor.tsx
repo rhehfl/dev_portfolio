@@ -35,7 +35,6 @@ export default function Editor({ postId }: EditorUIProps) {
         <div className="h-1.5 w-16 bg-gray-800 mt-4 mb-2"></div>
       </div>
 
-      {/* 태그 영역 */}
       <div className="px-8 pb-4 flex flex-wrap gap-2 items-center">
         {post.tags.map((tag, index) => (
           <span
@@ -56,7 +55,7 @@ export default function Editor({ postId }: EditorUIProps) {
         />
       </div>
 
-      <div className="flex flex-1 overflow-hidden min-h-0">
+      <div className="flex flex-1 min-h-0">
         <div className="flex-1 p-8 overflow-auto border-r border-gray-100">
           <TextareaAutosize
             ref={textareaRef}

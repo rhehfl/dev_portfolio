@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { uploadImage } from '@/features/blog/utils/uploadImage';
 import { supabase } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
 
 interface PostData {
   title: string;
@@ -26,6 +27,7 @@ export const useEditor = (postId?: string) => {
   const [tagInput, setTagInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isLoading, setIsLoading] = useState(!!postId);
+  const router = useRouter();
 
   useEffect(() => {
     if (postId) {
@@ -59,6 +61,7 @@ export const useEditor = (postId?: string) => {
 
     const postPayload = {
       ...post,
+      is_published: true,
     };
 
     try {
@@ -76,6 +79,7 @@ export const useEditor = (postId?: string) => {
 
       if (error) throw error;
       alert(postId ? '수정되었습니다!' : '출간되었습니다!');
+      router.push('/blog');
     } catch (err: any) {
       alert(err.message);
     }
