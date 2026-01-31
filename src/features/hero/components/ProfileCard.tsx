@@ -6,7 +6,7 @@ export default function ProfileCard() {
     <article className="flex col-span-12 flex-col items-center md:items-start lg:items-start text-center lg:col-start-2 md:col-span-4 md:col-start-2 lg:col-span-4">
       <figure className="mt-11 ">
         <Image
-          src="/profile.jpg"
+          src="/profile.avif"
           preload
           alt="프론트엔드 개발자 구도윤 프로필 사진"
           className="rounded-full border-2 border-gray-300"

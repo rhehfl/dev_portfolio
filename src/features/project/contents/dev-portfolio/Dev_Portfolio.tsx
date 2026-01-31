@@ -3,11 +3,11 @@ import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 import PORTFOLIO_TROUBLESHOOTING from '@/features/project/contents/dev-portfolio/troubleshooting.mdx';
 import PORTFOLIO_PERFORMANCE from '@/features/project/contents/dev-portfolio/performance.mdx';
+import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
 
 export default function DevPortfolio() {
   return (
     <div className="p-5 h-full ">
-      <div className="my-8"></div>
       <div className="lg:p-10">
         <ProjectHeader
           title="Dev Portfolio"
@@ -32,6 +32,7 @@ export default function DevPortfolio() {
         <section className="flex flex-col gap-8">
           <PORTFOLIO_PERFORMANCE />
         </section>
+        <ProjectNavigation currentDetailUrl="dev-portfolio" />
       </div>
     </div>
   );

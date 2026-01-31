@@ -75,7 +75,7 @@ const Figure = ({
   ...props
 }: FigureProps) => (
   <figure className="flex flex-col overflow-hidden my-6 rounded-xl border border-border/60 bg-muted/20 shadow-sm">
-    <div className="flex justify-center py-6 px-4 bg-white dark:bg-slate-950/50">
+    <div className="flex  py-6 px-4 bg-white dark:bg-slate-950/50">
       <PhotoDetailLink
         photoId={encodeURIComponent(src)}
         className="cursor-zoom-in transition-transform hover:scale-[1.01]"
@@ -179,7 +179,7 @@ const Code = ({
   language?: string;
 }) => {
   return (
-    <div className="my-4 rounded-lg overflow-hidden border border-border/40 shadow-sm">
+    <div className="my-4 rounded-lg overflow-hidden border border-border/40 shadow-sm flex">
       <MarkDownWrapper>{`\`\`\`${language}\n${children}\n\`\`\``}</MarkDownWrapper>
     </div>
   );

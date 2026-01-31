@@ -9,6 +9,7 @@ import DORAN_TROUBLESHOOTING from '@/features/project/contents/doran-doran/troub
 import DORAN_PERFORMANCE from '@/features/project/contents/doran-doran/performance.mdx';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 import ImagePreloader from '@/components/common/ImagePreloader';
+import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/606374e7-bb1e-4d33-a714-873225720984',
   'https://github.com/user-attachments/assets/3d921d3d-b7f1-468f-9943-2435420b1031',
@@ -57,6 +58,7 @@ export default function DoranDoran() {
         <section className="flex flex-col gap-8">
           <DORAN_PERFORMANCE />
         </section>
+        <ProjectNavigation currentDetailUrl="doran-doran" />
       </div>
     </div>
   );

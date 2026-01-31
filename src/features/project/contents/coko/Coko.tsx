@@ -9,6 +9,7 @@ import CokoPerformance from '@/features/project/contents/coko/coko-performance.m
 import { COKO_CONTRIBUTIONS } from '@/features/project/contents/coko/data';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 import ImagePreloader from '@/components/common/ImagePreloader';
+import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
 
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/c9dc7ee4-c3e1-471d-ae2a-65d45bf5a782',
@@ -60,6 +61,7 @@ export default function Coko() {
         <section className="flex flex-col gap-8">
           <CokoPerformance />
         </section>
+        <ProjectNavigation currentDetailUrl="coko" />
       </div>
     </div>
   );

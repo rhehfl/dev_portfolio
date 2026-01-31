@@ -5,6 +5,7 @@ import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
+import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
 import { PPICK_CONTRIBUTIONS } from '@/features/project/contents/p-pick/data';
 import PERFORMANCE from '@/features/project/contents/p-pick/performance.mdx';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
@@ -44,6 +45,7 @@ export default function PPick() {
         <section className="flex flex-col gap-8 ">
           <PERFORMANCE />
         </section>
+        <ProjectNavigation currentDetailUrl="p-pick" />
       </div>
     </div>
   );
