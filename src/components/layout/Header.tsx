@@ -14,11 +14,11 @@ import { Separator } from '@/components/ui/separator';
 import { useState } from 'react';
 
 const navItems = [
+  { name: 'Blog', href: '/blog' },
   { name: 'Intro', href: '/#intro' },
   { name: 'Projects', href: '/#projects' },
   { name: 'Experience', href: '/#experience' },
-  { name: 'Education', href: '/#education' },
-  { name: 'blog', href: '/blog' },
+  { name: 'Credentials', href: '/#credentials' },
 ];
 
 export default function Header() {

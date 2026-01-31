@@ -6,7 +6,10 @@ import { motion } from 'framer-motion';
 
 export default function CredentialsSection() {
   return (
-    <section className="grid grid-cols-12 gap-6 auto-rows mb-24">
+    <section
+      className="grid grid-cols-12 gap-6 auto-rows mb-24"
+      id="credentials"
+    >
       <header className="col-span-10 col-start-2 mt-20 mb-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
