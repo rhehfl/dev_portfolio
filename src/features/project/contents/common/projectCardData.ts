@@ -1,4 +1,6 @@
-export const ProjectCardData = [
+import { ProjectCard } from '@/features/project/types/ProjectCard';
+
+export const ProjectCardData: ProjectCard[] = [
   {
     description: 'JS를 재미있게 학습하기 위한 퀴즈 기반 교육 웹 사이트',
     githubLink: 'https://github.com/modern-agile-team/8term-coko-Front',
@@ -63,4 +65,4 @@ export const ProjectCardData = [
     ],
     period: '2025.12 ~',
   },
-] as const;
+];
