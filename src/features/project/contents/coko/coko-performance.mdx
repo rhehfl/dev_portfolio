@@ -15,7 +15,8 @@ import ProjectDetail from '@/features/project/components/ProjectDetail';
       2. `Suspense` 컴포넌트를 상위 트리에 배치하여, 청크(Chunk) 파일이 다운로드되는 동안 스켈레톤 UI를 노출해 UX 저하를 방지했습니다.
 
       <ProjectDetail.Code>
-      {`
+      {
+        `
 
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));

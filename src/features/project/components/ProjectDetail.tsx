@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +17,7 @@ import Image from 'next/image';
 import PhotoDetailLink from '@/components/common/PhotoDetailLink';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -24,6 +27,8 @@ interface HeaderProps {
 }
 
 const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
+  const router = useRouter();
+
   const DefaultIcon = hasMetrics ? (
     <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
   ) : (
@@ -49,6 +54,7 @@ const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
         >
           <Link
             href={link}
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2"
           >
