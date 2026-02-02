@@ -156,3 +156,32 @@ code:not(pre code) {
     display: list-item !important;
   }
 }
+/* 1. 기본 마크다운 컨테이너의 폰트 렌더링 최적화 */
+.markdown-body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-body {
+    font-weight: 400 !important;
+    color: rgb(24, 86, 141) !important;
+  }
+
+  /* 제목(h1~h6)이 너무 두꺼워 깨지는 현상 방지 */
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    font-weight: 600 !important;
+    color: #000000 !important;
+  }
+
+  /* 강조(strong) 태그가 너무 뭉개진다면 */
+  .markdown-body strong {
+    font-weight: 600 !important;
+  }
+}
