@@ -42,15 +42,4 @@ export const EXPERIENCE: ExperienceItem[] = [
     - 클로저, 제네레이터 등 고급 자바스크립트 문법 학습`,
     link: 'https://github.com/rhehfl/Modern-JS-Deep-Dive/tree/main',
   },
-
-  {
-    id: 4,
-    type: 'study-casual',
-    period: '2024.09 - Current',
-    title: '모각코 (모여서 각자 코딩)',
-    company: 'Dev Study',
-    role: 'Member',
-    description:
-      '매주 일요일 정기적으로 모여 각자의 부족한 부분을 보충하고, 코딩 관련 지식을 자유롭게 교류하는 소규모 스터디 활동',
-  },
 ];
