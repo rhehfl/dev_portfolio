@@ -1,4 +1,4 @@
-import { MessageSquareCode, ShieldCheck, Container } from 'lucide-react';
+import { MessageSquareCode, Layers, Zap } from 'lucide-react';
 
 export const CAPABILITIES = [
   {
@@ -7,22 +7,22 @@ export const CAPABILITIES = [
     icon: <MessageSquareCode />,
     title: '소통하며 함께 성장합니다.',
     description: `동료들과 지식을 공유하고 발전하는 문화를 지향합니다.
-팀 내 코드 리뷰 문화를 주도하여 단일 PR에 60개 이상의 코멘트를 주고받는 등 적극적으로 소통합니다.`,
+팀 내 코드 리뷰 문화를 주도하여 단일 PR에 60개 이상의 코멘트를 주고받으며, 노션, 피그마등을 활용하여 효과적으로 협업하고 소통합니다.`,
   },
   {
-    id: 'standard',
+    id: 'productivity',
     variant: 'green',
-    icon: <ShieldCheck />,
+    icon: <Zap />,
     title: '개발 생산성을 높이는 환경을 구축합니다.',
-    description: `Tanstack Query 키 관리를 위한 팩토리 패턴 도입으로 휴먼 에러 문제를 해결하고
-직접 ESLint 플러그인을 제작하여 반복되는 실수를 시스템적으로 차단하는 등 개발 환경을 주도적으로 개선합니다.`,
+    description: `React Suspense 런타임 에러를 예방하는 ESLint 플러그인을 직접 개발·배포하여 디버깅 비용을 줄였습니다.
+Query Key Factory 패턴으로 휴먼 에러를 제거하고, 어드민 페이지 개발로 팀의 운영 요청 대응 시간을 단축했습니다.`,
   },
   {
-    id: 'infrastructure',
+    id: 'performance',
     variant: 'purple',
-    icon: <Container />,
-    title: '서비스의 시작부터 배포까지 주도합니다.',
-    description: `프론트엔드 영역에 국한되지 않고 서비스 전체의 흐름을 이해합니다.
-Docker와 AWS를 활용해 직접 CI/CD 파이프라인을 구축하고, NestJS 기반의 백엔드 개발 경험을 통해 인프라와 서버 로직까지 기여할 수 있습니다.`,
+    icon: <Layers />,
+    title: '성능과 사용자 경험을 함께 고민합니다.',
+    description: `번들 사이즈 85% 감소(2MB→300KB), 이미지 요청 85% 최적화 등 측정 가능한 성과를 만들어냅니다.
+Skeleton UI와 낙관적 업데이트로 체감 대기시간을 제거하고, 도메인 기반 아키텍처로 유지보수성을 확보합니다.`,
   },
 ] as const;
