@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { useState } from 'react';
+import ThemeToggle from '@/components/layout/ThemeToggle';
 
 const navItems = [
   { name: 'Blog', href: '/blog' },
@@ -40,7 +41,7 @@ export default function Header() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
           isScrolled
-            ? 'bg-white/80 backdrop-blur-md border-b border-gray-200/50 py-3 shadow-sm'
+            ? 'bg-background/80 backdrop-blur-md border-b border-border/60 py-3 shadow-sm'
             : 'bg-transparent py-5',
         )}
         initial={{ y: -100 }}
@@ -50,7 +51,7 @@ export default function Header() {
         <div className="container mx-auto px-6 md:px-10 flex justify-between items-center">
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
+            className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity text-foreground"
           >
             Gu Doyoon
           </Link>
@@ -66,6 +67,7 @@ export default function Header() {
                 <Link href={item.href}>{item.name}</Link>
               </Button>
             ))}
+            <ThemeToggle className="ml-2" />
           </nav>
 
           <Button
@@ -91,7 +93,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
           >
             <nav className="flex flex-col space-y-4">
               {navItems.map((item, index) => (
@@ -104,14 +106,15 @@ export default function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-2xl font-semibold text-gray-800 py-3 hover:text-blue-600 transition-colors"
+                    className="block text-2xl font-semibold text-foreground py-3 hover:text-primary transition-colors"
                   >
                     {item.name}
                   </Link>
-                  <Separator className="bg-gray-100" />
+                  <Separator className="bg-border/60" />
                 </motion.div>
               ))}
             </nav>
+            <ThemeToggle className="mt-8 w-full justify-start" showLabel />
           </motion.div>
         )}
       </AnimatePresence>

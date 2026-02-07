@@ -2,6 +2,24 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
+import { ThemeProvider } from '@/components/common/ThemeProvider';
+
+const themeInitializer = `
+  (function () {
+    const storageKey = 'gd-theme';
+    try {
+      const stored = window.localStorage.getItem(storageKey);
+      const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const theme = stored === 'dark' || stored === 'light' ? stored : system;
+      const root = document.documentElement;
+      root.classList.toggle('dark', theme === 'dark');
+      root.setAttribute('data-theme', theme);
+      root.style.colorScheme = theme;
+    } catch (error) {
+      // ignore
+    }
+  })();
+`;
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -70,23 +88,28 @@ export default function RootLayout({
   photo?: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <meta
-        name="google-site-verification"
-        content="5-SZDPt7c3VV52-P0HBICIR2zOuHhXIVwQeI4T2uw2o"
-      />
-      <meta
-        name="naver-site-verification"
-        content="a8db12f931a042afc4d44c7c64f5508592eca691"
-      />
+    <html lang="ko" suppressHydrationWarning>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="5-SZDPt7c3VV52-P0HBICIR2zOuHhXIVwQeI4T2uw2o"
+        />
+        <meta
+          name="naver-site-verification"
+          content="a8db12f931a042afc4d44c7c64f5508592eca691"
+        />
+        <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
+      </head>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        {modal}
-        {photo}
+        <ThemeProvider>
+          <Header />
+          {children}
+          {modal}
+          {photo}
+        </ThemeProvider>
       </body>
     </html>
   );
