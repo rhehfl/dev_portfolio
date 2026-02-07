@@ -1,0 +1,74 @@
+code:not(pre code) {
+  color: rgb(238, 29, 29);
+  background-color: oklch(90.365% 0.0001 271.152);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.25rem;
+}
+
+.prose :where(code):not(:where([class~='not-prose'] *))::before,
+.prose :where(code):not(:where([class~='not-prose'] *))::after {
+  content: '' !important;
+}
+
+@layer components {
+  .markdown-body ul {
+    list-style-type: disc !important;
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+    padding-left: 2em !important;
+  }
+
+  .markdown-body ol {
+    list-style-type: decimal !important;
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+    padding-left: 2em !important;
+  }
+
+  .markdown-body li {
+    display: list-item !important;
+  }
+}
+
+.markdown-body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: var(--foreground);
+  background: transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-body {
+    font-weight: 400 !important;
+    color: var(--foreground) !important;
+  }
+
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    font-weight: 600 !important;
+    color: var(--foreground) !important;
+  }
+
+  .markdown-body strong {
+    font-weight: 600 !important;
+  }
+}
+
+.dark .markdown-body {
+  color: var(--foreground) !important;
+  background: transparent !important;
+}
+
+.dark .markdown-body h1,
+.dark .markdown-body h2,
+.dark .markdown-body h3,
+.dark .markdown-body h4,
+.dark .markdown-body h5,
+.dark .markdown-body h6 {
+  color: var(--foreground) !important;
+}
