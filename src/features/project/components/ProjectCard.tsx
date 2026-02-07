@@ -49,8 +49,6 @@ export default function ProjectCard({
             </div>
             <div className="relative w-full overflow-hidden">
               <TechStack stacks={techStack} className="whitespace-nowrap" />
-
-              <div className="pointer-events-none absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-background via-background to-transparent" />
             </div>
           </CardHeader>
           <CardContent className="flex flex-1 flex-col gap-3">
