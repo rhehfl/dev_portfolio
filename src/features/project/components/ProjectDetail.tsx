@@ -27,8 +27,6 @@ interface HeaderProps {
 }
 
 const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
-  const router = useRouter();
-
   const DefaultIcon = hasMetrics ? (
     <TrendingUp className="w-6 h-6 text-primary" />
   ) : (
@@ -36,8 +34,8 @@ const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
   );
 
   return (
-    <CardHeader className="flex justify-between pb-6 border-b border-border bg-muted">
-      <CardTitle className="text-xl sm:text-2xl font-extrabold flex items-center gap-3 tracking-tight">
+    <CardHeader className="flex justify-between py-6 border-b border-border bg-muted">
+      <CardTitle className="text-xl  sm:text-2xl font-extrabold flex items-center gap-3 tracking-tight">
         <span className="shrink-0">{icon || DefaultIcon}</span>
         <span className="text-foreground">{children}</span>
       </CardTitle>
@@ -223,7 +221,7 @@ function ProjectDetailRoot({ children, className }: RootProps) {
   return (
     <Card
       className={cn(
-        'h-full border border-border shadow-lg shadow-black/5 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary',
+        'h-full border border-border shadow-lg shadow-black/5 overflow-hidden transition-all p-0 duration-300 hover:shadow-xl hover:border-primary',
         className,
       )}
     >
