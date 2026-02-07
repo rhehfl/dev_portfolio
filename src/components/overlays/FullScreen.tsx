@@ -28,7 +28,7 @@ export default function FullScreen({
   };
 
   return (
-    <div className="fixed inset-0 z-50 pointer-events-none bg-white">
+    <div className="fixed inset-0 z-50 pointer-events-none bg-background">
       <motion.aside
         layoutId={layoutId}
         custom={isViewTransition}
@@ -38,12 +38,12 @@ export default function FullScreen({
         animate="animate"
         exit="exit"
         className="
-          relative w-full h-full bg-white shadow-2xl overflow-y-hidden
-          flex flex-col
+          relative w-full h-full bg-card text-foreground shadow-2xl overflow-y-hidden
+          flex flex-col border border-border
           pointer-events-auto
         "
       >
-        <div className="flex items-center justify-between p-4 border-b shrink-0">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-muted shrink-0">
           <ViewModeSelect
             value="fullscreen"
             onChange={(viewMode) => {
@@ -52,14 +52,16 @@ export default function FullScreen({
           />
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 rounded-full transition-colors hover:bg-muted"
             aria-label="Close fullscreen"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 p-4">{children}</div>
+        <div className="overflow-y-auto flex-1 p-4 bg-background">
+          {children}
+        </div>
       </motion.aside>
     </div>
   );

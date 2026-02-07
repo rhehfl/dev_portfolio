@@ -15,7 +15,7 @@ export default function ExperienceSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold"
+          className="text-3xl font-bold text-foreground"
         >
           __Experience
         </motion.h2>

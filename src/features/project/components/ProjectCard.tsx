@@ -30,16 +30,16 @@ export default function ProjectCard({
       transition={{ duration: 0.5, ease: 'easeOut' }}
       whileHover={{
         scale: 1.02,
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 25px 50px -12px rgba(15, 23, 42, 0.25)',
         transition: { duration: 0.2 },
       }}
-      className="h-full rounded-2xl shadow-lg hover:shadow-2xl  from-white/50 to-white/30 dark:from-black/50 dark:to-black/30 border border-gray-200 dark:border-gray-700 backdrop-blur-sm"
+      className="h-full rounded-2xl border border-border bg-card shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl"
     >
       <Link
         href={`/card/${detailUrl}`}
         className="flex h-full flex-col rounded-lg overflow-hidden"
       >
-        <Card className="group h-full border-none shadow-md bg-card/50 backdrop-blur-sm">
+        <Card className="group h-full border-none shadow-md bg-card backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-lg">{title}</CardTitle>
             <CardDescription>{description}</CardDescription>
@@ -50,7 +50,7 @@ export default function ProjectCard({
             <div className="relative w-full overflow-hidden">
               <TechStack stacks={techStack} className="whitespace-nowrap" />
 
-              <div className="absolute top-0 right-0 w-5 h-full bg-linear-to-l from-white to-transparent"></div>
+              <div className="pointer-events-none absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-background via-background to-transparent" />
             </div>
           </CardHeader>
           <CardContent className="flex flex-1 flex-col gap-3">

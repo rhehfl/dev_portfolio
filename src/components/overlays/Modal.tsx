@@ -23,7 +23,7 @@ export default function Modal({
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center pointer-events-none">
       <div
-        className="absolute inset-0 bg-black/20 pointer-events-auto"
+        className="absolute inset-0 bg-background opacity-80 backdrop-blur-sm pointer-events-auto"
         onClick={onClose}
       />
       <motion.aside
@@ -35,8 +35,8 @@ export default function Modal({
         animate="animate"
         exit="exit"
         className="
-                relative h-full bg-white shadow-2xl overflow-y-hidden
-                flex flex-col
+                relative h-full bg-card text-foreground shadow-2xl overflow-y-hidden
+                flex flex-col border border-border
                 w-full        
                 max-h-[85vh]
                 md:max-w-lg 
@@ -46,17 +46,17 @@ export default function Modal({
                 pointer-events-auto    
             "
       >
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-muted">
           <ViewModeSelect value="modal" onChange={onChangeMode} />
 
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-2xl"
+            className="p-2 rounded-2xl transition-colors hover:bg-muted"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="overflow-y-scroll h-full">{children}</div>
+        <div className="overflow-y-scroll h-full bg-background">{children}</div>
       </motion.aside>
     </div>
   );

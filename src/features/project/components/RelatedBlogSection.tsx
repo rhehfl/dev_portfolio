@@ -23,7 +23,7 @@ export function RelatedBlogSection({ posts }: RelatedBlogSectionProps) {
 
   return (
     <section className="mt-20 space-y-6">
-      <div className="flex items-center gap-2 border-b pb-2 border-border/40">
+      <div className="flex items-center gap-2 border-b pb-2 border-border">
         <BookOpen className="w-5 h-5 text-primary" />
         <h4 className="text-xl font-bold tracking-tight">관련 블로그 포스트</h4>
       </div>
@@ -31,7 +31,7 @@ export function RelatedBlogSection({ posts }: RelatedBlogSectionProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {posts.map((post, idx) => (
           <Link key={idx} href={post.href} className="group">
-            <Card className="h-full overflow-hidden border-border/60 hover:border-primary/50 hover:shadow-md transition-all duration-300 bg-card/50 backdrop-blur-sm">
+            <Card className="h-full overflow-hidden border border-border hover:border-primary hover:shadow-md transition-all duration-300 bg-card backdrop-blur-sm">
               {post.thumbnailUrl && (
                 <div className="relative w-full h-40 overflow-hidden">
                   <Image

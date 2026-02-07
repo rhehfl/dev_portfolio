@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export default async function BlogSidebar({
   currentTag,
@@ -23,21 +24,29 @@ export default async function BlogSidebar({
 
   return (
     <aside className="w-full md:w-64 shrink-0">
-      <div className="sticky top-24 p-6 border rounded-xl bg-white dark:bg-gray-900 dark:border-gray-700">
-        <h3 className="font-bold text-lg mb-4">🏷️ 태그 목록</h3>
+      <div className="sticky top-24 p-6 border border-border rounded-xl bg-card shadow-sm">
+        <h3 className="font-bold text-lg mb-4 text-foreground">🏷️ 태그 목록</h3>
 
         <ul className="space-y-2">
           <li>
             <Link
               href="/blog"
-              className={`flex justify-between items-center text-sm px-3 py-2 rounded-lg transition-colors ${
+              className={cn(
+                'flex justify-between items-center text-sm px-3 py-2 rounded-lg transition-all border border-transparent',
                 !currentTag
-                  ? 'bg-blue-50 text-blue-600 font-semibold dark:bg-blue-900/30 dark:text-blue-400'
-                  : 'hover:bg-gray-100 text-gray-600 dark:text-gray-400 dark:hover:bg-gray-800'
-              }`}
+                  ? 'bg-primary text-primary-foreground font-semibold shadow-sm'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+              )}
             >
               <span>전체 보기</span>
-              <span className="bg-gray-100 text-xs px-2 py-0.5 rounded-full dark:bg-gray-800">
+              <span
+                className={cn(
+                  'text-xs px-2 py-0.5 rounded-full border border-transparent',
+                  !currentTag
+                    ? 'bg-primary-foreground text-primary'
+                    : 'bg-muted text-muted-foreground border-border',
+                )}
+              >
                 {posts?.length || 0}
               </span>
             </Link>
@@ -47,14 +56,22 @@ export default async function BlogSidebar({
             <li key={tag}>
               <Link
                 href={`/blog?tag=${tag}`}
-                className={`flex justify-between items-center text-sm px-3 py-2 rounded-lg transition-colors ${
+                className={cn(
+                  'flex justify-between items-center text-sm px-3 py-2 rounded-lg transition-all border border-transparent',
                   currentTag === tag
-                    ? 'bg-blue-50 text-blue-600 font-semibold dark:bg-blue-900/30 dark:text-blue-400'
-                    : 'hover:bg-gray-100 text-gray-600 dark:text-gray-400 dark:hover:bg-gray-800'
-                }`}
+                    ? 'bg-primary text-primary-foreground font-semibold shadow-sm'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                )}
               >
                 <span>{tag}</span>
-                <span className="bg-gray-100 text-xs px-2 py-0.5 rounded-full dark:bg-gray-800">
+                <span
+                  className={cn(
+                    'text-xs px-2 py-0.5 rounded-full border border-transparent',
+                    currentTag === tag
+                      ? 'bg-primary-foreground text-primary'
+                      : 'bg-muted text-muted-foreground border-border',
+                  )}
+                >
                   {count}
                 </span>
               </Link>

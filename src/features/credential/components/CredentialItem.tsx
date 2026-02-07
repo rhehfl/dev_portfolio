@@ -54,7 +54,9 @@ export default function CredentialItem({
         <div className="mt-1">
           <div className="flex items-center gap-2 mb-1">
             <Icon className={`w-4 h-4 shrink-0 ${iconColor}`} />
-            <h3 className="text-lg ml-2 md:text-xl font-bold">{title}</h3>
+            <h3 className="text-lg ml-2 md:text-xl font-bold text-foreground">
+              {title}
+            </h3>
           </div>
 
           <p className="text-sm md:text-base text-muted-foreground pl-6 md:pl-0">

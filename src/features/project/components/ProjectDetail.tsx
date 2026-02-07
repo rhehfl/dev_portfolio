@@ -30,27 +30,22 @@ const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
   const router = useRouter();
 
   const DefaultIcon = hasMetrics ? (
-    <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+    <TrendingUp className="w-6 h-6 text-primary" />
   ) : (
-    <Wrench className="w-5 h-5 text-slate-500" />
+    <Wrench className="w-5 h-5 text-muted-foreground" />
   );
 
   return (
-    <CardHeader className="flex justify-between pb-6 border-b border-border/40 bg-slate-50/30 dark:bg-slate-900/10">
+    <CardHeader className="flex justify-between pb-6 border-b border-border bg-muted">
       <CardTitle className="text-xl sm:text-2xl font-extrabold flex items-center gap-3 tracking-tight">
         <span className="shrink-0">{icon || DefaultIcon}</span>
-        <span className="text-black from-foreground to-foreground/70 bg-clip-text ">
-          {children}
-        </span>
+        <span className="text-foreground">{children}</span>
       </CardTitle>
       {link && (
         <Button
           asChild
           variant="ghost"
-          className="relative h-10 px-6 
-                     bg-white/80 dark:bg-white/5 backdrop-blur-sm
-                     border border-slate-200 dark:border-white/10
-                     shadow-sm"
+          className="relative h-10 px-6 bg-card backdrop-blur-sm border border-border shadow-sm hover:bg-muted"
         >
           <Link
             href={link}
@@ -58,7 +53,7 @@ const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
             rel="noopener noreferrer"
             className="flex items-center gap-2"
           >
-            <span className="text-sm text-slate-700 tracking-tight">
+            <span className="text-sm text-foreground tracking-tight">
               자세히 보기
             </span>
             <div className="relative">
@@ -80,19 +75,19 @@ interface SectionProps {
 
 const Section = ({
   title,
-  dotColor = 'bg-slate-400',
+  dotColor = 'bg-muted-foreground',
   children,
   className,
 }: SectionProps) => {
   return (
     <div className={cn('space-y-3', className)}>
-      <h5 className="font-bold text-base sm:text-lg flex items-center gap-2.5 text-foreground/90 leading-none">
+      <h5 className="font-bold text-base sm:text-lg flex items-center gap-2.5 text-foreground leading-none">
         <span
           className={cn('w-1.5 h-4 rounded-full shrink-0 shadow-sm', dotColor)}
         />
         {title}
       </h5>
-      <div className="pl-4 flex flex-col gap-3 text-sm sm:text-base leading-relaxed text-muted-foreground/90 break-keep">
+      <div className="pl-4 flex flex-col gap-3 text-sm sm:text-base leading-relaxed text-muted-foreground break-keep">
         {children}
       </div>
     </div>
@@ -113,8 +108,8 @@ const Figure = ({
   height = 200,
   ...props
 }: FigureProps) => (
-  <figure className="flex flex-col overflow-hidden my-6 rounded-xl border border-border/60 bg-muted/20 shadow-sm">
-    <div className="flex  py-6 px-4 bg-white dark:bg-slate-950/50">
+  <figure className="flex flex-col overflow-hidden my-6 rounded-xl border border-border bg-muted shadow-sm">
+    <div className="flex py-6 px-4 bg-card">
       <PhotoDetailLink
         photoId={encodeURIComponent(src)}
         className="cursor-zoom-in transition-transform hover:scale-[1.01]"
@@ -130,7 +125,7 @@ const Figure = ({
       </PhotoDetailLink>
     </div>
     {caption && (
-      <figcaption className="p-4 text-xs sm:text-sm text-muted-foreground bg-slate-50/80 dark:bg-slate-900/50 border-t border-border/40">
+      <figcaption className="p-4 text-xs sm:text-sm text-muted-foreground bg-muted border-t border-border">
         <MarkDownWrapper>{caption}</MarkDownWrapper>
       </figcaption>
     )}
@@ -154,22 +149,22 @@ interface MetricItemProps {
 }
 
 const MetricItem = ({ name, before, after, rate }: MetricItemProps) => (
-  <div className="flex items-center justify-between gap-4 bg-background/60 backdrop-blur-sm p-3 rounded-lg border border-border/40 shadow-sm transition-all hover:border-blue-200 dark:hover:border-blue-800">
-    <span className="font-semibold text-slate-600 dark:text-slate-400 text-xs sm:text-sm flex-shrink-0">
+  <div className="flex items-center justify-between gap-4 bg-card backdrop-blur-sm p-3 rounded-lg border border-border shadow-sm transition-all hover:border-primary">
+    <span className="font-semibold text-muted-foreground text-xs sm:text-sm flex-shrink-0">
       {name}
     </span>
     <div className="flex items-center gap-3 flex-1 justify-end min-w-0">
-      <span className="text-slate-400 line-through decoration-slate-300 decoration-1 text-xs sm:text-sm truncate opacity-70">
+      <span className="text-muted-foreground line-through decoration-muted-foreground decoration-1 text-xs sm:text-sm truncate opacity-70">
         {before}
       </span>
-      <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
-      <span className="font-bold text-blue-600 dark:text-blue-400 text-sm sm:text-base whitespace-nowrap">
+      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground shrink-0 opacity-70" />
+      <span className="font-bold text-primary text-sm sm:text-base whitespace-nowrap">
         {after}
       </span>
       {rate && (
         <Badge
           variant="secondary"
-          className="ml-1 px-1.5 py-0 border-blue-100 text-blue-700 bg-blue-100/50 dark:bg-blue-900/30 dark:text-blue-300 font-bold shrink-0"
+          className="ml-1 px-1.5 py-0 text-primary font-bold shrink-0"
         >
           {rate}
         </Badge>
@@ -218,7 +213,7 @@ const Code = ({
   language?: string;
 }) => {
   return (
-    <div className="my-4 rounded-lg overflow-hidden border border-border/40 shadow-sm flex">
+    <div className="my-4 rounded-lg overflow-hidden border border-border shadow-sm flex">
       <MarkDownWrapper>{`\`\`\`${language}\n${children}\n\`\`\``}</MarkDownWrapper>
     </div>
   );
@@ -228,7 +223,7 @@ function ProjectDetailRoot({ children, className }: RootProps) {
   return (
     <Card
       className={cn(
-        'h-full border border-border/50 shadow-lg shadow-slate-200/40 dark:shadow-none overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-border/80',
+        'h-full border border-border shadow-lg shadow-black/5 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary',
         className,
       )}
     >
@@ -260,15 +255,15 @@ const BlogLink = ({ title, description, href }: BlogLinkProps) => {
   return (
     <div className="mt-8">
       <Link href={href} className="group block">
-        <div className="flex items-center justify-between p-5 rounded-xl border border-border/50 bg-slate-50/50 dark:bg-slate-900/20 hover:border-blue-500/50 transition-all duration-300">
+        <div className="flex items-center justify-between p-5 rounded-xl border border-border bg-muted hover:border-primary transition-all duration-300">
           <div className="flex-1 pr-4">
             <div className="flex items-center gap-2 mb-1">
-              <BookOpen className="w-4 h-4 text-blue-500" />
-              <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+              <BookOpen className="w-4 h-4 text-primary" />
+              <span className="text-xs font-semibold text-primary uppercase tracking-wider">
                 Related Post
               </span>
             </div>
-            <h6 className="font-bold text-base group-hover:text-blue-600 transition-colors line-clamp-1">
+            <h6 className="font-bold text-base group-hover:text-primary transition-colors line-clamp-1">
               {title}
             </h6>
             {description && (
@@ -277,7 +272,7 @@ const BlogLink = ({ title, description, href }: BlogLinkProps) => {
               </p>
             )}
           </div>
-          <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+          <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
         </div>
       </Link>
     </div>

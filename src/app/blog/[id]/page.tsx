@@ -68,10 +68,10 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
   if (!post) notFound();
 
   return (
-    <article className="max-w-3xl mx-auto py-10 prose lg:prose-xl ">
+    <article className="max-w-3xl mx-auto py-10 prose lg:prose-xl prose-neutral dark:prose-invert text-foreground">
       <ViewCounter id={id} />
       <h1 className="leading-loose">{post.title}</h1>
-      <div className="text-gray-500 mb-8">
+      <div className="text-muted-foreground mb-8">
         {new Date(post.created_at).toLocaleDateString()} 작성
       </div>
       <MarkDownWrapper>{post.content}</MarkDownWrapper>

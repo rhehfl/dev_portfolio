@@ -12,10 +12,10 @@ export default function BlogCard({ post }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${post.id}`}
-      className="group block border rounded-xl overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-900 dark:border-gray-700"
+      className="group block border border-border rounded-xl overflow-hidden hover:shadow-xl transition-shadow bg-card"
     >
       {post.thumbnail && (
-        <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-48 bg-muted overflow-hidden">
           <img
             src={post.thumbnail}
             alt={post.title}
@@ -25,7 +25,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       )}
 
       <div className="p-5">
-        <h2 className="text-xl font-bold mb-2 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <h2 className="text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
           {post.title}
         </h2>
 
@@ -33,14 +33,14 @@ export default function BlogCard({ post }: BlogCardProps) {
           {post.tags?.map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-300"
+              className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground"
             >
               #{tag}
             </span>
           ))}
         </div>
 
-        <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 border-t pt-3 dark:border-gray-700">
+        <div className="flex justify-between items-center text-sm text-muted-foreground border-t border-border pt-3">
           <span>{new Date(post.created_at).toLocaleDateString()}</span>
           <div className="flex items-center gap-1">
             <svg

@@ -82,10 +82,10 @@ export default function ExperienceItem({
       <div className="flex-1 relative pl-6 md:pl-8 border-l border-border md:border-l-2  py-4">
         <div className="absolute left-[-5px] md:left-[-9px] top-0 md:top-[6px] w-[9px] h-[9px] md:w-[16px] md:h-[16px] rounded-full bg-background border-2 md:border-4 border-primary z-10 transition-transform duration-300 group-hover:scale-110" />
 
-        <Card className="border-none shadow-none bg-transparent hover:bg-card/40 transition-colors duration-300 -mt-2">
+        <Card className="border-none shadow-none bg-transparent hover:bg-card transition-colors duration-300 -mt-2">
           <CardHeader className="p-0 mb-2">
             <div className="flex items-center gap-2 mb-1">
-              <div className="p-1.5 md:p-2 bg-secondary/50 rounded-md text-foreground/80">
+              <div className="p-1.5 md:p-2 bg-secondary rounded-md text-foreground opacity-80">
                 {getIcon(type)}
               </div>
               <Badge
@@ -97,7 +97,7 @@ export default function ExperienceItem({
             </div>
 
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-              <CardTitle className="text-lg md:text-2xl font-bold flex flex-wrap items-center gap-x-2">
+              <CardTitle className="text-lg md:text-2xl font-bold flex flex-wrap items-center gap-x-2 text-foreground">
                 {title}
                 {company && (
                   <span className="text-sm md:text-lg font-normal text-muted-foreground block md:inline">
@@ -123,7 +123,7 @@ export default function ExperienceItem({
           </CardHeader>
 
           <CardContent className="p-0">
-            <CardDescription className="text-sm md:text-base leading-relaxed text-foreground/80 whitespace-pre-line">
+            <CardDescription className="text-sm md:text-base leading-relaxed text-foreground opacity-80 whitespace-pre-line">
               {description}
             </CardDescription>
           </CardContent>

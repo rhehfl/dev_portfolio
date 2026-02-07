@@ -14,13 +14,13 @@ export default function ProjectLinks({
   if (!demo && !github && !blog) return null;
 
   return (
-    <div className="flex gap-3 mb-10">
+    <div className="flex flex-wrap gap-3 mb-10">
       {demo && (
         <a
           href={demo}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-primary text-primary-foreground shadow-sm hover:brightness-110"
         >
           <ExternalLink size={16} /> Live Demo
         </a>
@@ -30,7 +30,7 @@ export default function ProjectLinks({
           href={github}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-muted text-foreground border border-border hover:brightness-110"
         >
           <Github size={16} /> GitHub
         </a>
@@ -40,7 +40,7 @@ export default function ProjectLinks({
           href={blog}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-accent text-accent-foreground shadow-sm hover:brightness-110"
         >
           <BookOpen size={16} /> Dev Log
         </a>

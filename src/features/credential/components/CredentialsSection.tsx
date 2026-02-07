@@ -15,7 +15,7 @@ export default function CredentialsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold tracking-tight"
+          className="text-3xl font-bold tracking-tight text-foreground"
         >
           __Credentials
         </motion.h2>

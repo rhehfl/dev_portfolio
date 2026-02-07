@@ -6,24 +6,18 @@ import { ReactNode } from 'react';
 export type CardVariant = 'blue' | 'green' | 'purple' | 'gray';
 const styles = {
   blue: {
-    bg: 'bg-blue-50',
-    iconColor: 'text-blue-600',
-    insetShadow: 'inset-shadow-blue-200',
+    iconWrapper: 'bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300',
   },
   green: {
-    bg: 'bg-green-50',
-    iconColor: 'text-green-600',
-    insetShadow: 'inset-shadow-green-500',
+    iconWrapper:
+      'bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300',
   },
   purple: {
-    bg: 'bg-purple-50',
-    iconColor: 'text-purple-600',
-    insetShadow: 'inset-shadow-purple-500',
+    iconWrapper:
+      'bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300',
   },
   gray: {
-    bg: 'bg-gray-50',
-    iconColor: 'text-gray-600',
-    insetShadow: 'inset-shadow-gray-500',
+    iconWrapper: 'bg-muted text-muted-foreground',
   },
 } as const;
 
@@ -50,18 +44,18 @@ export default function CapabilityCard({
       initial="rest"
       animate="rest"
       whileTap="hover"
-      className="group overflow-hidden relative h-full p-8  flex flex-col"
+      className="group overflow-hidden relative h-full p-8 flex flex-col border border-border rounded-2xl bg-card shadow-sm transition-all duration-300 hover:shadow-lg"
     >
       <div className="flex mb-6 items-center gap-5">
         <div
-          className={`w-14 h-14 rounded-xl ${currentStyle.bg} ${currentStyle.iconColor} flex items-center justify-center `}
+          className={`w-14 h-14 rounded-xl flex items-center justify-center ${currentStyle.iconWrapper}`}
         >
           <div className="w-6 h-6">{icon}</div>
         </div>
-        <h3 className="text-lg font-bold text-gray-900">{title}</h3>
+        <h3 className="text-lg font-bold text-foreground">{title}</h3>
       </div>
 
-      <p className="text-gray-600 leading-relaxed text-[15px] whitespace-pre-wrap">
+      <p className="text-muted-foreground leading-relaxed text-[15px] whitespace-pre-wrap">
         {description}
       </p>
     </motion.article>

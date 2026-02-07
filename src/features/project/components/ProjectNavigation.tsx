@@ -27,7 +27,7 @@ export function ProjectNavigation({
   const nextProject = ProjectCardData[nextIndex];
 
   return (
-    <footer className="flex flex-col sm:flex-row justify-between  mt-16 pt-8 border-t gap-28 border-border/40">
+    <footer className="flex flex-col sm:flex-row justify-between mt-16 pt-8 border-t gap-12 border-border">
       <Link
         href={`/card/${prevProject.detailUrl}`}
         className="flex-1 cursor-pointer"
@@ -35,7 +35,7 @@ export function ProjectNavigation({
       >
         <Button
           variant="ghost"
-          className="w-full h-auto py-4 flex flex-col items-start gap-1 group hover:bg-muted/50"
+          className="w-full h-auto py-4 flex flex-col items-start gap-1 group hover:bg-muted"
         >
           <span className="flex items-center text-xs text-muted-foreground">
             <ChevronLeft className="w-3 h-3 mr-1 group-hover:-translate-x-1 transition-transform" />
@@ -52,7 +52,7 @@ export function ProjectNavigation({
       >
         <Button
           variant="ghost"
-          className="w-full h-auto py-4 flex flex-col items-end gap-1 group hover:bg-muted/50"
+          className="w-full h-auto py-4 flex flex-col items-end gap-1 group hover:bg-muted"
         >
           <span className="flex items-center text-xs text-muted-foreground">
             다음 프로젝트
