@@ -57,7 +57,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
+export async function generateStaticParams() {
+  const { data: posts } = await supabase.from('posts').select('id');
 
+  if (!posts) return [];
+
+  return posts.map((post) => ({
+    id: post.id.toString(),
+  }));
+}
 export default async function BlogPost({ params }: { params: { id: string } }) {
   const { id } = await params;
   const { data: post } = await supabase
