@@ -28,7 +28,7 @@
     "github-markdown-css": "^5.8.1",
     "lucide-react": "^0.562.0",
     "next": "16.0.10",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "^6.0.0",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-markdown": "^10.1.0",
