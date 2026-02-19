@@ -4,6 +4,33 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
 
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: '구도윤',
+  url: 'https://doyoon.site',
+  jobTitle: 'Frontend Developer',
+  description:
+    '프론트엔드 개발자 구도윤의 포트폴리오 사이트입니다. React, Next.js 프로젝트 경험을 확인해보세요.',
+  sameAs: [
+    'https://github.com/rhehfl',
+    'https://velog.io/@rhehfl',
+    'https://rhehfl418q.tistory.com/',
+    'https://www.linkedin.com/in/%EB%8F%84%EC%9C%A4-%EA%B5%AC-117b76377/',
+  ],
+  knowsAbout: [
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Frontend Development',
+    'JavaScript',
+  ],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Modern Agile',
+  },
+};
+
 const themeInitializer = `
   (function () {
     const storageKey = 'gd-theme';
@@ -99,6 +126,10 @@ export default function RootLayout({
           content="a8db12f931a042afc4d44c7c64f5508592eca691"
         />
         <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </head>
 
       <body
