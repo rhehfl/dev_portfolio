@@ -1,3 +1,4 @@
+'use client';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 import PORTFOLIO_TROUBLESHOOTING from '@/features/project/contents/dev-portfolio/troubleshooting.mdx';

@@ -175,7 +175,7 @@ export const PORTFOLIO_PERFORMANCE = [
           </ProjectDetail.Metrics>
         </ProjectDetail.Section>
         <ProjectDetail.Result isHighlighted>
-          상세 페이지 진입 시 이미지 로딩 시간 '0초'에 수렴 (LCP 최적화)
+          상세 페이지 진입 시 이미지 로딩 시간 0초 (LCP 최적화)
         </ProjectDetail.Result>
       </ProjectDetail.Body>
     ),
