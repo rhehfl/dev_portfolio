@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
+import Script from 'next/script';
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -127,8 +128,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
-        <script
+        <Script
+          id="person-jsonld"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
 
