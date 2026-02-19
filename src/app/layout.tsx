@@ -80,6 +80,13 @@ export const metadata: Metadata = {
     'TypeScript',
   ],
 
+  verification: {
+    google: '5-SZDPt7c3VV52-P0HBICIR2zOuHhXIVwQeI4T2uw2o',
+    other: {
+      'naver-site-verification': 'a8db12f931a042afc4d44c7c64f5508592eca691',
+    },
+  },
+
   openGraph: {
     title: '구도윤 포트폴리오',
     description: '프론트엔드 개발자 구도윤의 프로젝트와 경험을 소개합니다.',
@@ -116,25 +123,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head>
-        <meta
-          name="google-site-verification"
-          content="5-SZDPt7c3VV52-P0HBICIR2zOuHhXIVwQeI4T2uw2o"
-        />
-        <meta
-          name="naver-site-verification"
-          content="a8db12f931a042afc4d44c7c64f5508592eca691"
-        />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-      </head>
 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
         <ThemeProvider>
           <Header />
           {children}
