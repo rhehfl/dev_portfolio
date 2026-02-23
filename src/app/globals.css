@@ -3,5 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
+@import 'github-markdown-css/github-markdown.css';
+
 @import '../styles/theme.css';
 @import '../styles/markdown.css';

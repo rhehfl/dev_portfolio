@@ -8,7 +8,7 @@ import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-// GitHub 스타일 기본 CSS 불러오기
+// CSS import
 import 'github-markdown-css/github-markdown.css';
 
 interface ReadmeRendererProps {
@@ -21,76 +21,20 @@ export default function ReadmeRenderer({
   className,
 }: ReadmeRendererProps) {
   return (
-    <div className={`readme-container w-full min-w-0 ${className || ''}`}>
-      <style jsx global>{`
-        .readme-container .markdown-body {
-          background-color: transparent !important;
-          font-family:
-            -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Helvetica,
-            Arial, sans-serif !important;
-          box-sizing: border-box;
-          min-width: 0;
-        }
-
-        .readme-container .markdown-body table {
-          display: table !important;
-          width: 100% !important;
-          table-layout: auto !important;
-          border-collapse: collapse !important;
-          margin: 1rem 0 !important;
-        }
-
-        /* 테이블 셀 설정 */
-        .readme-container .markdown-body td,
-        .readme-container .markdown-body th {
-          padding: 8px !important;
-          border: 1px solid #d0d7de !important;
-          vertical-align: middle !important;
-          text-align: center !important; /* 이미지/텍스트 중앙 정렬 */
-        }
-
-        /* 🚨 이미지 설정 (가로 배치 허용) */
-        .readme-container .markdown-body img {
-          border-style: none !important;
-          display: inline-block !important; /* block 아님! 옆으로 나란히 */
-          max-width: 100% !important;
-          height: auto !important;
-          margin: 0 !important; /* 불필요한 마진 제거 */
-          vertical-align: middle !important;
-        }
-
-        /* 링크 설정 */
-        .readme-container .markdown-body a {
-          color: inherit !important;
-          text-decoration: none !important;
-          display: inline-block !important;
-        }
-
-        /* 다크모드 대응 */
-        @media (prefers-color-scheme: dark) {
-          .readme-container .markdown-body td,
-          .readme-container .markdown-body th {
-            border-color: #30363d !important;
-          }
-        }
-      `}</style>
-
-      <div className="markdown-body">
+    /* 1. dark:prose-invert를 통해 Tailwind의 타이포그래피 다크모드 지원
+       2. markdown-body와 dark:markdown-body-dark로 깃허브 테마 적용
+    */
+    <div
+      className={`readme-container w-full min-w-0 !bg-transparent ${className || ''}`}
+    >
+      <div className="markdown-body dark:markdown-body-dark">
         <ReactMarkdown
           remarkPlugins={[remarkBreaks, remarkGfm]}
-          rehypePlugins={[rehypeRaw]} // HTML 태그(table, div 등) 파싱 필수
+          rehypePlugins={[rehypeRaw]}
           components={{
-            // 코드 하이라이팅
             code({ node, className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || '');
-              if (!match) {
-                return (
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
-                );
-              }
-              return (
+              return match ? (
                 <SyntaxHighlighter
                   PreTag="div"
                   language={match[1]}
@@ -99,15 +43,35 @@ export default function ReadmeRenderer({
                     margin: 0,
                     borderRadius: '6px',
                     fontSize: '0.9rem',
+                    background: '#ff0000',
                   }}
                 >
                   {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>
+              ) : (
+                <code
+                  className="bg-gray-200 dark:bg-gray-800 rounded px-1"
+                  {...props}
+                >
+                  {children}
+                </code>
               );
             },
-            // 링크 새 창 열기
             a: ({ node, ...props }) => (
-              <a {...props} target="_blank" rel="noopener noreferrer" />
+              <a
+                {...props}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              />
+            ),
+            table: ({ node, ...props }) => (
+              <div className="overflow-x-auto my-4">
+                <table
+                  {...props}
+                  className=" w-full border-collapse border border-gray-300"
+                />
+              </div>
             ),
           }}
         >

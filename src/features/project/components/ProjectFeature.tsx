@@ -37,7 +37,7 @@ export default function ProjectFeature({
 
         <AccordionContent className="pt-2 pb-6 border-t border-border mt-2">
           <div className="w-full max-w-full min-w-0 overflow-hidden">
-            <ReadmeRenderer content={readmeContent} />
+            <MarkDownWrapper>{readmeContent}</MarkDownWrapper>
           </div>
         </AccordionContent>
       </AccordionItem>

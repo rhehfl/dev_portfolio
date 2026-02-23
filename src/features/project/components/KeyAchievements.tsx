@@ -22,11 +22,11 @@ export default function KeyAchievements({ items }: Props) {
         {items.map((section, idx) => (
           <Card
             key={idx}
-            className="h-full border border-border hover:border-primary transition-colors shadow-sm"
+            className="h-full pt-0 border border-border hover:border-primary transition-colors shadow-sm"
           >
-            <CardHeader className="pb-3 border-b border-border bg-muted rounded-t-xl">
+            <CardHeader className="py-6 border-b border-border bg-muted rounded-t-xl">
               <div className="flex justify-between items-center">
-                <CardTitle className="text-lg font-bold flex items-center gap-2 text-foreground">
+                <CardTitle className="py-0 text-lg font-bold flex items-center gap-2 text-foreground">
                   {section.icon}
                   {section.title}
                 </CardTitle>
