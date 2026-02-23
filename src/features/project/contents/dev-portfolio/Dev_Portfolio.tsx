@@ -1,9 +1,12 @@
 'use client';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
-import PORTFOLIO_TROUBLESHOOTING from '@/features/project/contents/dev-portfolio/troubleshooting.mdx';
-import PORTFOLIO_PERFORMANCE from '@/features/project/contents/dev-portfolio/performance.mdx';
 import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
+import {
+  devPortfolioProjectPerformanceData,
+  devPortfolioTroubleshootingData,
+} from '@/features/project/contents/dev-portfolio/data';
+import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
 
 export default function DevPortfolio() {
   return (
@@ -23,14 +26,18 @@ export default function DevPortfolio() {
           트러블 슈팅
         </h3>
         <section className="flex flex-col gap-8">
-          <PORTFOLIO_TROUBLESHOOTING />
+          {devPortfolioTroubleshootingData.map((data) => (
+            <ProjectDetailRenderer key={data.id} data={data} />
+          ))}
         </section>
 
         <h3 className="text-2xl my-5 font-bold text-foreground mb-6 border-l-4 border-primary pl-3">
           성능 개선
         </h3>
         <section className="flex flex-col gap-8">
-          <PORTFOLIO_PERFORMANCE />
+          {devPortfolioProjectPerformanceData.map((data) => (
+            <ProjectDetailRenderer key={data.id} data={data} />
+          ))}
         </section>
         <ProjectNavigation currentDetailUrl="dev-portfolio" />
       </div>

@@ -2,12 +2,15 @@
 
 import ImagePreloader from '@/components/common/ImagePreloader';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
+import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
-import { PPICK_CONTRIBUTIONS } from '@/features/project/contents/p-pick/data';
-import PERFORMANCE from '@/features/project/contents/p-pick/performance.mdx';
+import {
+  PPICK_CONTRIBUTIONS,
+  projectPerformanceData,
+} from '@/features/project/contents/p-pick/data';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/9d738ca2-4279-439e-b6bf-e8fac11cd640',
@@ -43,7 +46,9 @@ export default function PPick() {
           성능 개선
         </h3>
         <section className="flex flex-col gap-8 ">
-          <PERFORMANCE />
+          {projectPerformanceData.map((data) => (
+            <ProjectDetailRenderer key={data.id} data={data} />
+          ))}
         </section>
         <ProjectNavigation currentDetailUrl="p-pick" />
       </div>

@@ -4,12 +4,15 @@ import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
-import CokoTroubleshooting from '@/features/project/contents/coko/coko-troubleshooting.mdx';
-import CokoPerformance from '@/features/project/contents/coko/coko-performance.mdx';
-import { COKO_CONTRIBUTIONS } from '@/features/project/contents/coko/data';
+import {
+  COKO_CONTRIBUTIONS,
+  cokoPerformanceData,
+  cokoTroubleshootingData,
+} from '@/features/project/contents/coko/data';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 import ImagePreloader from '@/components/common/ImagePreloader';
 import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
+import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
 
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/c9dc7ee4-c3e1-471d-ae2a-65d45bf5a782',
@@ -52,14 +55,18 @@ export default function Coko() {
           트러블 슈팅
         </h3>
         <section className="flex flex-col gap-8">
-          <CokoTroubleshooting />
+          {cokoTroubleshootingData.map((data) => (
+            <ProjectDetailRenderer key={data.id} data={data} />
+          ))}
         </section>
 
         <h3 className="text-2xl my-5 font-bold text-foreground mb-6 border-l-4 border-primary pl-3">
           성능 개선
         </h3>
         <section className="flex flex-col gap-8">
-          <CokoPerformance />
+          {cokoPerformanceData.map((data) => (
+            <ProjectDetailRenderer key={data.id} data={data} />
+          ))}
         </section>
         <ProjectNavigation currentDetailUrl="coko" />
       </div>

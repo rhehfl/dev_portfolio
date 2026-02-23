@@ -4,12 +4,15 @@ import ProjectLinks from '@/features/project/components/ProjectLinks';
 
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
-import { DORAN_CONTRIBUTIONS } from '@/features/project/contents/doran-doran/data';
-import DORAN_TROUBLESHOOTING from '@/features/project/contents/doran-doran/troubleshooting.mdx';
-import DORAN_PERFORMANCE from '@/features/project/contents/doran-doran/performance.mdx';
+import {
+  DORAN_CONTRIBUTIONS,
+  dorandoranPerformanceData,
+  dorandoranTroubleshootingData,
+} from '@/features/project/contents/doran-doran/data';
 import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
 import ImagePreloader from '@/components/common/ImagePreloader';
 import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
+import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/606374e7-bb1e-4d33-a714-873225720984',
   'https://github.com/user-attachments/assets/3d921d3d-b7f1-468f-9943-2435420b1031',
@@ -49,14 +52,18 @@ export default function DoranDoran() {
           트러블 슈팅
         </h3>
         <section className="flex flex-col gap-8">
-          <DORAN_TROUBLESHOOTING />
+          {dorandoranTroubleshootingData.map((data) => (
+            <ProjectDetailRenderer key={data.id} data={data} />
+          ))}
         </section>
 
         <h3 className="text-2xl my-5 font-bold text-foreground mb-6 border-l-4 border-primary pl-3">
           성능 개선 및 아키텍처
         </h3>
         <section className="flex flex-col gap-8">
-          <DORAN_PERFORMANCE />
+          {dorandoranPerformanceData.map((data) => (
+            <ProjectDetailRenderer key={data.id} data={data} />
+          ))}
         </section>
         <ProjectNavigation currentDetailUrl="doran-doran" />
       </div>
