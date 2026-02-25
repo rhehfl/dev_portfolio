@@ -134,7 +134,25 @@ export default function RootLayout({
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-SX6N24DZS6"
+        ></script>
 
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-SX6N24DZS6"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SX6N24DZS6');
+`,
+          }}
+        ></script>
         <ThemeProvider>
           <Header />
           {children}
