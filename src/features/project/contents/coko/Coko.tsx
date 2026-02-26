@@ -1,5 +1,3 @@
-'use client';
-
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
@@ -9,10 +7,11 @@ import {
   cokoPerformanceData,
   cokoTroubleshootingData,
 } from '@/features/project/contents/coko/data';
-import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
+import { getReadmeContent } from '@/features/project/hooks/getReadmeContent';
 import ImagePreloader from '@/components/common/ImagePreloader';
 import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
 import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
+import { getDatabaseData } from '@/lib/notion';
 
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/c9dc7ee4-c3e1-471d-ae2a-65d45bf5a782',
@@ -23,11 +22,12 @@ const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/154be841-bf5b-4d71-acd7-5ad670ea5bd2',
 ];
 
-export default function Coko() {
-  const readmeContent = useReadmeContent({
+export default async function Coko() {
+  const readmeContent = await getReadmeContent({
     repo: '8term-coko-Front',
     branch: 'develop',
   });
+  console.log('Database Data:', await getDatabaseData());
   return (
     <div className="p-5 h-full ">
       <div className="my-8"></div>
@@ -49,7 +49,7 @@ export default function Coko() {
         />
         <ProjectLinks github="https://github.com/modern-agile-team/8term-coko-Front" />
         <ImagePreloader images={PRELOAD_IMAGES} />
-        <ProjectFeature readmeContent={readmeContent} />
+        <ProjectFeature readmeContent={readmeContent || ''} />
         <KeyAchievements items={COKO_CONTRIBUTIONS} />
         <h3 className="text-2xl font-bold text-foreground mb-6 border-l-4 border-primary pl-3">
           트러블 슈팅

@@ -1,5 +1,3 @@
-'use client';
-
 import ImagePreloader from '@/components/common/ImagePreloader';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
@@ -11,15 +9,18 @@ import {
   PPICK_CONTRIBUTIONS,
   projectPerformanceData,
 } from '@/features/project/contents/p-pick/data';
-import { useReadmeContent } from '@/features/project/hooks/useReadmeContetnt';
+import { getReadmeContent } from '@/features/project/hooks/getReadmeContent';
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/9d738ca2-4279-439e-b6bf-e8fac11cd640',
   'https://github.com/rhehfl.png',
   'https://avatars.githubusercontent.com/u/117448747?v=4',
 ];
 
-export default function PPick() {
-  const readmeContent = useReadmeContent({ branch: 'develop', repo: 'P_PICK' });
+export default async function PPick() {
+  const readmeContent = await getReadmeContent({
+    branch: 'develop',
+    repo: 'P_PICK',
+  });
   return (
     <div className="p-5 h-full ">
       <div className="lg:p-10">
@@ -40,7 +41,7 @@ export default function PPick() {
         />
         <ProjectLinks github="https://github.com/P-pick/front" />
         <ImagePreloader images={PRELOAD_IMAGES} />
-        <ProjectFeature readmeContent={readmeContent} />
+        <ProjectFeature readmeContent={readmeContent || ''} />
         <KeyAchievements items={PPICK_CONTRIBUTIONS} />
         <h3 className="text-2xl my-5 font-bold text-foreground mb-6 border-l-4 border-primary pl-3">
           성능 개선

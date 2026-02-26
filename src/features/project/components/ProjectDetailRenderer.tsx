@@ -1,4 +1,4 @@
-// features/project/components/ProjectDetailRenderer.tsx
+'use client';
 
 import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 import ProjectDetail from '@/features/project/components/ProjectDetail';

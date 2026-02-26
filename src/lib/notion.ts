@@ -10,7 +10,6 @@ export async function getDatabaseData() {
   return response.object;
 }
 
-// 페이지 본문(블록)을 가져오는 함수도 필요합니다.
 export async function getPageBlocks(pageId: string) {
   const response = await notion.blocks.children.list({ block_id: pageId });
   return response.results;
