@@ -80,11 +80,11 @@ export const useEditor = (postId?: string) => {
       if (error) throw error;
       alert(postId ? '수정되었습니다!' : '출간되었습니다!');
       router.push('/blog');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       alert(err.message);
     }
   };
-  // 기본 입력 핸들러
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPost((prev) => ({ ...prev, title: e.target.value }));
   };
@@ -93,7 +93,6 @@ export const useEditor = (postId?: string) => {
     setPost((prev) => ({ ...prev, content: e.target.value }));
   };
 
-  // 태그 로직
   const handleTagKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ',') {
       e.preventDefault();
@@ -114,7 +113,6 @@ export const useEditor = (postId?: string) => {
     }));
   };
 
-  // 이미지 붙여넣기 로직
   const handlePaste = async (e: ClipboardEvent<HTMLTextAreaElement>) => {
     const items = e.clipboardData?.items;
     if (!items) return;

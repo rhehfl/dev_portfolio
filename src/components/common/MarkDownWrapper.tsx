@@ -6,12 +6,15 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeRaw from 'rehype-raw';
+import { memo } from 'react';
 
 interface MarkDownWrapperProps {
   children?: string | null;
 }
 
-export default function MarkDownWrapper({ children }: MarkDownWrapperProps) {
+export default memo(function MarkDownWrapper({
+  children,
+}: MarkDownWrapperProps) {
   return (
     <div className="markdown-body dark:markdown-body-dark !bg-transparent !text-foreground w-full">
       <ReactMarkdown
@@ -19,11 +22,7 @@ export default function MarkDownWrapper({ children }: MarkDownWrapperProps) {
         rehypePlugins={[rehypeRaw]}
         components={{
           pre({ node, className, children, ...props }) {
-            return (
-              <pre {...props} className="!p-0 !m-0 !bg-transparent">
-                {children}
-              </pre>
-            );
+            return <pre className="!p-0 !m-0 !bg-transparent">{children}</pre>;
           },
           code({ node, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '');
@@ -63,4 +62,4 @@ export default function MarkDownWrapper({ children }: MarkDownWrapperProps) {
       </ReactMarkdown>
     </div>
   );
-}
+});

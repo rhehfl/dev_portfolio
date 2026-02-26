@@ -3,7 +3,7 @@
 import TextareaAutosize from 'react-textarea-autosize';
 import MarkDownWrapper from '@/components/common/MarkDownWrapper';
 import { useEditor } from '@/features/blog/hooks/useEditor';
-
+import { useDeferredValue } from 'react';
 interface EditorUIProps {
   postId?: string;
 }
@@ -20,10 +20,10 @@ export default function Editor({ postId }: EditorUIProps) {
     handlePaste,
     handleSubmit,
   } = useEditor(postId);
+  const deferredContent = useDeferredValue(post.content);
 
   return (
     <div className="flex flex-col h-screen w-full bg-background text-foreground">
-      {/* 제목 영역 */}
       <div className="p-8 pb-4">
         <input
           type="text"
@@ -66,13 +66,11 @@ export default function Editor({ postId }: EditorUIProps) {
             onPaste={handlePaste}
           />
         </div>
-
-        {/* 미리보기 */}
         <div className="flex-1 p-8 overflow-y-auto bg-muted prose prose-slate dark:prose-invert max-w-none">
           {post.title && (
             <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
           )}
-          <MarkDownWrapper>{post.content}</MarkDownWrapper>
+          <MarkDownWrapper>{deferredContent}</MarkDownWrapper>
         </div>
       </div>
 
