@@ -1089,6 +1089,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@notionhq/client@npm:^5.9.0":
+  version: 5.9.0
+  resolution: "@notionhq/client@npm:5.9.0"
+  checksum: d40a53f906e6aecd691f5e18e4fd0d4d6b8f8b787179d435cf932674fb1c8bc2d74fb5520c60abab5cd9b8e30d54e583899c4e27775cd4c65cd38f7ff630135c
+  languageName: node
+  linkType: hard
+
 "@npmcli/agent@npm:^4.0.0":
   version: 4.0.0
   resolution: "@npmcli/agent@npm:4.0.0"
@@ -6453,6 +6460,7 @@ __metadata:
     "@mdx-js/react": "npm:^3.1.1"
     "@modern-kit/react": "npm:^2.8.0"
     "@next/mdx": "npm:^16.1.4"
+    "@notionhq/client": "npm:^5.9.0"
     "@radix-ui/react-accordion": "npm:^1.2.12"
     "@radix-ui/react-select": "npm:^2.2.6"
     "@radix-ui/react-separator": "npm:^1.1.8"
