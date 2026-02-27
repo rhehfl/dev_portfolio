@@ -1,3 +1,5 @@
+'use client';
+
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectFeature from '@/features/project/components/ProjectFeature';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
@@ -7,11 +9,10 @@ import {
   cokoPerformanceData,
   cokoTroubleshootingData,
 } from '@/features/project/contents/coko/data';
-import { getReadmeContent } from '@/features/project/hooks/getReadmeContent';
+import { useReadmeContent } from '@/features/project/hooks/useReadmeContent';
 import ImagePreloader from '@/components/common/ImagePreloader';
 import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
 import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
-import { getDatabaseData } from '@/lib/notion';
 
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/c9dc7ee4-c3e1-471d-ae2a-65d45bf5a782',
@@ -22,12 +23,11 @@ const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/154be841-bf5b-4d71-acd7-5ad670ea5bd2',
 ];
 
-export default async function Coko() {
-  const readmeContent = await getReadmeContent({
+export default function Coko() {
+  const { content: readmeContent } = useReadmeContent({
     repo: '8term-coko-Front',
     branch: 'develop',
   });
-  console.log('Database Data:', await getDatabaseData());
   return (
     <div className="p-5 h-full ">
       <div className="my-8"></div>

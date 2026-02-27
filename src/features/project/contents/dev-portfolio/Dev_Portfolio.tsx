@@ -1,4 +1,3 @@
-'use client';
 import ProjectHeader from '@/features/project/components/ProjectHeader';
 import ProjectLinks from '@/features/project/components/ProjectLinks';
 import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';

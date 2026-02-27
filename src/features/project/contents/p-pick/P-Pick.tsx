@@ -1,3 +1,5 @@
+'use client';
+
 import ImagePreloader from '@/components/common/ImagePreloader';
 import KeyAchievements from '@/features/project/components/KeyAchievements';
 import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
@@ -9,15 +11,15 @@ import {
   PPICK_CONTRIBUTIONS,
   projectPerformanceData,
 } from '@/features/project/contents/p-pick/data';
-import { getReadmeContent } from '@/features/project/hooks/getReadmeContent';
+import { useReadmeContent } from '@/features/project/hooks/useReadmeContent';
 const PRELOAD_IMAGES = [
   'https://github.com/user-attachments/assets/9d738ca2-4279-439e-b6bf-e8fac11cd640',
   'https://github.com/rhehfl.png',
   'https://avatars.githubusercontent.com/u/117448747?v=4',
 ];
 
-export default async function PPick() {
-  const readmeContent = await getReadmeContent({
+export default function PPick() {
+  const { content: readmeContent } = useReadmeContent({
     branch: 'develop',
     repo: 'P_PICK',
   });

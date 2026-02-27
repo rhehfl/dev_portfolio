@@ -61,7 +61,7 @@ export default function Editor({ postId }: EditorUIProps) {
             ref={textareaRef}
             placeholder="본문을 입력하세요"
             className="w-full h-full resize-none overflow-hidden outline-none bg-transparent text-lg leading-relaxed text-foreground"
-            value={post.content}
+            defaultValue={post.content}
             onChange={handleContentChange}
             onPaste={handlePaste}
           />
