@@ -27,6 +27,7 @@ export const useEditor = (postId?: string) => {
   const [tagInput, setTagInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isLoading, setIsLoading] = useState(!!postId);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -54,17 +55,23 @@ export const useEditor = (postId?: string) => {
 
   // 2. 저장/업데이트 통합 핸들러
   const handleSubmit = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) return alert('권한이 없습니다.');
-
-    const postPayload = {
-      ...post,
-      is_published: true,
-    };
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
     try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        alert('권한이 없습니다.');
+        return;
+      }
+
+      const postPayload = {
+        ...post,
+        is_published: true,
+      };
+
       let error;
       if (postId) {
         // 수정 모드
@@ -83,6 +90,8 @@ export const useEditor = (postId?: string) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       alert(err.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -169,5 +178,6 @@ export const useEditor = (postId?: string) => {
     handlePaste,
     handleSubmit,
     isLoading,
+    isSubmitting,
   };
 };
