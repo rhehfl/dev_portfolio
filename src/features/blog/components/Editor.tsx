@@ -19,6 +19,7 @@ export default function Editor({ postId }: EditorUIProps) {
     removeTag,
     handlePaste,
     handleSubmit,
+    togglePublished,
     isSubmitting,
   } = useEditor(postId);
   const deferredContent = useDeferredValue(post.content);
@@ -79,13 +80,28 @@ export default function Editor({ postId }: EditorUIProps) {
         <button className="text-muted-foreground hover:text-foreground font-medium transition">
           ← 나가기
         </button>
-        <button
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-          className="bg-primary text-primary-foreground px-5 py-2 rounded font-bold transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isSubmitting ? '출간 중...' : '출간하기'}
-        </button>
+        <div className="flex items-center gap-3">
+          {postId && (
+            <button
+              type="button"
+              onClick={togglePublished}
+              className={`px-4 py-2 rounded font-medium text-sm transition ${
+                post.is_published
+                  ? 'bg-green-100 text-green-800 hover:bg-green-200 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800'
+                  : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:hover:bg-yellow-800'
+              }`}
+            >
+              {post.is_published ? '공개' : '비공개'}
+            </button>
+          )}
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="bg-primary text-primary-foreground px-5 py-2 rounded font-bold transition hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? '저장 중...' : postId ? '저장하기' : '출간하기'}
+          </button>
+        </div>
       </footer>
     </div>
   );

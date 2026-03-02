@@ -15,6 +15,7 @@ interface PostData {
   content: string;
   tags: string[];
   thumbnail: string;
+  is_published: boolean;
 }
 
 export const useEditor = (postId?: string) => {
@@ -23,6 +24,7 @@ export const useEditor = (postId?: string) => {
     content: '',
     tags: [],
     thumbnail: '',
+    is_published: true,
   });
   const [tagInput, setTagInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -45,6 +47,7 @@ export const useEditor = (postId?: string) => {
             content: data.content,
             tags: data.tags || [],
             thumbnail: data.thumbnail || '',
+            is_published: data.is_published ?? true,
           });
         }
         setIsLoading(false);
@@ -69,7 +72,6 @@ export const useEditor = (postId?: string) => {
 
       const postPayload = {
         ...post,
-        is_published: true,
       };
 
       let error;
@@ -166,6 +168,10 @@ export const useEditor = (postId?: string) => {
     }
   };
 
+  const togglePublished = () => {
+    setPost((prev) => ({ ...prev, is_published: !prev.is_published }));
+  };
+
   return {
     post,
     tagInput,
@@ -177,6 +183,7 @@ export const useEditor = (postId?: string) => {
     removeTag,
     handlePaste,
     handleSubmit,
+    togglePublished,
     isLoading,
     isSubmitting,
   };
