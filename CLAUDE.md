@@ -71,3 +71,7 @@ Middleware (`src/middleware.ts`) protects `/blog/write` and `/blog/edit/*` — r
 - Primitive components in `src/components/ui/` follow shadcn/ui conventions (Radix + `class-variance-authority`)
 - Theme uses `gd-theme` localStorage key; toggle between `'light'` and `'dark'` via `data-theme` attribute on `<html>`
 - `src/lib/utils.ts` exports `cn()` (clsx + tailwind-merge)
+
+
+### 답변 참고사항
+답변을 한국어로 해.

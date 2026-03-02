@@ -1,6 +1,6 @@
 import BlogCard from '@/features/blog/components/BlogCard';
 import BlogSidebar from '@/features/blog/components/BlogSidebar';
-import { supabase } from '@/lib/supabase';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 interface BlogPageProps {
   searchParams: Promise<{
@@ -10,12 +10,21 @@ interface BlogPageProps {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { tag } = await searchParams;
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   let query = supabase
     .from('posts')
-    .select('id, title, content,created_at, tags, thumbnail, view_count')
-    .eq('is_published', true)
+    .select(
+      'id, title, content, created_at, tags, thumbnail, view_count, is_published',
+    )
     .order('created_at', { ascending: false });
+
+  if (!session) {
+    query = query.eq('is_published', true);
+  }
 
   if (tag) {
     query = query.contains('tags', [tag]);
