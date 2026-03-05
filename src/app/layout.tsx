@@ -111,6 +111,10 @@ export const metadata: Metadata = {
     description: '프론트엔드 개발자 구도윤의 포트폴리오입니다.',
     images: ['/opengraph-image.png'],
   },
+
+  alternates: {
+    canonical: 'https://doyoon.site',
+  },
 };
 
 export default function RootLayout({
@@ -135,7 +139,7 @@ export default function RootLayout({
         <Script
           id="person-jsonld"
           type="application/ld+json"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <Script
