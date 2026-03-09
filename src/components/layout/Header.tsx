@@ -11,8 +11,10 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ThemeToggle from '@/components/layout/ThemeToggle';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { useEscapeKey } from '@/hooks/useEscapeKey';
 
 const navItems = [
   { name: 'Blog', href: '/blog' },
@@ -26,6 +28,8 @@ export default function Header() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  useEscapeKey(() => setIsMenuOpen(false));
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const isOverThreshold = latest > 50;
@@ -33,6 +37,17 @@ export default function Header() {
       setIsScrolled(isOverThreshold);
     }
   });
+
+  // WCAG 2.1.1: Escape 키로 모바일 메뉴 닫기
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -44,19 +59,21 @@ export default function Header() {
             ? 'bg-background/80 backdrop-blur-md border-b border-border/60 py-3 shadow-sm'
             : 'bg-transparent py-5',
         )}
-        initial={{ y: -100 }}
+        initial={prefersReducedMotion ? false : { y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5 }}
       >
         <div className="container mx-auto px-6 md:px-10 flex justify-between items-center">
           <Link
             href="/"
             className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity text-foreground"
+            aria-label="홈으로 이동"
           >
             Gu Doyoon
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
+          {/* WCAG 1.3.1: aria-label로 내비게이션 구분 */}
+          <nav className="hidden md:flex items-center gap-1" aria-label="메인 내비게이션">
             {navItems.map((item) => (
               <Button
                 key={item.name}
@@ -70,17 +87,20 @@ export default function Header() {
             <ThemeToggle className="ml-2" />
           </nav>
 
+          {/* WCAG 4.1.2: aria-expanded로 메뉴 열림/닫힘 상태 표시 */}
           <Button
             variant="ghost"
             size="icon"
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6" aria-hidden="true" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6" aria-hidden="true" />
             )}
           </Button>
         </div>
@@ -89,24 +109,30 @@ export default function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            id="mobile-menu"
+            role="dialog"
+            aria-label="모바일 내비게이션 메뉴"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
+            exit={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }}
             className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
           >
-            <nav className="flex flex-col space-y-4">
+            {/* WCAG 1.3.1: aria-label로 모바일 내비게이션 구분 */}
+            <nav className="flex flex-col space-y-4" aria-label="모바일 내비게이션">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={prefersReducedMotion ? false : { opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={
+                    prefersReducedMotion ? { duration: 0 } : { delay: index * 0.1 }
+                  }
                 >
                   <Link
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-2xl font-semibold text-foreground py-3 hover:text-primary transition-colors"
+                    className="block text-2xl font-semibold text-foreground py-3 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
                   >
                     {item.name}
                   </Link>
