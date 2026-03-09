@@ -6,4 +6,5 @@ export interface Post {
   created_at: string;
   thumbnail: string | null;
   view_count: number;
+  is_published: boolean;
 }

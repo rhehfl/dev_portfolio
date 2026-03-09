@@ -1,6 +1,22 @@
 import BlogCard from '@/features/blog/components/BlogCard';
 import BlogSidebar from '@/features/blog/components/BlogSidebar';
-import { supabase } from '@/lib/supabase';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '기술 블로그',
+  description: '프론트엔드 개발자 구도윤의 기술 블로그입니다. React, Next.js, TypeScript 관련 개발 경험과 인사이트를 공유합니다.',
+  keywords: ['기술 블로그', '프론트엔드', 'React', 'Next.js', 'TypeScript', '개발', '구도윤'],
+  alternates: {
+    canonical: '/blog',
+  },
+  openGraph: {
+    title: '기술 블로그 | 구도윤 포트폴리오',
+    description: '프론트엔드 개발자 구도윤의 기술 블로그입니다. React, Next.js, TypeScript 관련 개발 경험과 인사이트를 공유합니다.',
+    type: 'website',
+    url: '/blog',
+  },
+};
 
 interface BlogPageProps {
   searchParams: Promise<{
@@ -10,12 +26,21 @@ interface BlogPageProps {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { tag } = await searchParams;
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   let query = supabase
     .from('posts')
-    .select('id, title, content,created_at, tags, thumbnail, view_count')
-    .eq('is_published', true)
+    .select(
+      'id, title, content, created_at, tags, thumbnail, view_count, is_published',
+    )
     .order('created_at', { ascending: false });
+
+  if (!session) {
+    query = query.eq('is_published', true);
+  }
 
   if (tag) {
     query = query.contains('tags', [tag]);

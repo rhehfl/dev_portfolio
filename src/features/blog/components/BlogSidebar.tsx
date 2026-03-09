@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -7,10 +7,18 @@ export default async function BlogSidebar({
 }: {
   currentTag?: string;
 }) {
-  const { data: posts } = await supabase
-    .from('posts')
-    .select('tags')
-    .eq('is_published', true);
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  let query = supabase.from('posts').select('tags');
+
+  if (!session) {
+    query = query.eq('is_published', true);
+  }
+
+  const { data: posts } = await query;
 
   const tagCounts: Record<string, number> = {};
 

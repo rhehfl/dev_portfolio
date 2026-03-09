@@ -1,5 +1,3 @@
-'use client';
-
 import ProjectCard from '@/features/project/components/ProjectCard';
 import ExperienceSection from '@/features/experience/components/ExperienceSection';
 import HeroSection from '@/features/hero/components/HeroSection';

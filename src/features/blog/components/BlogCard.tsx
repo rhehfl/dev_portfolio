@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Post } from '@/features/blog/types/Blog';
 
 interface BlogCardProps {
@@ -25,9 +24,16 @@ export default function BlogCard({ post }: BlogCardProps) {
       )}
 
       <div className="p-5">
-        <h2 className="text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-          {post.title}
-        </h2>
+        <div className="flex items-center gap-2 mb-2">
+          <h2 className="text-xl font-bold line-clamp-2 group-hover:text-primary transition-colors">
+            {post.title}
+          </h2>
+          {!post.is_published && (
+            <span className="shrink-0 rounded-md bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+              비공개
+            </span>
+          )}
+        </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {post.tags?.map((tag) => (
