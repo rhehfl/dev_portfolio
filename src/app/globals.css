@@ -7,3 +7,7 @@
 
 @import '../styles/theme.css';
 @import '../styles/markdown.css';
+
+@utility marker-teal {
+  background-image: linear-gradient(transparent 58%, var(--accent) 58%);
+}
