@@ -156,13 +156,13 @@ const MetricItem = ({ name, before, after, rate }: MetricItemProps) => (
         {before}
       </span>
       <ArrowRight className="w-3.5 h-3.5 text-muted-foreground shrink-0 opacity-70" />
-      <span className="font-bold text-primary text-sm sm:text-base whitespace-nowrap">
+      <span className="font-bold text-foreground text-sm sm:text-base whitespace-nowrap">
         {after}
       </span>
       {rate && (
         <Badge
           variant="secondary"
-          className="ml-1 px-1.5 py-0 text-primary font-bold shrink-0"
+          className="ml-1 px-1.5 py-0 text-foreground font-bold shrink-0"
         >
           {rate}
         </Badge>
@@ -257,11 +257,11 @@ const BlogLink = ({ title, description, href }: BlogLinkProps) => {
           <div className="flex-1 pr-4">
             <div className="flex items-center gap-2 mb-1">
               <BookOpen className="w-4 h-4 text-primary" />
-              <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+              <span className="text-xs font-semibold text-foreground uppercase tracking-wider">
                 Related Post
               </span>
             </div>
-            <h6 className="font-bold text-base group-hover:text-primary transition-colors line-clamp-1">
+            <h6 className="font-bold text-base group-hover:underline decoration-primary decoration-2 underline-offset-4 transition-colors line-clamp-1">
               {title}
             </h6>
             {description && (

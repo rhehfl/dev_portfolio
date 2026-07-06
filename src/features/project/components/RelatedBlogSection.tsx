@@ -47,7 +47,7 @@ export function RelatedBlogSection({ posts }: RelatedBlogSectionProps) {
                   <Calendar className="w-3 h-3" />
                   {post.date}
                 </div>
-                <CardTitle className="text-lg line-clamp-1 group-hover:text-primary transition-colors">
+                <CardTitle className="text-lg line-clamp-1 group-hover:underline decoration-primary decoration-2 underline-offset-4 transition-colors">
                   {post.title}
                 </CardTitle>
               </CardHeader>

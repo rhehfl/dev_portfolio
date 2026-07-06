@@ -25,7 +25,7 @@ export default function BlogCard({ post }: BlogCardProps) {
 
       <div className="p-5">
         <div className="flex items-center gap-2 mb-2">
-          <h2 className="text-xl font-bold line-clamp-2 group-hover:text-primary transition-colors">
+          <h2 className="text-xl font-bold line-clamp-2 group-hover:underline decoration-primary decoration-2 underline-offset-4 transition-colors">
             {post.title}
           </h2>
           {!post.is_published && (

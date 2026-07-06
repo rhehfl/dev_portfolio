@@ -68,7 +68,7 @@ export default function ExperienceItem({
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <div className="flex-none md:basis-1/4 md:shrink-0 flex flex-row md:flex-col items-center md:items-end md:text-right gap-2 justify-start md:justify-start">
-        <span className="text-sm font-semibold text-primary font-mono whitespace-nowrap">
+        <span className="text-sm font-semibold text-foreground font-mono whitespace-nowrap">
           {period}
         </span>
         <Badge
@@ -110,7 +110,7 @@ export default function ExperienceItem({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-fit h-8 px-2 text-muted-foreground hover:text-primary"
+                  className="w-fit h-8 px-2 text-muted-foreground"
                   asChild
                 >
                   <Link href={link} rel="noopener noreferrer">

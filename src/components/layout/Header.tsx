@@ -79,7 +79,7 @@ export default function Header() {
                 key={item.name}
                 variant="ghost"
                 asChild
-                className="text-muted-foreground hover:text-primary font-medium transition-colors"
+                className="text-muted-foreground font-medium transition-colors"
               >
                 <Link href={item.href}>{item.name}</Link>
               </Button>
@@ -132,7 +132,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-2xl font-semibold text-foreground py-3 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                    className="block text-2xl font-semibold text-foreground py-3 hover:underline decoration-primary decoration-2 underline-offset-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
                   >
                     {item.name}
                   </Link>

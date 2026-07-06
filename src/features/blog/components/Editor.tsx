@@ -59,7 +59,7 @@ export default function Editor({ postId }: EditorUIProps) {
             type="button"
             onClick={() => removeTag(index)}
             aria-label={`태그 ${tag} 삭제`}
-            className="bg-muted text-primary px-4 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="bg-muted text-foreground px-4 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {tag}
           </button>
