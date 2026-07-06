@@ -42,8 +42,8 @@ export default async function BlogSidebar({
               className={cn(
                 'flex justify-between items-center text-sm px-3 py-2 rounded-lg transition-all border border-transparent',
                 !currentTag
-                  ? 'bg-primary text-primary-foreground font-semibold shadow-sm'
-                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                  ? 'bg-primary-soft text-foreground font-semibold shadow-sm'
+                  : 'bg-secondary text-secondary-foreground hover:bg-primary-soft',
               )}
             >
               <span>전체 보기</span>
@@ -51,7 +51,7 @@ export default async function BlogSidebar({
                 className={cn(
                   'text-xs px-2 py-0.5 rounded-full border border-transparent',
                   !currentTag
-                    ? 'bg-primary-foreground text-primary'
+                    ? 'bg-primary-soft text-foreground'
                     : 'bg-muted text-muted-foreground border-border',
                 )}
               >
@@ -67,8 +67,8 @@ export default async function BlogSidebar({
                 className={cn(
                   'flex justify-between items-center text-sm px-3 py-2 rounded-lg transition-all border border-transparent',
                   currentTag === tag
-                    ? 'bg-primary text-primary-foreground font-semibold shadow-sm'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                    ? 'bg-primary-soft text-foreground font-semibold shadow-sm'
+                    : 'bg-secondary text-secondary-foreground hover:bg-primary-soft',
                 )}
               >
                 <span>{tag}</span>
@@ -76,7 +76,7 @@ export default async function BlogSidebar({
                   className={cn(
                     'text-xs px-2 py-0.5 rounded-full border border-transparent',
                     currentTag === tag
-                      ? 'bg-primary-foreground text-primary'
+                      ? 'bg-primary-soft text-foreground'
                       : 'bg-muted text-muted-foreground border-border',
                   )}
                 >

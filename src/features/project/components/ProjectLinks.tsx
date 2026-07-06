@@ -40,7 +40,7 @@ export default function ProjectLinks({
           href={blog}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-accent text-accent-foreground shadow-sm hover:brightness-110"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-primary text-primary-foreground shadow-sm hover:brightness-110"
         >
           <BookOpen size={16} /> Dev Log
         </a>
