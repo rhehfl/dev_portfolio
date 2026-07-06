@@ -33,6 +33,7 @@ export default function ProjectCard(project: ProjectCardType) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const isFeatured = tier === 'featured';
+  const isInteractive = Boolean(detailUrl || githubLink);
 
   const cardBody = (
     <div className="flex h-full flex-col gap-3 p-6">
@@ -57,8 +58,10 @@ export default function ProjectCard(project: ProjectCardType) {
           ))}
         </ul>
       )}
-      <p className="text-xs text-muted-foreground">{period}</p>
-      <TechStack stacks={techStack} />
+      <div className="mt-auto flex flex-col gap-3">
+        <p className="text-xs text-muted-foreground">{period}</p>
+        <TechStack stacks={techStack} />
+      </div>
       {isFeatured && previewImageUrl && (
         <div className="mt-2">
           <AspectRatio ratio={16 / 9} className="relative w-full">
@@ -89,7 +92,7 @@ export default function ProjectCard(project: ProjectCardType) {
     transition: prefersReducedMotion
       ? { duration: 0 }
       : { duration: 0.5, ease: 'easeOut' as const },
-    whileHover: prefersReducedMotion ? undefined : { y: -4 },
+    whileHover: isInteractive && !prefersReducedMotion ? { y: -4 } : undefined,
   };
 
   const wrapperClass = cn(

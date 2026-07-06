@@ -1,5 +1,7 @@
 import { ProjectCard } from '@/features/project/types/ProjectCard';
 
+// 홈 그리드는 md:grid-cols-3 기준: featured(2칸)+sub(1칸)이 1행, mini 3장이 2행을 채운다.
+// tier 부여/순서 변경 시 마지막 행이 비어 보일 수 있으니 개수·순서를 함께 조정할 것.
 export const ProjectCardData: ProjectCard[] = [
   {
     description: 'JS를 재미있게 학습하기 위한 퀴즈 기반 교육 웹 사이트',
