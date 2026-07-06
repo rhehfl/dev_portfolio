@@ -15,16 +15,19 @@ interface ProjectNavigationProps {
 export function ProjectNavigation({
   currentDetailUrl,
 }: ProjectNavigationProps) {
-  const currentIndex = ProjectCardData.findIndex(
+  const navigableProjects = ProjectCardData.filter(
+    (p) => p.detailUrl,
+  );
+  const currentIndex = navigableProjects.findIndex(
     (p) => p.detailUrl === currentDetailUrl,
   );
-  const dataLength = ProjectCardData.length;
+  const dataLength = navigableProjects.length;
 
   const prevIndex = (currentIndex - 1 + dataLength) % dataLength;
   const nextIndex = (currentIndex + 1) % dataLength;
 
-  const prevProject = ProjectCardData[prevIndex];
-  const nextProject = ProjectCardData[nextIndex];
+  const prevProject = navigableProjects[prevIndex];
+  const nextProject = navigableProjects[nextIndex];
 
   return (
     <footer className="flex flex-col sm:flex-row justify-between mt-16 pt-8 border-t gap-12 border-border">

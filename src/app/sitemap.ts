@@ -5,7 +5,7 @@ import { ProjectCardData } from '@/features/project/contents/common/projectCardD
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://doyoon.site';
 
-  const projectUrls = ProjectCardData.map((project) => ({
+  const projectUrls = ProjectCardData.filter((project) => project.detailUrl).map((project) => ({
     url: `${baseUrl}/card/${project.detailUrl}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
