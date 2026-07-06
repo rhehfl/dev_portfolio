@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
 import Script from 'next/script';
 
@@ -161,6 +162,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           {children}
+          <Footer />
           {modal}
           {photo}
         </ThemeProvider>
