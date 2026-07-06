@@ -1,28 +1,11 @@
-'use client';
-
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { GraduationCap, Trophy, BadgeCheck } from 'lucide-react';
+import { GraduationCap, Trophy, BadgeCheck, Presentation, ExternalLink } from 'lucide-react';
 import type { CredentialItem } from '@/features/credential/types/CredentialItem';
-interface CredentialItemProps extends CredentialItem {
-  index: number;
-}
-const CONFIG = {
-  education: {
-    Icon: GraduationCap,
-    iconColor: 'text-primary',
-    dotStyle: 'bg-background border-primary',
-  },
-  award: {
-    Icon: Trophy,
-    iconColor: 'text-yellow-500',
-    dotStyle: 'bg-yellow-400 border-yellow-400',
-  },
-  certificate: {
-    Icon: BadgeCheck,
-    iconColor: 'text-emerald-500',
-    dotStyle: 'bg-emerald-500 border-emerald-500',
-  },
+
+const ICONS = {
+  education: GraduationCap,
+  certificate: BadgeCheck,
+  award: Trophy,
+  talk: Presentation,
 } as const;
 
 export default function CredentialItem({
@@ -30,40 +13,34 @@ export default function CredentialItem({
   date,
   title,
   subtitle,
-  index,
-}: CredentialItemProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-30px' });
-  const { Icon, iconColor, dotStyle } = CONFIG[type] || CONFIG.education;
+  link,
+}: CredentialItem) {
+  const Icon = ICONS[type] ?? BadgeCheck;
+
+  const heading = link ? (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1 font-bold hover:underline decoration-primary decoration-2 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      {title}
+      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+    </a>
+  ) : (
+    <span className="font-bold">{title}</span>
+  );
 
   return (
-    <motion.div
-      ref={ref}
-      className="flex flex-col md:flex-row gap-4 md:gap-8 relative group pb-8 last:pb-0"
-      initial={{ opacity: 0, y: 10 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-    >
-      <div className="flex-none md:basis-1/4 md:shrink-0 flex items-center md:items-start md:justify-end">
-        <span className="text-sm font-semibold text-muted-foreground font-mono">
-          {date}
-        </span>
-      </div>
-
-      <div className="flex-1 relative pl-6 md:pl-8">
-        <div className="mt-1">
-          <div className="flex items-center gap-2 mb-1">
-            <Icon className={`w-4 h-4 shrink-0 ${iconColor}`} />
-            <h3 className="text-lg ml-2 md:text-xl font-bold text-foreground">
-              {title}
-            </h3>
-          </div>
-
-          <p className="text-sm md:text-base text-muted-foreground pl-6 md:pl-0">
-            {subtitle}
-          </p>
+    <li className="flex items-start gap-3">
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent-foreground/70" aria-hidden="true" />
+      <div className="flex flex-col">
+        <div className="flex flex-wrap items-baseline gap-x-2">
+          {heading}
+          <span className="text-xs font-mono text-muted-foreground">{date}</span>
         </div>
+        <p className="text-sm text-muted-foreground">{subtitle}</p>
       </div>
-    </motion.div>
+    </li>
   );
 }
