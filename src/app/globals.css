@@ -9,5 +9,5 @@
 @import '../styles/markdown.css';
 
 @utility marker-teal {
-  background-image: linear-gradient(transparent 58%, var(--accent) 58%);
+  background-image: linear-gradient(transparent 58%, var(--marker) 58%);
 }

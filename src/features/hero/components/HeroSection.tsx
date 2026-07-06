@@ -49,7 +49,7 @@ export default function HeroSection() {
             href={RESUME_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-hard-sm transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-hard-sm transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <FileText className="h-4 w-4" aria-hidden="true" />
             이력서 보기
@@ -58,7 +58,7 @@ export default function HeroSection() {
             href="https://github.com/rhehfl"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card px-5 py-2.5 text-sm font-bold shadow-hard-sm transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card px-5 py-2.5 text-sm font-bold shadow-hard-sm transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Github className="h-4 w-4" aria-hidden="true" />
             GitHub
