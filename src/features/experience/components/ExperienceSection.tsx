@@ -10,14 +10,14 @@ export default function ExperienceSection() {
       className="grid grid-cols-12 gap-6 auto-rows mb-24"
       id="experience"
     >
-      <header className="col-span-10 col-start-2 mt-30 mb-10">
+      <header className="col-span-10 col-start-2 mt-16 md:mt-24 mb-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-3xl font-bold text-foreground"
         >
-          __Experience
+          <span className="text-primary" aria-hidden="true">✦</span> Experience
         </motion.h2>
       </header>
 

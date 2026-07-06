@@ -2,9 +2,22 @@ import { ExperienceItem } from '@/features/experience/types/experience';
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
+    id: 0,
+    type: 'work',
+    period: '2026.04 - 현재',
+    title: '앤드와이즈',
+    company: '운영서비스팀',
+    role: 'CMS 운영 · 자동화',
+    description: `
+대학·기관 CMS 운영 서비스를 담당하며, 반복 운영 업무를 자동화하는 사내 도구를 만듭니다.
+
+- n8n·Jira API 기반 사내 자동화 플랫폼(Hermes) 설계·구축 — 고객 인입을 LLM이 자동 트리아지해 Jira로 티켓팅
+- 수만 건의 운영 이력을 근거 기반 지식 위키(MCP 서버)로 축적`,
+  },
+  {
     id: 1,
     type: 'open-source',
-    period: 'Constant',
+    period: '2024.06 - 현재',
     title: '@modern-kit',
     company: 'Open Source Lib',
     role: 'Contributor (⭐️ 150+)',

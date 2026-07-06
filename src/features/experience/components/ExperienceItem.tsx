@@ -58,6 +58,7 @@ export default function ExperienceItem({
 }: ExperienceItemProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isCurrent = period.includes('현재');
 
   return (
     <motion.div
@@ -79,8 +80,12 @@ export default function ExperienceItem({
         </Badge>
       </div>
 
-      <div className="flex-1 relative pl-6 md:pl-8 border-l border-border md:border-l-2  py-4">
-        <div className="absolute left-[-5px] md:left-[-9px] top-0 md:top-[6px] w-[9px] h-[9px] md:w-[16px] md:h-[16px] rounded-full bg-background border-2 md:border-4 border-primary z-10 transition-transform duration-300 group-hover:scale-110" />
+      <div className="flex-1 relative pl-6 md:pl-8 border-l-[3px] border-accent py-4">
+        <div
+          className={`absolute left-[-7px] md:left-[-10px] top-0 md:top-[6px] w-[11px] h-[11px] md:w-[17px] md:h-[17px] rounded-full border-2 border-foreground z-10 transition-transform duration-300 group-hover:scale-110 ${
+            isCurrent ? 'bg-primary' : 'bg-card'
+          }`}
+        />
 
         <Card className="border-none shadow-none bg-transparent hover:bg-card transition-colors duration-300 -mt-2">
           <CardHeader className="p-0 mb-2">
