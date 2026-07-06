@@ -7,7 +7,9 @@ interface CardDetailPageProps {
 }
 
 export async function generateStaticParams() {
-  return ProjectCardData.map((project) => ({ id: project.detailUrl }));
+  return ProjectCardData.filter((project) => project.detailUrl).map(
+    (project) => ({ id: project.detailUrl! }),
+  );
 }
 
 export async function generateMetadata({ params }: CardDetailPageProps): Promise<Metadata> {
@@ -19,7 +21,7 @@ export async function generateMetadata({ params }: CardDetailPageProps): Promise
   }
 
   const description = `${project.description} | 기술 스택: ${project.techStack.join(', ')} | 개발 기간: ${project.period}`;
-  const imageUrl = project.previewImageUrl;
+  const imageUrl = project.previewImageUrl ?? '/opengraph-image.png';
 
   return {
     title: project.title,

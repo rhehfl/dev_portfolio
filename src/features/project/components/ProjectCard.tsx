@@ -1,86 +1,132 @@
 'use client';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { AspectRatio } from '@modern-kit/react';
 import TechStack from '@/features/project/components/TechStack';
 import { ProjectCard as ProjectCardType } from '@/features/project/types/ProjectCard';
-import Link from 'next/link';
-import { AspectRatio } from '@modern-kit/react';
-import { motion } from 'framer-motion';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { cn } from '@/lib/utils';
 
-export default function ProjectCard({
-  title,
-  description,
-  detailUrl,
-  previewImageUrl,
-  techStack,
-  period,
-}: ProjectCardType) {
+function WorkBadge() {
+  return (
+    <span className="rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-bold text-foreground">
+      실무
+    </span>
+  );
+}
+
+export default function ProjectCard(project: ProjectCardType) {
+  const {
+    title,
+    description,
+    detailUrl,
+    githubLink,
+    previewImageUrl,
+    techStack,
+    period,
+    tier = 'mini',
+    badge,
+    highlights,
+  } = project;
   const prefersReducedMotion = usePrefersReducedMotion();
+
+  const isFeatured = tier === 'featured';
+
+  const cardBody = (
+    <div className="flex h-full flex-col gap-3 p-6">
+      <div className="flex items-center gap-2">
+        <h3 className={cn('font-bold', isFeatured ? 'text-2xl' : 'text-lg')}>
+          {title}
+        </h3>
+        {badge === 'work' && <WorkBadge />}
+      </div>
+      <p className="text-sm leading-relaxed text-muted-foreground">
+        {description}
+      </p>
+      {isFeatured && highlights && (
+        <ul className="flex flex-col gap-1.5" aria-label="주요 성과">
+          {highlights.map((item) => (
+            <li key={item} className="flex items-start gap-2 text-sm font-medium">
+              <span className="mt-0.5 text-primary" aria-hidden="true">
+                ✦
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="text-xs text-muted-foreground">{period}</p>
+      <TechStack stacks={techStack} />
+      {isFeatured && previewImageUrl && (
+        <div className="mt-2">
+          <AspectRatio ratio={16 / 9} className="relative w-full">
+            <Image
+              src={previewImageUrl}
+              alt={`${title} 프로젝트 미리보기`}
+              fill
+              priority={false}
+              className="rounded-lg border-2 border-foreground object-cover"
+            />
+          </AspectRatio>
+        </div>
+      )}
+    </div>
+  );
+
+  const cardFrame = cn(
+    'h-full rounded-2xl border-2 border-foreground bg-card transition-transform',
+    isFeatured && 'shadow-hard-pink',
+    tier === 'sub' && 'shadow-hard-teal',
+    tier === 'mini' && 'shadow-hard',
+  );
+
+  const motionProps = {
+    initial: prefersReducedMotion ? false : { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-50px' },
+    transition: prefersReducedMotion
+      ? { duration: 0 }
+      : { duration: 0.5, ease: 'easeOut' as const },
+    whileHover: prefersReducedMotion ? undefined : { y: -4 },
+  };
+
+  const wrapperClass = cn(
+    'h-full',
+    isFeatured ? 'md:col-span-2' : 'md:col-span-1',
+  );
+
+  const interactiveClass =
+    'flex h-full flex-col rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
 
   return (
     <motion.article
-      initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={
-        prefersReducedMotion ? { duration: 0 } : { duration: 0.5, ease: 'easeOut' }
-      }
-      whileHover={
-        prefersReducedMotion
-          ? undefined
-          : {
-              scale: 1.02,
-              boxShadow: '0 25px 50px -12px rgba(15, 23, 42, 0.25)',
-              transition: { duration: 0.2 },
-            }
-      }
-      className="h-full rounded-2xl border border-border bg-card shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl"
+      {...motionProps}
+      className={wrapperClass}
       aria-label={`${title} 프로젝트`}
     >
-      <Link
-        href={`/card/${detailUrl}`}
-        className="flex h-full flex-col rounded-lg overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        aria-label={`${title} 상세 보기`}
-      >
-        <Card className="group h-full border-none shadow-md bg-card backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-lg">{title}</CardTitle>
-            <CardDescription>{description}</CardDescription>
-            <div className="flex gap-3">
-              <p className="text-sm text-muted-foreground">기간:</p>
-              <p className="text-sm text-muted-foreground">{period}</p>
-            </div>
-            <div className="relative w-full overflow-hidden">
-              <TechStack stacks={techStack} className="whitespace-nowrap" />
-            </div>
-          </CardHeader>
-          <CardContent className="flex flex-1 flex-col gap-3">
-            <motion.div
-              whileHover={prefersReducedMotion ? undefined : { opacity: 0.9 }}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }}
-              className="w-full h-full relative"
-            >
-              <AspectRatio ratio={16 / 9} className="w-full relative">
-                <Image
-                  src={previewImageUrl}
-                  alt={`${title} 프로젝트 미리보기`}
-                  fill
-                  priority={false}
-                  className="rounded-lg object-cover"
-                />
-              </AspectRatio>
-            </motion.div>
-          </CardContent>
-        </Card>
-      </Link>
+      {detailUrl ? (
+        <Link
+          href={`/card/${detailUrl}`}
+          className={cn(interactiveClass, cardFrame)}
+          aria-label={`${title} 상세 보기`}
+        >
+          {cardBody}
+        </Link>
+      ) : githubLink ? (
+        <a
+          href={githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(interactiveClass, cardFrame)}
+          aria-label={`${title} GitHub 저장소 (새 탭)`}
+        >
+          {cardBody}
+        </a>
+      ) : (
+        <div className={cardFrame}>{cardBody}</div>
+      )}
     </motion.article>
   );
 }

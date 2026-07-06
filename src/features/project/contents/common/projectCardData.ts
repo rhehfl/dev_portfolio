@@ -16,6 +16,38 @@ export const ProjectCardData: ProjectCard[] = [
       'Styled-Components',
     ],
     period: '2024.09 ~ 2025.03 (6개월)',
+    tier: 'featured',
+    highlights: [
+      '초기 번들 사이즈 85% 감소 (2.0MB → 300KB)',
+      'SSE 실시간 이벤트 동기화 · 영역별 에러 바운더리 방어 설계',
+    ],
+  },
+  {
+    description:
+      '접속한 고객사 사이트의 CMS 종류·버전을 자동 판별하는 운영용 크롬 확장 프로그램',
+    title: 'CMS Inspector',
+    techStack: ['JavaScript', 'Chrome Extension', 'Vitest'],
+    period: '2026.06 ~',
+    tier: 'sub',
+    badge: 'work',
+  },
+  {
+    description:
+      '고객 인입을 LLM이 자동 트리아지해 Jira로 티켓팅하는 n8n 기반 사내 자동화 플랫폼',
+    title: 'Hermes',
+    techStack: ['n8n', 'Jira API', 'LLM'],
+    period: '2026.05 ~',
+    tier: 'mini',
+    badge: 'work',
+  },
+  {
+    description:
+      'Suspense 런타임 에러를 네이밍 규칙으로 사전 차단하는 ESLint 플러그인 (npm 배포)',
+    githubLink: 'https://github.com/rhehfl/eslint-plugin-react-suspense-check',
+    title: 'react-suspense-check',
+    techStack: ['JavaScript', 'ESLint', 'Vitest'],
+    period: '개인 프로젝트',
+    tier: 'mini',
   },
   {
     description: '한국관광공사 api를 사용한 위치기반 관광지 추천 웹 앱',
@@ -48,6 +80,7 @@ export const ProjectCardData: ProjectCard[] = [
       'Tailwind CSS',
     ],
     period: '2025.09 ~ 2025.12',
+    tier: 'mini',
   },
   {
     description: '개발 포트폴리오 웹사이트',
