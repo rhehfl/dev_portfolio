@@ -22,6 +22,7 @@ export default function CredentialItem({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`${title} (새 탭)`}
       className="inline-flex items-center gap-1 font-bold hover:underline decoration-primary decoration-2 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       {title}
@@ -33,7 +34,7 @@ export default function CredentialItem({
 
   return (
     <li className="flex items-start gap-3">
-      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent-foreground/70" aria-hidden="true" />
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
       <div className="flex flex-col">
         <div className="flex flex-wrap items-baseline gap-x-2">
           {heading}
