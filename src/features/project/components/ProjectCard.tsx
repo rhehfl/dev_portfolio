@@ -69,6 +69,7 @@ export default function ProjectCard(project: ProjectCardType) {
               src={previewImageUrl}
               alt={`${title} 프로젝트 미리보기`}
               fill
+              sizes="(max-width: 768px) 100vw, 66vw"
               priority={false}
               className="rounded-lg border-2 border-foreground object-cover"
             />
