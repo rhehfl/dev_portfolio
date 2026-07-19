@@ -4,7 +4,7 @@ import { ProjectCard } from '@/features/project/types/ProjectCard';
 // tier 부여/순서 변경 시 마지막 행이 비어 보일 수 있으니 개수·순서를 함께 조정할 것.
 export const ProjectCardData: ProjectCard[] = [
   {
-    description: 'JS를 재미있게 학습하기 위한 퀴즈 기반 교육 웹 사이트',
+    description: '학습 흐름과 운영 효율을 함께 개선한 퀴즈 기반 교육 웹 서비스',
     githubLink: 'https://github.com/modern-agile-team/8term-coko-Front',
     title: 'CoKo',
     previewImageUrl: '/coko/coko_previewImage.png',
@@ -21,21 +21,12 @@ export const ProjectCardData: ProjectCard[] = [
     tier: 'featured',
     highlights: [
       '초기 번들 사이즈 85% 감소 (2.0MB → 300KB)',
-      'SSE 실시간 이벤트 동기화 · 영역별 에러 바운더리 방어 설계',
+      '어드민 구축으로 콘텐츠 운영 요청을 직접 처리할 수 있는 환경 구현',
     ],
   },
   {
     description:
-      '접속한 고객사 사이트의 CMS 종류·버전을 자동 판별하는 운영용 크롬 확장 프로그램',
-    title: 'CMS Inspector',
-    techStack: ['JavaScript', 'Chrome Extension', 'Vitest'],
-    period: '2026.06 ~',
-    tier: 'sub',
-    badge: 'work',
-  },
-  {
-    description:
-      '고객 인입을 LLM이 자동 트리아지해 Jira로 티켓팅하는 n8n 기반 사내 자동화 플랫폼',
+      '고객 인입을 분류·티켓팅해 반복 운영 업무를 줄이는 n8n 기반 사내 자동화 플랫폼',
     title: 'Hermes',
     techStack: ['n8n', 'Jira API', 'LLM'],
     period: '2026.05 ~',
@@ -44,7 +35,7 @@ export const ProjectCardData: ProjectCard[] = [
   },
   {
     description:
-      'Suspense 런타임 에러를 네이밍 규칙으로 사전 차단하는 ESLint 플러그인 (npm 배포)',
+      '반복되는 Suspense 런타임 오류를 규칙으로 사전 차단하는 ESLint 플러그인 (npm 배포)',
     githubLink: 'https://github.com/rhehfl/eslint-plugin-react-suspense-check',
     title: 'react-suspense-check',
     techStack: ['JavaScript', 'ESLint', 'Vitest'],

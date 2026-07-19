@@ -5,7 +5,7 @@ import { Github, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
-const STACKS = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'TanStack Query'];
+const STACKS = ['React', 'TypeScript', 'TanStack Query', 'Admin & CMS', 'Developer Experience'];
 
 const RESUME_URL = 'https://app.notion.com/p/1b278b12a47f80178755dcf3fa5c8922';
 
@@ -32,16 +32,15 @@ export default function HeroSection() {
         </span>
 
         <h1 className="text-3xl font-bold leading-snug md:text-4xl">
-          재미있게 배우고,{' '}
-          <span className="marker-teal">단단하게 만드는</span>
-          <br />
-          프론트엔드 개발자 구도윤입니다.
+          운영의 복잡도를 제품으로 해결하는{' '}
+          <span className="marker-teal">프론트엔드 개발자</span>
+          입니다.
         </h1>
 
         <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-          지금은 앤드와이즈에서 n8n·LLM 기반 운영 자동화 플랫폼을 만들고
-          있습니다. 번들 사이즈 85% 감소처럼 측정 가능한 개선과, 팀의 개발
-          생산성을 높이는 도구 만들기를 좋아합니다.
+          React·TypeScript로 제품 품질을 높이고, 어드민과 운영 도구로 팀의
+          반복 업무를 줄입니다. 성능 최적화부터 CMS 운영 자동화, 개발자 경험을
+          개선하는 도구까지 문제의 끝을 구현합니다.
         </p>
 
         <div className="flex flex-wrap gap-3">
@@ -74,6 +73,24 @@ export default function HeroSection() {
               {stack}
             </li>
           ))}
+        </ul>
+
+        <ul
+          className="grid w-full gap-2 text-sm font-medium text-foreground sm:grid-cols-3"
+          aria-label="핵심 역량"
+        >
+          <li className="rounded-xl border border-border bg-card p-3">
+            <span className="block text-xs text-muted-foreground">제품 품질</span>
+            성능·상태·오류 대응
+          </li>
+          <li className="rounded-xl border border-border bg-card p-3">
+            <span className="block text-xs text-muted-foreground">운영 효율</span>
+            어드민·CMS·자동화
+          </li>
+          <li className="rounded-xl border border-border bg-card p-3">
+            <span className="block text-xs text-muted-foreground">개발자 경험</span>
+            도구·구조·테스트
+          </li>
         </ul>
       </motion.div>
 
