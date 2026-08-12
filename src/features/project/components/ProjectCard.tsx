@@ -31,10 +31,14 @@ export default function ProjectCard(project: ProjectCardType) {
   } = project;
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const isInteractive = Boolean(detailUrl || githubLink);
-
   const cardBody = (
-    <div className="grid h-full gap-6 p-5 sm:p-7 md:grid-cols-[minmax(0,1fr)_260px] md:items-start">
+    <div className="grid h-full gap-5 p-4 sm:p-5 md:grid-cols-[56px_minmax(0,1fr)_280px] md:gap-7">
+      <p className="font-mono text-xs font-bold tracking-[0.16em] text-muted-foreground">
+        {String(["CoKo", "P-Pick", "DoranDoran"].indexOf(title) + 1).padStart(
+          2,
+          "0",
+        )}
+      </p>
       <div className="flex h-full flex-col gap-4">
         <div className="flex items-center gap-2">
           <h3 className="text-2xl font-bold tracking-tight">{title}</h3>
@@ -65,7 +69,7 @@ export default function ProjectCard(project: ProjectCardType) {
         </div>
       </div>
       {previewImageUrl && (
-        <div className="order-first md:order-none">
+        <div className="order-first border border-border bg-secondary p-2 md:order-none">
           <AspectRatio ratio={16 / 9} className="relative w-full">
             <Image
               src={previewImageUrl}
@@ -73,7 +77,7 @@ export default function ProjectCard(project: ProjectCardType) {
               fill
               sizes="(max-width: 768px) 100vw, 260px"
               priority={false}
-              className="rounded-xl border border-border object-cover"
+              className="object-cover"
             />
           </AspectRatio>
         </div>
@@ -82,7 +86,7 @@ export default function ProjectCard(project: ProjectCardType) {
   );
 
   const cardFrame = cn(
-    "h-full rounded-2xl border border-border bg-card transition-[border-color,box-shadow] hover:border-primary/40 hover:shadow-hard",
+    "h-full border-y border-border bg-card transition-colors hover:border-foreground",
   );
 
   const motionProps = {
@@ -92,13 +96,13 @@ export default function ProjectCard(project: ProjectCardType) {
     transition: prefersReducedMotion
       ? { duration: 0 }
       : { duration: 0.5, ease: "easeOut" as const },
-    whileHover: isInteractive && !prefersReducedMotion ? { y: -4 } : undefined,
+    whileHover: undefined,
   };
 
   const wrapperClass = "h-full";
 
   const interactiveClass =
-    "flex h-full flex-col rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+    "flex h-full flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
   return (
     <motion.article

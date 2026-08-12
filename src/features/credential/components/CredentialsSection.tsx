@@ -18,7 +18,10 @@ const GROUPS = [
 export default function CredentialsSection() {
   return (
     <section className="mx-auto mt-24 max-w-5xl pb-8 md:mt-32" id="credentials">
-      <header className="mb-10 max-w-2xl">
+      <header className="mb-8 flex items-end justify-between border-b border-foreground pb-4">
+        <p className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">
+          PROFILE DATA
+        </p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,11 +32,11 @@ export default function CredentialsSection() {
         </motion.h2>
       </header>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 border-l border-t border-border md:grid-cols-2">
         {GROUPS.map((group) => (
           <article
             key={group.heading}
-            className="rounded-2xl border border-border bg-card p-6"
+            className="border-b border-r border-border bg-card p-6"
           >
             <h4 className="mb-4 text-lg font-bold">{group.heading}</h4>
             <ul className="flex flex-col gap-4">

@@ -20,7 +20,10 @@ export default function ProjectHeader({
   role,
 }: ProjectHeaderProps) {
   return (
-    <div className="mb-8 scroll-mt-24 border-b border-border pb-8 sm:mb-10 sm:scroll-mt-28">
+    <div className="mb-8 scroll-mt-24 border-b border-foreground pb-8 sm:mb-10 sm:scroll-mt-28">
+      <p className="mb-5 text-xs font-semibold tracking-[0.18em] text-muted-foreground">
+        PROJECT RECORD
+      </p>
       <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
         <TechStack stacks={techStack} />
       </div>
