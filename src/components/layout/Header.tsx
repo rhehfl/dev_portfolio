@@ -17,9 +17,9 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useEscapeKey } from "@/hooks/useEscapeKey";
 
 const navItems = [
-  { name: "Work", href: "/#projects" },
-  { name: "Experience", href: "/#experience" },
-  { name: "About", href: "/#credentials" },
+  { name: "프로젝트", href: "/#projects" },
+  { name: "경험", href: "/#experience" },
+  { name: "학력 및 활동", href: "/#credentials" },
   { name: "Blog", href: "/blog" },
 ];
 

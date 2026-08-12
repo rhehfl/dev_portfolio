@@ -14,10 +14,10 @@ export default function ExperienceSection() {
           viewport={{ once: true }}
           className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
         >
-          경험을 쌓은 방식
+          경험
         </motion.h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          제품을 만들고, 운영하고, 동료와 기준을 맞춰 온 과정입니다.
+          서비스를 만들고 운영하며 쌓은 경험입니다.
         </p>
       </header>
 
