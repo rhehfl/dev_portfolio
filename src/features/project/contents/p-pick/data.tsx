@@ -66,7 +66,7 @@ const slides = data.pages.flatMap((page) => page.items);
       },
     ],
     result:
-      "API 구조를 바꾸지 못하는 조건에서도, 요청 우선순위와 렌더링 범위를 다시 설계해 사용자가 첫 콘텐츠를 더 빨리 보도록 만들었습니다.",
+      "초기 진입 시 Chrome DevTools Network에서 요청 수와 전송 용량을 비교했습니다. API 구조를 바꾸지 못하는 조건에서도 요청 우선순위와 렌더링 범위를 다시 설계해 첫 콘텐츠를 더 빨리 보도록 만들었습니다.",
   },
   {
     id: "infinite-swiper-state-recovery",
