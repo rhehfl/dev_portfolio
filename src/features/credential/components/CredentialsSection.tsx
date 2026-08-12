@@ -25,7 +25,7 @@ export default function CredentialsSection() {
           viewport={{ once: true }}
           className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
         >
-          학력 · 활동
+          학력 및 활동
         </motion.h2>
       </header>
 

@@ -33,14 +33,15 @@ export default function HeroSection() {
         </p>
 
         <h1 className="text-4xl font-bold leading-[1.18] tracking-tight md:text-6xl">
-          사용자가 느끼는 <span className="text-primary">마찰</span>을<br />
-          제품의 흐름으로 해결합니다.
+          안녕하세요,
+          <br />
+          프론트엔드 개발자 <span className="text-primary">구도윤</span>입니다.
         </h1>
 
         <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          React와 TypeScript로 데이터·상태·성능의 복잡도를 다룹니다. 사용자
-          화면의 끊김을 줄이고, 팀이 반복해서 겪는 운영 문제를 더 단순한
-          인터페이스로 바꿉니다.
+          사용자가 바로 이해하고 편하게 쓸 수 있는 화면을 만드는 데 관심이
+          있습니다. React와 TypeScript를 중심으로 서비스를 만들고, 성능과
+          사용성을 꾸준히 개선합니다.
         </p>
 
         <div className="flex flex-wrap gap-3">
