@@ -29,19 +29,19 @@ export default function HeroSection() {
         className="col-span-12 flex flex-col items-start gap-6 md:col-span-8"
       >
         <p className="text-sm font-semibold tracking-[0.16em] text-primary">
-          FRONTEND ENGINEER · GU DOYOON
+          REACT · TYPESCRIPT · WEB
         </p>
 
         <h1 className="text-4xl font-bold leading-[1.18] tracking-tight md:text-6xl">
           안녕하세요,
           <br />
-          프론트엔드 개발자 <span className="text-primary">구도윤</span>입니다.
+          <span className="text-primary">구도윤</span>입니다.
         </h1>
 
         <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          사용자가 바로 이해하고 편하게 쓸 수 있는 화면을 만드는 데 관심이
-          있습니다. React와 TypeScript를 중심으로 서비스를 만들고, 성능과
-          사용성을 꾸준히 개선합니다.
+          React와 TypeScript로 웹 서비스를 만들고 있습니다. 사용자가 바로
+          이해하고 편하게 쓸 수 있는 화면을 고민하며, 프로젝트를 통해 경험을
+          쌓고 있습니다.
         </p>
 
         <div className="flex flex-wrap gap-3">
