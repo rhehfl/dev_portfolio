@@ -20,7 +20,6 @@ const navItems = [
   { name: "프로젝트", href: "/#projects" },
   { name: "경험", href: "/#experience" },
   { name: "학력 및 활동", href: "/#credentials" },
-  { name: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
