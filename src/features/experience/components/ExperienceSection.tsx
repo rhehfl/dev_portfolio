@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { EXPERIENCE } from '@/features/experience/contents/experiences';
-import ExperienceItem from '@/features/experience/components/ExperienceItem';
-import { motion } from 'framer-motion';
+import { EXPERIENCE } from "@/features/experience/contents/experiences";
+import ExperienceItem from "@/features/experience/components/ExperienceItem";
+import { motion } from "framer-motion";
 
 export default function ExperienceSection() {
   return (
-    <section
-      className="grid grid-cols-12 gap-6 auto-rows mb-24"
-      id="experience"
-    >
-      <header className="col-span-10 col-start-2 mt-16 md:mt-24 mb-10">
+    <section className="mx-auto mt-24 max-w-5xl md:mt-32" id="experience">
+      <header className="mb-10 max-w-2xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-foreground"
+          className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
         >
-          <span className="text-primary" aria-hidden="true">✦</span> Experience
+          경험을 쌓은 방식
         </motion.h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          제품을 만들고, 운영하고, 동료와 기준을 맞춰 온 과정입니다.
+        </p>
       </header>
 
-      <div className="col-span-12 md:col-span-10 md:col-start-2 flex flex-col ">
+      <div className="flex flex-col">
         {EXPERIENCE.map((item, index) => (
           <ExperienceItem key={item.id} {...item} index={index} />
         ))}

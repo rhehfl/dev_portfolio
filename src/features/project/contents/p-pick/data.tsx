@@ -1,69 +1,64 @@
-import { ProjectDetailData } from '@/features/project/types/projectDetail';
-import { Smartphone } from 'lucide-react';
+import { ProjectDetailData } from "@/features/project/types/projectDetail";
 
 export const projectPerformanceData: ProjectDetailData[] = [
   {
-    id: 'network-waterfall-optimization',
-    header: '네트워크 워터폭 현상 개선',
+    id: "network-waterfall-optimization",
+    header: "숏폼 탐색의 첫 대기 시간을 줄이다",
     sections: [
       {
-        title: '문제 상황',
-        dotColor: 'bg-red-400',
+        title: "문제",
+        dotColor: "bg-rose-500",
         contents: [
           {
-            type: 'text',
+            type: "text",
             value:
-              '활용한 Open API 구조상 **[위치 정보 → 상세 정보 → 이미지 URL]** 로 이어지는 구조 변경이 불가능했습니다. 초기 설계에서는 모든 여행지의 이미지를 한 번에 로딩하려다 보니, 이 Waterfall 대기 시간이 누적되어 **초기 화면 렌더링(LCP)까지 치명적인 지연**이 발생했습니다.',
+              "관광지 목록, 상세 정보, 이미지가 순차적으로 이어지는 Open API 구조에서 초기 화면에 너무 많은 요청과 이미지를 한 번에 보냈습니다. 결과적으로 첫 슬라이드를 보기 전까지 네트워크 대기가 길어졌습니다.",
           },
         ],
       },
       {
-        title: '해결 과정',
-        dotColor: 'bg-blue-400',
+        title: "결정과 구현",
+        dotColor: "bg-primary",
         contents: [
           {
-            type: 'text',
+            type: "text",
             value:
-              'API 구조를 변경할 수 없는 상황에서, **초기 로딩 부하를 분산**시키는 전략으로 선회했습니다.\n\n- **Swiper Virtual 모드**: 전체 리스트를 요청하지 않고, 뷰포트에 보이는 슬라이드만 우선 렌더링\n- **점진적 프리패치(Pre-fetch)**: 현재 슬라이드를 볼 때 **다음 슬라이드의 3단계 요청을 백그라운드에서 미리 수행**하여 대기 시간 은폐\n- **Lazy Loading**: 당장 보이지 않는 이미지는 로딩을 지연시켜 초기 대역폭 확보',
+              "**전체를 먼저 가져오는 방식** 대신, `useSuspenseInfiniteQuery`로 페이지 단위 목록을 만들고 Swiper Virtual로 화면에 필요한 슬라이드만 렌더링했습니다. 현재 위치를 기준으로 다음 페이지를 미리 요청하고, 상세 이미지는 실제로 필요한 시점까지 지연했습니다.",
           },
           {
-            type: 'code',
-            language: 'tsx',
-            value: `<Swiper
-  modules={[Virtual]}
-  virtual={{ enabled: true }}
-  onSlideChange={(swiper) => {
-    // 사용자가 보고 있는 동안 다음 여행지의 3단계 요청을 미리 시작
-    prefetchNextSpot(swiper.activeIndex + 1);
-  }}
->
-  {slides.map((slide, index) => (
-    <SwiperSlide key={slide.id} virtualIndex={index}>
-       <DetailContent data={slide} />
-    </SwiperSlide>
-  ))}
-</Swiper>`,
+            type: "code",
+            language: "tsx",
+            value: `const { data, fetchNextPage, hasNextPage } =
+  useSuspenseInfiniteQuery({
+    queryKey: ['places', location],
+    queryFn: ({ pageParam }) => getPlaces({ location, pageParam }),
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+  });
+
+const slides = data.pages.flatMap((page) => page.items);
+// 현재 슬라이드 근처에서 다음 페이지를 선행 요청하고,
+// 상세 이미지는 슬라이드가 필요해질 때 로드한다.`,
           },
         ],
       },
       {
-        title: '성과 지표',
-        dotColor: 'bg-green-400',
+        title: "확인한 변화",
+        dotColor: "bg-emerald-500",
         contents: [
           {
-            type: 'metrics',
+            type: "metrics",
             items: [
               {
-                name: '초기 API 요청',
-                before: '10회',
-                after: '3회',
-                rate: '초기 로딩 단축',
+                name: "초기 API 요청",
+                before: "10회 이상",
+                after: "3회",
+                rate: "초기 요청 축소",
               },
               {
-                name: '초기 로드 이미지',
-                before: '30개+',
-                after: '4개',
-                rate: '86% 감소',
+                name: "초기 이미지 요청",
+                before: "38개 · 13.5MB",
+                after: "약 8개 · 753KB",
+                rate: "초기 대역폭 축소",
               },
             ],
           },
@@ -71,75 +66,54 @@ export const projectPerformanceData: ProjectDetailData[] = [
       },
     ],
     result:
-      '제어할 수 없는 API의 구조적 한계(Waterfall)를 점진적 프리패칭 기술로 은폐하여, 사용자에게 끊김 없는 탐색 경험을 제공했습니다.',
+      "API 구조를 바꾸지 못하는 조건에서도, 요청 우선순위와 렌더링 범위를 다시 설계해 사용자가 첫 콘텐츠를 더 빨리 보도록 만들었습니다.",
   },
   {
-    id: 'font-subset-optimization',
-    header: '다이나믹 서브셋 적용을 통한 폰트 용량 82% 감소',
+    id: "infinite-swiper-state-recovery",
+    header: "무한 슬라이드의 복구 시점을 안정화하다",
     sections: [
       {
-        title: '문제 상황',
-        dotColor: 'bg-red-400',
+        title: "문제",
+        dotColor: "bg-rose-500",
         contents: [
           {
-            type: 'text',
+            type: "text",
             value:
-              '초기 로딩 시 Pretendard 폰트 용량이 약 **1,559KB**에 달해 네트워크 비용 증가가 우려되었습니다. WOFF2 포맷을 사용하더라도 기본적으로 모든 글자 정보를 포함하고 있어 용량 최적화에 한계가 있었습니다.',
+              "이전 페이지를 앞쪽에 추가하면 기존 슬라이드의 인덱스가 밀립니다. 이미지가 없는 관광지에서는 Swiper의 `slidesUpdated` 이벤트가 기대한 시점에 오지 않아, 오버레이가 해제되지 않는 경우도 있었습니다.",
           },
         ],
       },
       {
-        title: '해결 과정',
-        dotColor: 'bg-blue-400',
+        title: "복구 규칙",
+        dotColor: "bg-primary",
         contents: [
           {
-            type: 'text',
+            type: "text",
             value:
-              '프로젝트에서 사용하는 `font-weight`가 제한적이므로 가변 폰트보다 **일반 다이나믹 서브셋**이 용량 절감에 유리하다고 판단했습니다. 로컬 호스팅 대신 유지보수 비용이 낮은 **CDN + 다이나믹 서브셋** 방식을 채택하여 필요한 글자만 분할 다운로드되도록 구성했습니다.',
+              "앞에 추가된 항목 수만큼 목표 인덱스를 보정하고, DOM 반영 직후 실행이 보장되는 `useLayoutEffect`에서 슬라이드 위치를 복구했습니다. 세션의 현재 슬라이드와 페이지 파라미터는 URL query로 옮겨 새로고침·공유·재진입에도 같은 지점을 되찾게 했습니다.",
           },
           {
-            type: 'code',
-            language: 'html',
-            value: `<link
-  rel="stylesheet"
-  as="style"
-  crossorigin
-  href="https://cdn.jsdelivr.net/gh/.../pretendard-dynamic-subset.css"
-/>`,
-          },
-        ],
-      },
-      {
-        title: '성과 지표',
-        dotColor: 'bg-green-400',
-        contents: [
-          {
-            type: 'metrics',
-            items: [
-              {
-                name: '폰트 리소스 용량',
-                before: '1,559KB',
-                after: '272KB',
-                rate: '82% 감소',
-              },
-            ],
+            type: "code",
+            language: "tsx",
+            value: `const restoredIndex = savedIndex + prependedItems.length;
+
+useLayoutEffect(() => {
+  swiperRef.current?.slideTo(restoredIndex, 0);
+}, [restoredIndex]);
+
+// /places?slide-index=12&page-param=3
+// 탐색 상태를 URL에서 다시 복원한다.`,
           },
         ],
       },
     ],
     result:
-      '불필요한 폰트 데이터 다운로드를 제거하여 초기 로딩 속도(FCP)를 개선하고 네트워크 비용을 절감했습니다.',
+      "데이터 추가, Swiper 갱신, 이미지 유무가 서로 다른 타이밍으로 움직이는 문제를 상태 규칙과 복구 시점으로 분리해 안정화했습니다.",
   },
 ];
 
 export const PPICK_CONTRIBUTIONS = [
-  {
-    title: 'UI/UX & Interactive Design',
-    tag: 'User Experience',
-    icon: <Smartphone className="w-5 h-5 text-green-500" />,
-    points: [
-      'Swiper.js를 활용한 숏폼 스타일 인터페이스 개발',
-      '데이터 페칭 시 스켈레톤 UI를 적용하여 CLS를 방지하고 체감 로딩 속도 개선',
-    ],
-  },
+  "Swiper 기반 숏폼 탐색 인터페이스 구현",
+  "Suspense 기반 목록 조회와 스켈레톤으로 로딩 상태 설계",
+  "위치 권한 거부 시에도 탐색을 계속할 수 있는 대체 흐름 구현",
 ];

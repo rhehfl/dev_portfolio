@@ -1,4 +1,4 @@
-import { ExternalLink, Github, BookOpen } from 'lucide-react';
+import { ExternalLink, Github, BookOpen } from "lucide-react";
 
 interface ProjectLinksProps {
   demo?: string;
@@ -14,13 +14,13 @@ export default function ProjectLinks({
   if (!demo && !github && !blog) return null;
 
   return (
-    <div className="flex flex-wrap gap-3 mb-10">
+    <div className="mb-10 flex flex-wrap gap-3">
       {demo && (
         <a
           href={demo}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-primary text-primary-foreground shadow-sm hover:brightness-110"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <ExternalLink size={16} /> Live Demo
         </a>
@@ -30,7 +30,7 @@ export default function ProjectLinks({
           href={github}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-muted text-foreground border border-border hover:brightness-110"
+          className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 font-medium text-foreground transition-colors hover:bg-muted"
         >
           <Github size={16} /> GitHub
         </a>
@@ -40,7 +40,7 @@ export default function ProjectLinks({
           href={blog}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-primary text-primary-foreground shadow-sm hover:brightness-110"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           <BookOpen size={16} /> Dev Log
         </a>

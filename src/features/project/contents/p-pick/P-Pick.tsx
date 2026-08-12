@@ -1,54 +1,50 @@
-'use client';
+"use client";
 
-import ImagePreloader from '@/components/common/ImagePreloader';
-import KeyAchievements from '@/features/project/components/KeyAchievements';
-import ProjectDetailRenderer from '@/features/project/components/ProjectDetailRenderer';
-import ProjectFeature from '@/features/project/components/ProjectFeature';
-import ProjectHeader from '@/features/project/components/ProjectHeader';
-import ProjectLinks from '@/features/project/components/ProjectLinks';
-import { ProjectNavigation } from '@/features/project/components/ProjectNavigation';
+import ProjectDetailRenderer from "@/features/project/components/ProjectDetailRenderer";
+import ProjectHeader from "@/features/project/components/ProjectHeader";
+import ProjectLinks from "@/features/project/components/ProjectLinks";
+import { ProjectNavigation } from "@/features/project/components/ProjectNavigation";
 import {
   PPICK_CONTRIBUTIONS,
   projectPerformanceData,
-} from '@/features/project/contents/p-pick/data';
-import { useReadmeContent } from '@/features/project/hooks/useReadmeContent';
-const PRELOAD_IMAGES = [
-  'https://github.com/user-attachments/assets/9d738ca2-4279-439e-b6bf-e8fac11cd640',
-  'https://github.com/rhehfl.png',
-  'https://avatars.githubusercontent.com/u/117448747?v=4',
-];
+} from "@/features/project/contents/p-pick/data";
 
 export default function PPick() {
-  const { content: readmeContent } = useReadmeContent({
-    branch: 'develop',
-    repo: 'P_PICK',
-  });
   return (
-    <div className="p-5 h-full ">
-      <div className="lg:p-10">
+    <div className="mx-auto max-w-4xl px-5 py-8 lg:py-14">
+      <div>
         <ProjectHeader
           title="P-Pick"
-          description="한국관광공사 Open API를 활용해 숏 폼 형식으로 주변 여행지를 둘러볼 수 있는 사이트"
+          description="한국관광공사 Open API를 활용해 주변 여행지를 숏폼으로 탐색하는 서비스. 복잡한 슬라이드 상태와 초기 네트워크 비용을 함께 개선했습니다."
           techStack={[
-            'React',
-            'TypeScript',
-            'Vite',
-            'Zustand',
-            'Tanstack Query',
-            'Tailwind CSS',
+            "React",
+            "TypeScript",
+            "Vite",
+            "Zustand",
+            "Tanstack Query",
+            "Tailwind CSS",
           ]}
-          period="2025.06 ~ 2025.09 (3개월)"
+          period="2025.06 — 2025.08"
           role="프론트엔드 개발"
           teamSize="2명"
         />
         <ProjectLinks github="https://github.com/P-pick/front" />
-        <ImagePreloader images={PRELOAD_IMAGES} />
-        <ProjectFeature readmeContent={readmeContent || ''} />
-        <KeyAchievements items={PPICK_CONTRIBUTIONS} />
-        <h3 className="text-2xl my-5 font-bold text-foreground mb-6 border-l-4 border-primary pl-3">
-          성능 개선
+        <section className="mb-12 border-y border-border py-7">
+          <p className="mb-3 text-sm font-semibold tracking-[0.14em] text-primary">
+            MY CONTRIBUTION
+          </p>
+          <ul className="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-3">
+            {PPICK_CONTRIBUTIONS.map((contribution) => (
+              <li key={contribution} className="border-l-2 border-accent pl-3">
+                {contribution}
+              </li>
+            ))}
+          </ul>
+        </section>
+        <h3 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
+          기술적 의사결정
         </h3>
-        <section className="flex flex-col gap-8 ">
+        <section className="flex flex-col gap-6">
           {projectPerformanceData.map((data) => (
             <ProjectDetailRenderer key={data.id} data={data} />
           ))}

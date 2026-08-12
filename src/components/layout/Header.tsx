@@ -1,27 +1,26 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 import {
   useMotionValueEvent,
   useScroll,
   motion,
   AnimatePresence,
-} from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
-import { useEffect, useState } from 'react';
-import ThemeToggle from '@/components/layout/ThemeToggle';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { useEscapeKey } from '@/hooks/useEscapeKey';
+} from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/layout/ThemeToggle";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useEscapeKey } from "@/hooks/useEscapeKey";
 
 const navItems = [
-  { name: 'Blog', href: '/blog' },
-  { name: 'Intro', href: '/#intro' },
-  { name: 'Projects', href: '/#projects' },
-  { name: 'Experience', href: '/#experience' },
-  { name: 'Credentials', href: '/#credentials' },
+  { name: "Work", href: "/#projects" },
+  { name: "Experience", href: "/#experience" },
+  { name: "About", href: "/#credentials" },
+  { name: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
@@ -31,7 +30,7 @@ export default function Header() {
   const prefersReducedMotion = usePrefersReducedMotion();
   useEscapeKey(() => setIsMenuOpen(false));
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
+  useMotionValueEvent(scrollY, "change", (latest) => {
     const isOverThreshold = latest > 50;
     if (isOverThreshold !== isScrolled) {
       setIsScrolled(isOverThreshold);
@@ -41,23 +40,23 @@ export default function Header() {
   // WCAG 2.1.1: Escape 키로 모바일 메뉴 닫기
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMenuOpen) {
+      if (e.key === "Escape" && isMenuOpen) {
         setIsMenuOpen(false);
       }
     };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isMenuOpen]);
 
   return (
     <>
-      <div className="mt-24" />
+      <div className="mt-20" />
       <motion.header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
           isScrolled
-            ? 'bg-background/80 backdrop-blur-md border-b border-border/60 py-3 shadow-sm'
-            : 'bg-transparent py-5',
+            ? "bg-background/80 backdrop-blur-md border-b border-border/60 py-3 shadow-sm"
+            : "bg-transparent py-4",
         )}
         initial={prefersReducedMotion ? false : { y: -100 }}
         animate={{ y: 0 }}
@@ -66,14 +65,17 @@ export default function Header() {
         <div className="container mx-auto px-6 md:px-10 flex justify-between items-center">
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity text-foreground"
+            className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity text-foreground"
             aria-label="홈으로 이동"
           >
             Gu Doyoon
           </Link>
 
           {/* WCAG 1.3.1: aria-label로 내비게이션 구분 */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="메인 내비게이션">
+          <nav
+            className="hidden md:flex items-center gap-1"
+            aria-label="메인 내비게이션"
+          >
             {navItems.map((item) => (
               <Button
                 key={item.name}
@@ -93,7 +95,7 @@ export default function Header() {
             size="icon"
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
           >
@@ -115,18 +117,27 @@ export default function Header() {
             initial={prefersReducedMotion ? false : { opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }}
+            transition={
+              prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }
+            }
             className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-24 px-6 md:hidden"
           >
             {/* WCAG 1.3.1: aria-label로 모바일 내비게이션 구분 */}
-            <nav className="flex flex-col space-y-4" aria-label="모바일 내비게이션">
+            <nav
+              className="flex flex-col space-y-4"
+              aria-label="모바일 내비게이션"
+            >
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
-                  initial={prefersReducedMotion ? false : { opacity: 0, x: -20 }}
+                  initial={
+                    prefersReducedMotion ? false : { opacity: 0, x: -20 }
+                  }
                   animate={{ opacity: 1, x: 0 }}
                   transition={
-                    prefersReducedMotion ? { duration: 0 } : { delay: index * 0.1 }
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : { delay: index * 0.1 }
                   }
                 >
                   <Link
