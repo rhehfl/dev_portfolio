@@ -18,8 +18,9 @@ import { useEscapeKey } from "@/hooks/useEscapeKey";
 
 const navItems = [
   { name: "프로젝트", href: "/#projects" },
-  { name: "경험", href: "/#experience" },
-  { name: "학력 및 활동", href: "/#credentials" },
+  { name: "경력", href: "/#career" },
+  { name: "기타 경험", href: "/#activities" },
+  { name: "학력 및 자격", href: "/#credentials" },
 ];
 
 export default function Header() {

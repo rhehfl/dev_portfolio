@@ -4,8 +4,6 @@ import { Github, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-const STACKS = ["React", "TypeScript", "TanStack Query", "Next.js"];
-
 const RESUME_URL =
   "https://app.notion.com/p/3ad78b12a47f812ab52bdd876304949b?pvs=204";
 
@@ -18,7 +16,7 @@ export default function HeroSection() {
         initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.45 }}
-        className="grid gap-8 border-y border-foreground py-8 md:grid-cols-[minmax(0,1fr)_220px] md:py-12"
+        className="border-y border-foreground py-8 md:py-12"
       >
         <div className="flex flex-col items-start gap-6">
           <p className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">
@@ -54,25 +52,6 @@ export default function HeroSection() {
             </a>
           </div>
         </div>
-
-        <dl className="grid h-fit grid-cols-1 border border-border bg-card text-sm">
-          <div className="border-b border-border p-4">
-            <dt className="text-xs text-muted-foreground">관심사</dt>
-            <dd className="mt-1 font-semibold">사용자 편의 · 팀 소통</dd>
-          </div>
-          <div className="border-b border-border p-4">
-            <dt className="text-xs text-muted-foreground">작업 방식</dt>
-            <dd className="mt-1 font-semibold">꼼꼼하게 확인하기</dd>
-          </div>
-          <div className="p-4">
-            <dt className="text-xs text-muted-foreground">주요 도구</dt>
-            <dd className="mt-1 flex flex-wrap gap-x-2 font-semibold">
-              {STACKS.map((stack) => (
-                <span key={stack}>{stack}</span>
-              ))}
-            </dd>
-          </div>
-        </dl>
       </motion.div>
     </section>
   );

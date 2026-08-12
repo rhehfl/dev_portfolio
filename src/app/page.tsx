@@ -16,10 +16,10 @@ export default function Home() {
         <header className="mb-8 flex items-end justify-between border-b border-foreground pb-4">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">
-              WORK INVENTORY
+              PROJECTS
             </p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
-              작업 기록
+              프로젝트
             </h2>
           </div>
           <p className="hidden max-w-xs text-right text-sm leading-relaxed text-muted-foreground md:block">
