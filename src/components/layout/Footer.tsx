@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github, Mail, NotebookPen } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 
 const pillClass =
   "inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -40,10 +39,6 @@ export default function Footer() {
             <Mail className="h-3.5 w-3.5" aria-hidden="true" />
             이메일
           </a>
-          <Link href="/blog" className={pillClass}>
-            <NotebookPen className="h-3.5 w-3.5" aria-hidden="true" />
-            Blog
-          </Link>
         </nav>
       </div>
     </footer>
