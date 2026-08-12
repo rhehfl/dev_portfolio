@@ -1,42 +1,16 @@
-import { Badge } from '@/components/ui/badge';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from '@/components/ui/card';
-import { useInView, motion } from 'framer-motion';
-import {
-  Briefcase,
-  GraduationCap,
-  Trophy,
-  Users,
-  BookOpen,
-  Coffee,
-  Github,
-} from 'lucide-react';
-import { useRef } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
-import type { ExperienceItem } from '@/features/experience/types/experience';
+import { useInView, motion } from "framer-motion";
+import { Briefcase, Github, Users, ExternalLink } from "lucide-react";
+import { useRef } from "react";
+import Link from "next/link";
+import type { ExperienceItem } from "@/features/experience/types/experience";
 
 const getIcon = (type: string) => {
   switch (type) {
-    case 'work':
+    case "work":
       return <Briefcase className="w-4 h-4" />;
-    case 'education':
-      return <GraduationCap className="w-4 h-4" />;
-    case 'award':
-      return <Trophy className="w-4 h-4" />;
-    case 'club':
+    case "club":
       return <Users className="w-4 h-4" />;
-    case 'study':
-      return <BookOpen className="w-4 h-4" />;
-    case 'study-casual':
-      return <Coffee className="w-4 h-4" />;
-    case 'open-source':
+    case "open-source":
       return <Github className="w-4 h-4" />;
     default:
       return <Briefcase className="w-4 h-4" />;
@@ -57,82 +31,47 @@ export default function ExperienceItem({
   index,
 }: ExperienceItemProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const isCurrent = period.includes('현재');
-
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
   return (
     <motion.div
       ref={ref}
-      className="flex flex-col md:flex-row gap-4 md:gap-8 relative group"
+      className="grid gap-4 border-t border-border py-7 first:border-t-0 first:pt-0 md:grid-cols-[180px_1fr] md:gap-8"
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <div className="flex-none md:basis-1/4 md:shrink-0 flex flex-row md:flex-col items-center md:items-end md:text-right gap-2 justify-start md:justify-start">
-        <span className="text-sm font-semibold text-foreground font-mono whitespace-nowrap">
+      <div className="flex items-start gap-3 md:block">
+        <span className="text-xs font-semibold tracking-wide text-muted-foreground whitespace-nowrap">
           {period}
         </span>
-        <Badge
-          variant="secondary"
-          className="hidden md:flex w-fit mt-1 opacity-80"
-        >
+        <span className="text-xs font-semibold text-primary md:mt-2 md:block">
           {role}
-        </Badge>
+        </span>
       </div>
 
-      <div className="flex-1 relative pl-6 md:pl-8 border-l-[3px] border-accent py-4">
-        <div
-          className={`absolute left-[-7px] md:left-[-10px] top-0 md:top-[6px] w-[11px] h-[11px] md:w-[17px] md:h-[17px] rounded-full border-2 border-foreground z-10 transition-transform duration-300 group-hover:scale-110 ${
-            isCurrent ? 'bg-primary' : 'bg-card'
-          }`}
-        />
-
-        <Card className="border-none shadow-none bg-transparent hover:bg-card transition-colors duration-300 -mt-2">
-          <CardHeader className="p-0 mb-2">
-            <div className="flex items-center gap-2 mb-1">
-              <div className="p-1.5 md:p-2 bg-secondary rounded-md text-foreground opacity-80">
-                {getIcon(type)}
-              </div>
-              <Badge
-                variant="outline"
-                className="md:hidden opacity-80 scale-90 origin-left"
-              >
-                {role}
-              </Badge>
-            </div>
-
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-              <CardTitle className="text-lg md:text-2xl font-bold flex flex-wrap items-center gap-x-2 text-foreground">
-                {title}
-                {company && (
-                  <span className="text-sm md:text-lg font-normal text-muted-foreground block md:inline">
-                    @ {company}
-                  </span>
-                )}
-              </CardTitle>
-
-              {link && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-fit h-8 px-2 text-muted-foreground"
-                  asChild
-                >
-                  <Link href={link} rel="noopener noreferrer">
-                    <span className="text-xs mr-1">View Details</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </Link>
-                </Button>
-              )}
-            </div>
-          </CardHeader>
-
-          <CardContent className="p-0">
-            <CardDescription className="text-sm md:text-base leading-relaxed text-foreground opacity-80 whitespace-pre-line">
-              {description}
-            </CardDescription>
-          </CardContent>
-        </Card>
+      <div className="relative">
+        <div className="mb-3 flex items-center gap-2 text-muted-foreground">
+          {getIcon(type)}
+          <span className="text-sm">{company}</span>
+        </div>
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-xl font-bold tracking-tight md:text-2xl">
+            {title}
+          </h3>
+          {link && (
+            <Link
+              href={link}
+              rel="noopener noreferrer"
+              className="shrink-0 text-muted-foreground transition-colors hover:text-primary"
+              aria-label={`${title} 자세히 보기`}
+            >
+              <ExternalLink className="h-4 w-4" />
+            </Link>
+          )}
+        </div>
+        <p className="mt-3 whitespace-pre-line text-sm leading-7 text-muted-foreground md:text-base">
+          {description}
+        </p>
       </div>
     </motion.div>
   );

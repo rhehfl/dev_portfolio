@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import MarkDownWrapper from '@/components/common/MarkDownWrapper';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+import React from "react";
+import MarkDownWrapper from "@/components/common/MarkDownWrapper";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import {
   ArrowRight,
   BookOpen,
@@ -12,12 +12,11 @@ import {
   ExternalLink,
   TrendingUp,
   Wrench,
-} from 'lucide-react';
-import Image from 'next/image';
-import PhotoDetailLink from '@/components/common/PhotoDetailLink';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+} from "lucide-react";
+import Image from "next/image";
+import PhotoDetailLink from "@/components/common/PhotoDetailLink";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -34,7 +33,7 @@ const Header = ({ children, icon, hasMetrics, link }: HeaderProps) => {
   );
 
   return (
-    <CardHeader className="flex justify-between py-6 border-b border-border bg-muted">
+    <CardHeader className="flex justify-between border-b border-border bg-muted/60 py-5">
       <CardTitle className="text-xl  sm:text-2xl font-extrabold flex items-center gap-3 tracking-tight">
         <span className="shrink-0">{icon || DefaultIcon}</span>
         <span className="text-foreground">{children}</span>
@@ -73,15 +72,15 @@ interface SectionProps {
 
 const Section = ({
   title,
-  dotColor = 'bg-muted-foreground',
+  dotColor = "bg-muted-foreground",
   children,
   className,
 }: SectionProps) => {
   return (
-    <div className={cn('space-y-3', className)}>
+    <div className={cn("space-y-3", className)}>
       <h5 className="font-bold text-base sm:text-lg flex items-center gap-2.5 text-foreground leading-none">
         <span
-          className={cn('w-1.5 h-4 rounded-full shrink-0 shadow-sm', dotColor)}
+          className={cn("w-1.5 h-4 rounded-full shrink-0 shadow-sm", dotColor)}
         />
         {title}
       </h5>
@@ -106,7 +105,12 @@ const Figure = ({
   height = 200,
   ...props
 }: FigureProps) => (
-  <figure className="flex flex-col overflow-hidden my-6 rounded-xl border border-border bg-muted shadow-sm">
+  <figure
+    className={cn(
+      "my-6 flex flex-col overflow-hidden rounded-xl border border-border bg-muted shadow-sm",
+      className,
+    )}
+  >
     <div className="flex py-6 px-4 bg-card">
       <PhotoDetailLink
         photoId={encodeURIComponent(src)}
@@ -114,7 +118,7 @@ const Figure = ({
       >
         <Image
           src={src}
-          alt={alt || 'reference image'}
+          alt={alt || "reference image"}
           width={width}
           height={height}
           className="rounded-md object-contain shadow-md"
@@ -131,8 +135,8 @@ const Figure = ({
 );
 
 const Metrics = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-blue-50/40 dark:bg-blue-900/10 rounded-xl p-5 border border-blue-100/50 dark:border-blue-900/30 my-2 shadow-inner">
-    <h5 className="font-bold text-sm text-blue-700 dark:text-blue-300 mb-4 flex items-center gap-2">
+  <div className="my-2 rounded-xl border border-primary/15 bg-primary-soft/50 p-5">
+    <h5 className="mb-4 flex items-center gap-2 text-sm font-bold text-primary">
       <TrendingUp className="w-4 h-4" /> 주요 성과 지표
     </h5>
     <div className="grid gap-3">{children}</div>
@@ -147,7 +151,7 @@ interface MetricItemProps {
 }
 
 const MetricItem = ({ name, before, after, rate }: MetricItemProps) => (
-  <div className="flex items-center justify-between gap-4 bg-card backdrop-blur-sm p-3 rounded-lg border border-border shadow-sm transition-all hover:border-primary">
+  <div className="flex items-center justify-between gap-4 rounded-lg border border-border bg-card p-3 transition-colors hover:border-primary/40">
     <span className="font-semibold text-muted-foreground text-xs sm:text-sm flex-shrink-0">
       {name}
     </span>
@@ -205,7 +209,7 @@ interface RootProps {
 
 const Code = ({
   children,
-  language = 'tsx',
+  language = "tsx",
 }: {
   children: string;
   language?: string;
@@ -221,7 +225,7 @@ function ProjectDetailRoot({ children, className }: RootProps) {
   return (
     <Card
       className={cn(
-        'h-full border border-border shadow-lg shadow-black/5 overflow-hidden transition-all p-0 duration-300 hover:shadow-xl hover:border-primary',
+        "h-full overflow-hidden border border-border p-0 transition-colors duration-300 hover:border-primary/40",
         className,
       )}
     >
@@ -238,7 +242,7 @@ const Markdown = ({ children }: { children: string }) => (
 
 function ContentWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <CardContent className="space-y-8 py-8 px-5 sm:px-8">
+    <CardContent className="space-y-8 px-5 py-7 sm:px-8 sm:py-8">
       {children}
     </CardContent>
   );
