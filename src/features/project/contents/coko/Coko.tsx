@@ -5,29 +5,26 @@ import ProjectDetailRenderer from "@/features/project/components/ProjectDetailRe
 import ProjectHeader from "@/features/project/components/ProjectHeader";
 import ProjectLinks from "@/features/project/components/ProjectLinks";
 import { ProjectNavigation } from "@/features/project/components/ProjectNavigation";
-import {
-  cokoPerformanceData,
-  cokoTroubleshootingData,
-} from "@/features/project/contents/coko/data";
+import { cokoTroubleshootingData } from "@/features/project/contents/coko/data";
 
 const CONTRIBUTIONS = [
   {
-    label: "01 / FOUNDATION",
-    title: "초기 화면 구조와 개발 기준 정리",
+    label: "01 / LEARNING",
+    title: "퀴즈 유형과 학습 진행 화면 구현",
     description:
-      "프로젝트 초기에 폴더 구조, 공통 레이아웃, 그리드 시스템과 TanStack Query 세팅을 제안하고 구현했습니다.",
+      "OX·객관식·주관식·조합형 퀴즈 화면과 문제 조회 흐름을 구현했습니다. 진행 중인 학습에서는 사용자별 문제를 별도로 조회하도록 구성했습니다.",
   },
   {
-    label: "02 / LEARNING FLOW",
-    title: "퀴즈 화면과 학습 흐름 구현",
+    label: "02 / LEAVE SAFELY",
+    title: "학습 중 이탈 확인 흐름 추가",
     description:
-      "여러 유형의 퀴즈 UI와 진행 상태를 다루며, 학습 중 새로고침이나 이동으로 데이터가 사라지는 상황을 보완했습니다.",
+      "퀴즈를 풀다가 다른 화면으로 이동할 때 진행 내용이 사라질 수 있음을 알리고, 계속 학습하거나 나갈 수 있게 확인 화면을 추가했습니다.",
   },
   {
     label: "03 / OPERATIONS",
-    title: "콘텐츠 운영을 위한 어드민 화면 구축",
+    title: "콘텐츠와 상점 아이템 운영 화면 구현",
     description:
-      "문제 목록과 등록 화면을 만들고, 운영자가 콘텐츠를 직접 관리할 수 있는 CRUD 흐름을 구현했습니다.",
+      "문제·섹션·파트의 등록·수정 화면을 만들고, 드래그앤드롭으로 학습 순서를 바꿀 수 있게 했습니다. 상점 아이템 등록과 이미지 업로드 흐름도 구현했습니다.",
   },
 ];
 
@@ -78,7 +75,7 @@ export default function Coko() {
             </h3>
           </div>
           <p className="hidden text-sm text-muted-foreground sm:block">
-            구조 · 학습 흐름 · 운영 화면
+            학습 화면 · 이탈 확인 · 운영 어드민
           </p>
         </div>
         <div className="grid border-l border-t border-border md:grid-cols-3">
@@ -117,21 +114,6 @@ export default function Coko() {
         </div>
       </section>
 
-      <section className="mt-14">
-        <div className="mb-5 border-b border-foreground pb-3">
-          <p className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">
-            PERFORMANCE RECORD
-          </p>
-          <h3 className="mt-2 text-2xl font-bold tracking-tight">
-            초기 로딩 개선
-          </h3>
-        </div>
-        <div className="flex flex-col gap-6">
-          {cokoPerformanceData.map((data) => (
-            <ProjectDetailRenderer key={data.id} data={data} />
-          ))}
-        </div>
-      </section>
       <ProjectNavigation currentDetailUrl="coko" />
     </div>
   );

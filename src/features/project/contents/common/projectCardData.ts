@@ -5,7 +5,7 @@ import { ProjectCard } from "@/features/project/types/ProjectCard";
 export const ProjectCardData: ProjectCard[] = [
   {
     description:
-      "학습자가 막히는 지점을 줄이고, 운영자가 콘텐츠를 직접 관리할 수 있게 만든 퀴즈 기반 교육 서비스",
+      "JavaScript를 퀴즈로 학습하는 서비스. 학습 화면과 콘텐츠를 관리하는 운영 어드민을 함께 구현했습니다.",
     githubLink: "https://github.com/modern-agile-team/8term-coko-Front",
     title: "CoKo",
     previewImageUrl: "/coko/coko_previewImage.png",
@@ -21,8 +21,8 @@ export const ProjectCardData: ProjectCard[] = [
     period: "2024.09 — 2025.03 · Frontend · 팀 프로젝트",
     tier: "featured",
     highlights: [
-      "단계형 튜토리얼 UI로 첫 학습 흐름을 설계·구현",
-      "권한 기반 콘텐츠 CRUD 어드민을 구축해 운영 흐름을 단순화",
+      "퀴즈 유형별 화면과 학습 중 이탈 확인 흐름 구현",
+      "파트·섹션·문제 순서 관리 및 콘텐츠 운영 화면 구현",
     ],
   },
   {
@@ -63,7 +63,6 @@ export const ProjectCardData: ProjectCard[] = [
       "Tailwind CSS",
     ],
     period: "2025.09 — 2025.12 · Frontend · 팀 프로젝트",
-    tier: "featured",
   },
   {
     description: "개발 포트폴리오 웹사이트",
