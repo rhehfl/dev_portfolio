@@ -13,15 +13,17 @@ export default function Home() {
     <main className="px-1 sm:px-4">
       <HeroSection />
       <section className="mx-auto mt-24 max-w-5xl md:mt-32" id="projects">
-        <header className="mb-10 max-w-2xl">
-          <p className="mb-3 text-sm font-semibold tracking-[0.16em] text-primary">
-            PROJECTS
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            프로젝트
-          </h2>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            기획부터 구현, 개선까지 참여한 프로젝트를 소개합니다.
+        <header className="mb-8 flex items-end justify-between border-b border-foreground pb-4">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">
+              WORK INVENTORY
+            </p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+              작업 기록
+            </h2>
+          </div>
+          <p className="hidden max-w-xs text-right text-sm leading-relaxed text-muted-foreground md:block">
+            기획부터 구현, 개선까지 참여한 프로젝트입니다.
           </p>
         </header>
         <div className="grid grid-cols-1 gap-5">

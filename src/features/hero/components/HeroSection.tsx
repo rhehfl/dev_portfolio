@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Github, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -13,89 +12,68 @@ const RESUME_URL =
 export default function HeroSection() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const fadeUp = {
-    initial: prefersReducedMotion ? false : { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-  };
-
   return (
-    <section
-      className="mx-auto grid max-w-5xl grid-cols-12 gap-6 pt-10 md:pt-20"
-      id="intro"
-    >
+    <section className="mx-auto max-w-5xl pt-10 md:pt-20" id="intro">
       <motion.div
-        {...fadeUp}
-        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5 }}
-        className="col-span-12 flex flex-col items-start gap-6 md:col-span-8"
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.45 }}
+        className="grid gap-8 border-y border-foreground py-8 md:grid-cols-[minmax(0,1fr)_220px] md:py-12"
       >
-        <p className="text-sm font-semibold tracking-[0.16em] text-primary">
-          FRONTEND ENGINEER · GU DOYOON
-        </p>
-
-        <h1 className="text-4xl font-bold leading-[1.18] tracking-tight md:text-6xl">
-          안녕하세요,
-          <br />
-          프론트엔드 개발자 <span className="text-primary">구도윤</span>입니다.
-        </h1>
-
-        <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          사용자가 바로 이해하고 편하게 쓸 수 있는 화면을 만드는 데 관심이
-          있습니다. React와 TypeScript를 중심으로 서비스를 만들고, 성능과
-          사용성을 꾸준히 개선합니다.
-        </p>
-
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={RESUME_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <FileText className="h-4 w-4" aria-hidden="true" />
-            이력서 보기
-          </a>
-          <a
-            href="https://github.com/rhehfl"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-bold transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <Github className="h-4 w-4" aria-hidden="true" />
-            GitHub
-          </a>
+        <div className="flex flex-col items-start gap-6">
+          <p className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">
+            GU DOYOON / PORTFOLIO 2026
+          </p>
+          <h1 className="text-4xl font-bold leading-[1.12] tracking-tight md:text-6xl">
+            안녕하세요,
+            <br />
+            구도윤입니다.
+          </h1>
+          <p className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            React와 TypeScript로 웹 서비스를 만들고 있습니다. 사용자가 편하게 쓸
+            수 있는 화면과, 팀이 함께 관리하기 쉬운 구조를 고민합니다.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-foreground px-4 py-2.5 text-sm font-bold text-background transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <FileText className="h-4 w-4" aria-hidden="true" />
+              이력서 보기
+            </a>
+            <a
+              href="https://github.com/rhehfl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-foreground bg-card px-4 py-2.5 text-sm font-bold transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <Github className="h-4 w-4" aria-hidden="true" />
+              GitHub
+            </a>
+          </div>
         </div>
 
-        <ul className="flex flex-wrap gap-2" aria-label="주요 기술 스택">
-          {STACKS.map((stack) => (
-            <li
-              key={stack}
-              className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground"
-            >
-              {stack}
-            </li>
-          ))}
-        </ul>
+        <dl className="grid h-fit grid-cols-1 border border-border bg-card text-sm">
+          <div className="border-b border-border p-4">
+            <dt className="text-xs text-muted-foreground">관심사</dt>
+            <dd className="mt-1 font-semibold">사용자 편의 · 팀 소통</dd>
+          </div>
+          <div className="border-b border-border p-4">
+            <dt className="text-xs text-muted-foreground">작업 방식</dt>
+            <dd className="mt-1 font-semibold">꼼꼼하게 확인하기</dd>
+          </div>
+          <div className="p-4">
+            <dt className="text-xs text-muted-foreground">주요 도구</dt>
+            <dd className="mt-1 flex flex-wrap gap-x-2 font-semibold">
+              {STACKS.map((stack) => (
+                <span key={stack}>{stack}</span>
+              ))}
+            </dd>
+          </div>
+        </dl>
       </motion.div>
-
-      <motion.figure
-        {...fadeUp}
-        transition={
-          prefersReducedMotion
-            ? { duration: 0 }
-            : { duration: 0.5, delay: 0.15 }
-        }
-        className="col-span-12 flex justify-start md:col-span-3 md:col-start-10 md:justify-end"
-      >
-        {/* TODO(사용자 에셋): 캐주얼 사진 수급 시 교체 — 현재는 증명사진 플레이스홀더 */}
-        <Image
-          src="/profile_image.jpg"
-          alt="프론트엔드 개발자 구도윤 프로필 사진"
-          width={156}
-          height={192}
-          priority
-          className="rounded-2xl border border-border object-cover shadow-hard"
-        />
-      </motion.figure>
     </section>
   );
 }

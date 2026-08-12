@@ -7,7 +7,10 @@ import { motion } from "framer-motion";
 export default function ExperienceSection() {
   return (
     <section className="mx-auto mt-24 max-w-5xl md:mt-32" id="experience">
-      <header className="mb-10 max-w-2xl">
+      <header className="mb-8 flex items-end justify-between border-b border-foreground pb-4">
+        <p className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">
+          EXPERIENCE LOG
+        </p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -16,9 +19,6 @@ export default function ExperienceSection() {
         >
           경험
         </motion.h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          서비스를 만들고 운영하며 쌓은 경험입니다.
-        </p>
       </header>
 
       <div className="flex flex-col">

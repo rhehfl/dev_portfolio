@@ -20,7 +20,7 @@ export default function Footer() {
     <footer className="mt-16 border-t border-border md:mt-24">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-5 px-4 py-10 md:flex-row">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Gu Doyoon. Frontend Engineer.
+          © {new Date().getFullYear()} Gu Doyoon.
         </p>
         <nav className="flex flex-wrap gap-3" aria-label="푸터 링크">
           <a
